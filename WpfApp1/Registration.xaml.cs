@@ -42,7 +42,7 @@ namespace WpfApp1
         private void Registration_click_reg(object sender, RoutedEventArgs e)
         {
 
-            if (TextBox1.Text == "" || TextBox2.Text == "" || TextBox3.Text == "" || TextBox4.Text == "" || TextBox5.Text == "" || TextBox6.Text == "" || TextBox7.Text == "" || TextBox8.Text == "")
+            if (TextBox1.Text == "" || TextBox2.Text == "" || TextBox3.Text == "" || TextBox6.Text == "")// || TextBox5.Text == "" || TextBox6.Text == "" || TextBox7.Text == "" || TextBox8.Text == "")
             {
                 MessageBox.Show("Пожалуйста заполните все поля");
             }
@@ -76,23 +76,30 @@ namespace WpfApp1
                                 using (SqlConnection reg = new SqlConnection(ConnectionString))
                                 {
                                     reg.Open();
+                                    SqlTransaction transaction = reg.BeginTransaction();
                                     SqlCommand cm1 = reg.CreateCommand();
-                                    cm1.CommandType = System.Data.CommandType.Text;
-                                    cm1.CommandText = "insert into users(first_name,middle_name,login,password,role_id) values ('" + TextBox1.Text + "','" + TextBox2.Text + "','" + TextBox3.Text + "','" + TextBox6.Text + "','" + TextBox8.Text + "')";
-                                    cm1.ExecuteNonQuery();
                                     SqlCommand cm2 = reg.CreateCommand();
-                                    cm2.CommandType = System.Data.CommandType.Text;
-                                    cm2.CommandText = "insert into facylties(name) values ('" + TextBox5.Text + "')";
-                                    cm2.ExecuteNonQuery();
-                                    SqlCommand cm3 = reg.CreateCommand();
-                                    cm3.CommandType = System.Data.CommandType.Text;
-                                    cm3.CommandText = "insert into roles(name) values ('" + TextBox8.Text + "')";
-                                    cm3.ExecuteNonQuery();
-                                    reg.Close();
-                                    MessageBox.Show("Вы успешно зарегестрированы!");
-                                    this.Hide();
-                                    //Menu mn = new Menu();
-                                    //mn.Show();
+                                    
+                                    cm1.Transaction = transaction;
+                                    try
+                                    {
+                                        cm1.CommandText = $"INSERT INTO users(first_name,middle_name,login,email,password) VALUES ('{name}', '{surname}','{email}','{login}','{password}');";
+                                        //cm2.CommandText= $"INSERT INTO facylties(name) VALUES ('{faculty}');";
+                                      
+                                        cm1.ExecuteNonQuery();
+                                       // cm2.ExecuteNonQuery();
+                                        transaction.Commit();
+                                        MessageBox.Show("Вы успешно зарегестрированы!");
+                                       
+                                        Entry mn = new Entry();
+                                        mn.Show();
+                                        this.Close();
+                                    }
+                                    catch(Exception ex)
+                                    {
+                                        MessageBox.Show(ex.Message);
+                                        transaction.Rollback();
+                                    }
                                 }
                             }
                         }
@@ -109,18 +116,35 @@ namespace WpfApp1
                 MessageBox.Show("В данное поле можно вводить только буквы.");
             }
         }
-        private void TextBox3_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (Char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)) & e.Key != Key.Back | e.Key == Key.Space)
-            {
-                e.Handled = true;
-                MessageBox.Show("В данное поле можно вводить только цифры.");
-            }
-        }
-
+        public static string name;
         private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            name = TextBox1.Text;
+        }
+        public static string surname;
+        private void TextBox2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            surname = TextBox2.Text;
+        }
+        public static string login;
+        private void TextBox3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            login = TextBox3.Text;
+        }
+        public static string email;
+        private void TextBox4_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            email = TextBox4.Text;
+        }
+        public static string password;
+        private void TextBox6_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            password = TextBox6.Text;
+        }
+        public static string faculty;
+        private void TextBox5_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            faculty = TextBox5.Text;
         }
     }
 }
