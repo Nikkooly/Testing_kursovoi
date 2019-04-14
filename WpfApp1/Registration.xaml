@@ -14,14 +14,14 @@
             <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="16">
                <Run Text="Регистрация"/>
             </TextBlock>
-            <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="22" Margin="285,70,0,0" VerticalAlignment="Top" Width="120" KeyDown="TextBox1_PreviewKeyDown" TextChanged="TextBox1_TextChanged" />
+            <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="22" Margin="285,70,0,0" VerticalAlignment="Top" Width="120" KeyDown="TextBox1_PreviewKeyDown" TextChanged="TextBox1_TextChanged"/>
             <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Height="22" Margin="285,110,0,0" VerticalAlignment="Top" Width="120" KeyDown="TextBox1_PreviewKeyDown" TextChanged="TextBox2_TextChanged" />
             <TextBox x:Name="TextBox3" HorizontalAlignment="Left" Height="22" Margin="285,150,0,0" VerticalAlignment="Top" Width="120" TextChanged="TextBox3_TextChanged" />
             <TextBox x:Name="TextBox4" HorizontalAlignment="Left" Height="22" Margin="285,190,0,0" VerticalAlignment="Top" Width="120" TextChanged="TextBox4_TextChanged" />
             <TextBox x:Name="TextBox5" HorizontalAlignment="Left" Height="22" Margin="285,230,0,0" VerticalAlignment="Top" Width="120" KeyDown="TextBox1_PreviewKeyDown" TextChanged="TextBox5_TextChanged" />
-            <TextBox x:Name="TextBox6" HorizontalAlignment="Left" Height="22" Margin="285,270,0,0" VerticalAlignment="Top" Width="120"  TextChanged="TextBox6_TextChanged" />
-            <TextBox x:Name="TextBox7" HorizontalAlignment="Left" Height="22" Margin="285,310,0,0" VerticalAlignment="Top" Width="120" />
-            <TextBox x:Name="TextBox8" HorizontalAlignment="Left" Height="22" Margin="285,395,0,0" VerticalAlignment="Top" Width="120"  />
+            <PasswordBox x:Name="password" PasswordChar="*" HorizontalAlignment="Left" Height="22" Margin="285,270,0,0" VerticalAlignment="Top" Width="120"   />
+            <PasswordBox x:Name="PasswordChecked" PasswordChar="*" HorizontalAlignment="Left" Height="22" Margin="285,310,0,0" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="TextBox8" HorizontalAlignment="Left" Height="22" Margin="285,395,0,0" VerticalAlignment="Top" Width="120"  TextChanged="TextBox8_TextChanged" />
 
             <Label Content="Имя:" HorizontalAlignment="Left" Margin="145,65,0,-10" FontSize="14" FontFamily="Arial" />
             <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="145,105,0,-10" FontSize="14" FontFamily="Arial" />

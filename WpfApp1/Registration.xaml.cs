@@ -12,12 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using System.Data.Linq;
+//using System.Linq;
+//using System.Data.Linq;
+using System.Data.Linq.Mapping;
 
 namespace WpfApp1
 {
     /// <summary>
     /// Логика взаимодействия для Registration.xaml
     /// </summary>
+    /// 
+    [Table(Name = "facylties")]
+    public class User
+    {
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
+        public int id { get; set; }
+        [Column]
+        public string names { get; set; }
+        
+    }
     public partial class Registration : Window
     {
      // SqlConnection reg = new SqlConnection(@"Data Source=DESKTOP-15P21ID; Initial Catalog=kursovoi; Integrated Sequrity=True;");
@@ -41,8 +55,9 @@ namespace WpfApp1
 
         private void Registration_click_reg(object sender, RoutedEventArgs e)
         {
-
-            if (TextBox1.Text == "" || TextBox2.Text == "" || TextBox3.Text == "" || TextBox6.Text == "")// || TextBox5.Text == "" || TextBox6.Text == "" || TextBox7.Text == "" || TextBox8.Text == "")
+            string pass=password.Password;
+            string passchecked = PasswordChecked.Password;
+            if (TextBox1.Text == "" || TextBox2.Text == "" || TextBox3.Text == "" || TextBox4.Text == "" ) //|| TextBox5.Text == "" || TextBox6.Text == "" || TextBox7.Text == "" || TextBox8.Text == "")
             {
                 MessageBox.Show("Пожалуйста заполните все поля");
             }
@@ -60,45 +75,54 @@ namespace WpfApp1
                     }
                     else
                     {
-                        if(TextBox2.Text.Length<2)
+                        if(pass.Length<2 || pass.Length>20)
                         {
-                            MessageBox.Show("Слишком короткое имя (не менее 2 символов)");
+                            MessageBox.Show("Пароль должен состоять как минимум из 2 символов");
                         }
-                        else
-                        {
-                            if (TextBox6.Text.Length < 4)
+                        else {
+                            if (TextBox2.Text.Length < 2)
                             {
-                                MessageBox.Show("Пароль слишком короткий(не менее 4 символов)");
+                                MessageBox.Show("Слишком короткое имя (не менее 2 символов)");
                             }
                             else
                             {
-                                string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                                using (SqlConnection reg = new SqlConnection(ConnectionString))
+                                if (!pass.Equals(passchecked))
                                 {
-                                    reg.Open();
-                                    SqlTransaction transaction = reg.BeginTransaction();
-                                    SqlCommand cm1 = reg.CreateCommand();
-                                    SqlCommand cm2 = reg.CreateCommand();
-                                    
-                                    cm1.Transaction = transaction;
-                                    try
+                                    MessageBox.Show("Пароли не совпадают");
+                                }
+
+                                else
+                                {
+                                    string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+                                    string sqlexp = "SELECT id FROM facylties where name='" + TextBox5.Text + "'";
+                                    foreach (int s in sqlexp)
+                                    using (SqlConnection reg = new SqlConnection(ConnectionString))
                                     {
-                                        cm1.CommandText = $"INSERT INTO users(first_name,middle_name,login,email,password) VALUES ('{name}', '{surname}','{email}','{login}','{password}');";
-                                        //cm2.CommandText= $"INSERT INTO facylties(name) VALUES ('{faculty}');";
-                                      
-                                        cm1.ExecuteNonQuery();
-                                       // cm2.ExecuteNonQuery();
-                                        transaction.Commit();
-                                        MessageBox.Show("Вы успешно зарегестрированы!");
-                                       
-                                        Entry mn = new Entry();
-                                        mn.Show();
-                                        this.Close();
-                                    }
-                                    catch(Exception ex)
-                                    {
-                                        MessageBox.Show(ex.Message);
-                                        transaction.Rollback();
+                                        reg.Open();
+                                        SqlTransaction transaction = reg.BeginTransaction();
+                                        SqlCommand cm1 = reg.CreateCommand();
+                                           SqlCommand command = new SqlCommand(sqlexp, reg);
+                                            cm1.Transaction = transaction;
+
+                                        try
+                                        {
+
+                                            cm1.CommandText = $"INSERT INTO users(first_name,middle_name,login,email,password,faculty_id) VALUES ('{surname}', '{name}','{login}','{email}','{pass}','{s}');";
+
+                                            cm1.ExecuteNonQuery();
+
+                                            transaction.Commit();
+                                            MessageBox.Show("Вы успешно зарегестрированы!");
+
+                                            Entry mn = new Entry();
+                                            mn.Show();
+                                            this.Close();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MessageBox.Show(ex.Message);
+                                            transaction.Rollback();
+                                        }
                                     }
                                 }
                             }
@@ -136,15 +160,16 @@ namespace WpfApp1
         {
             email = TextBox4.Text;
         }
-        public static string password;
-        private void TextBox6_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            password = TextBox6.Text;
-        }
         public static string faculty;
         private void TextBox5_TextChanged(object sender, TextChangedEventArgs e)
         {
             faculty = TextBox5.Text;
+        }
+        
+        public static string role;
+        private void TextBox8_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            role = TextBox8.Text;
         }
     }
 }
