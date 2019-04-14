@@ -1,0 +1,49 @@
+﻿<Window x:Class="WpfApp1.Entry"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+         Title="Registration" Height="370" Width="600" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid Background="AliceBlue">
+        <Grid Background="White" Margin="10,10,10,9.6">
+            <Image Source="resources\znanie.png" Margin="20,0,400,0">
+            </Image>
+            <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="16">
+               <Run Text="Вход" />
+            </TextBlock>
+            <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="22" Margin="285,125,0,0" VerticalAlignment="Top" Width="220"  />
+            <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Height="22" Margin="285,164,0,0" VerticalAlignment="Top" Width="220"  />
+            <Button  x:Name="close_btn_entry" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="550,0,0,324" VerticalAlignment="Bottom" Click="Close_click_entry" Width="30">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="resources\close.png" Margin="0,0,0,0" />
+                </StackPanel>
+            </Button>
+            <Button  x:Name="back_btn_entry" HorizontalAlignment="Left" Background="White" BorderBrush="White" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="30" Click="Back_click_entry">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="resources\back.png" Margin="0,0,0,0" Height="23" Width="24" />
+                </StackPanel>
+            </Button>
+            <Button  x:Name="entry_btn_entry" HorizontalAlignment="Left" Background="AliceBlue" Height="36" Margin="285,201,0,0" VerticalAlignment="Top" Width="118">
+                <Run Text="Войти" />
+            </Button>
+            <Button  x:Name="forgotpassword_btn_entry" HorizontalAlignment="Left" Background="White" BorderBrush="White"  Height="16" Margin="408,201,0,0" VerticalAlignment="Top" Width="97" Click="Forgot_click_entry">
+                <Run Text="Забыли пароль? " FontSize="9" FontStyle="Oblique"/>
+            </Button>
+            <Button  x:Name="btn_user_entry" HorizontalAlignment="Left" Background="White" BorderBrush="White" Height="27" Margin="250,122,0,0" VerticalAlignment="Top" Width="30" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="resources\user.png" Margin="0,0,0,0" Height="23" Width="24" />
+                </StackPanel>
+            </Button>
+            <Button  x:Name="btn_password_entrys" HorizontalAlignment="Left" Background="White" BorderBrush="White" Height="27" Margin="250,160,0,0" VerticalAlignment="Top" Width="30" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="resources\password.png" Margin="0,0,0,0" Height="24" Width="24" />
+                </StackPanel>
+
+            </Button>
+
+        </Grid>
+    </Grid>
+</Window>
