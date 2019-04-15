@@ -23,15 +23,7 @@ namespace WpfApp1
     /// Логика взаимодействия для Registration.xaml
     /// </summary>
     /// 
-    [Table(Name = "facylties")]
-    public class User
-    {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
-        public int id { get; set; }
-        [Column]
-        public string names { get; set; }
-        
-    }
+    
     public partial class Registration : Window
     {
      // SqlConnection reg = new SqlConnection(@"Data Source=DESKTOP-15P21ID; Initial Catalog=kursovoi; Integrated Sequrity=True;");
@@ -94,24 +86,49 @@ namespace WpfApp1
                                 else
                                 {
                                     string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                                    string sqlexp = "SELECT id FROM facylties where name='" + TextBox5.Text + "'";
-                                    foreach (int s in sqlexp)
+                                    string sqlexp = "SELECT f.id,f.name,r.id,r.name from facylties as f,roles as r";
+                                   // string sqlexpp = "SELECT * from roles";
+
                                     using (SqlConnection reg = new SqlConnection(ConnectionString))
                                     {
                                         reg.Open();
-                                        SqlTransaction transaction = reg.BeginTransaction();
-                                        SqlCommand cm1 = reg.CreateCommand();
-                                           SqlCommand command = new SqlCommand(sqlexp, reg);
-                                            cm1.Transaction = transaction;
-
+                                        SqlCommand command = new SqlCommand(sqlexp, reg);
+                                        SqlDataReader reader = command.ExecuteReader();
+                                        //SqlCommand command1 = new SqlCommand(sqlexpp, reg);
+                                        //SqlDataReader reader1 = command.ExecuteReader();
+                                        SqlCommand cm1 = reg.CreateCommand();                                         
+                                                                                 
                                         try
                                         {
-
-                                            cm1.CommandText = $"INSERT INTO users(first_name,middle_name,login,email,password,faculty_id) VALUES ('{surname}', '{name}','{login}','{email}','{pass}','{s}');";
-
+                                            int fak = 0;
+                                            int rol = 0;
+                                            while (reader.Read())
+                                            {
+                                                if (reader.GetValue(1).Equals(TextBox5.Text) && reader.GetValue(3).Equals(TextBox8.Text))
+                                                {
+                                                    object x = reader.GetValue(0);
+                                                    object z = reader.GetValue(2);
+                                                    fak = (int)x;
+                                                    rol = (int)z;
+                                                }
+                                                 
+                                            }
+                                            //while (reader1.Read())
+                                            //{
+                                            //    if (reader1.GetValue(1).Equals(TextBox8.Text))
+                                            //    {
+                                            //        object z = reader1.GetValue(0);
+                                            //        rol = (int)z;
+                                            //        MessageBox.Show(rol.ToString());
+                                            //    }
+                                            //}
+                                            reader.Close();
+                                           // reader1.Close();
+                                            
+                                            cm1.CommandText = $"INSERT INTO users(first_name, middle_name, login, email, password, faculty_id,role_id) VALUES ('{surname}', '{name}','{login}','{email}','{pass}', '{fak}', '{rol}');";
                                             cm1.ExecuteNonQuery();
 
-                                            transaction.Commit();
+                                            
                                             MessageBox.Show("Вы успешно зарегестрированы!");
 
                                             Entry mn = new Entry();
@@ -120,9 +137,12 @@ namespace WpfApp1
                                         }
                                         catch (Exception ex)
                                         {
+                                           
                                             MessageBox.Show(ex.Message);
-                                            transaction.Rollback();
+                                            
                                         }
+                                        reader.Close();
+                                        //reader1.Close();
                                     }
                                 }
                             }
