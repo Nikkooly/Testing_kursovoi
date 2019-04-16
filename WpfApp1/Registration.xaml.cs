@@ -82,68 +82,58 @@ namespace WpfApp1
                                 {
                                     MessageBox.Show("Пароли не совпадают");
                                 }
-
                                 else
                                 {
-                                    string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                                    string sqlexp = "SELECT f.id,f.name,r.id,r.name from facylties as f,roles as r";
-                                   // string sqlexpp = "SELECT * from roles";
-
-                                    using (SqlConnection reg = new SqlConnection(ConnectionString))
+                                    if(TextBox8.Text!="Student" || TextBox8.Text != "Teacher" || TextBox8.Text != "Admin")
                                     {
-                                        reg.Open();
-                                        SqlCommand command = new SqlCommand(sqlexp, reg);
-                                        SqlDataReader reader = command.ExecuteReader();
-                                        //SqlCommand command1 = new SqlCommand(sqlexpp, reg);
-                                        //SqlDataReader reader1 = command.ExecuteReader();
-                                        SqlCommand cm1 = reg.CreateCommand();                                         
-                                                                                 
-                                        try
-                                        {
-                                            int fak = 0;
-                                            int rol = 0;
-                                            while (reader.Read())
-                                            {
-                                                if (reader.GetValue(1).Equals(TextBox5.Text) && reader.GetValue(3).Equals(TextBox8.Text))
-                                                {
-                                                    object x = reader.GetValue(0);
-                                                    object z = reader.GetValue(2);
-                                                    fak = (int)x;
-                                                    rol = (int)z;
-                                                }
-                                                 
-                                            }
-                                            //while (reader1.Read())
-                                            //{
-                                            //    if (reader1.GetValue(1).Equals(TextBox8.Text))
-                                            //    {
-                                            //        object z = reader1.GetValue(0);
-                                            //        rol = (int)z;
-                                            //        MessageBox.Show(rol.ToString());
-                                            //    }
-                                            //}
-                                            reader.Close();
-                                           // reader1.Close();
-                                            
-                                            cm1.CommandText = $"INSERT INTO users(first_name, middle_name, login, email, password, faculty_id,role_id) VALUES ('{surname}', '{name}','{login}','{email}','{pass}', '{fak}', '{rol}');";
-                                            cm1.ExecuteNonQuery();
-
-                                            
-                                            MessageBox.Show("Вы успешно зарегестрированы!");
-
-                                            Entry mn = new Entry();
-                                            mn.Show();
-                                            this.Close();
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                           
-                                            MessageBox.Show(ex.Message);
-                                            
-                                        }
-                                        reader.Close();
-                                        //reader1.Close();
+                                        MessageBox.Show("В этом поле можно ввести только Student или Teacher");
                                     }
+                                    
+                                        string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+                                        string sqlexp = "SELECT f.id,f.name,r.id,r.name from facylties as f,roles as r";                                        
+                                        using (SqlConnection reg = new SqlConnection(ConnectionString))
+                                        {
+                                            reg.Open();
+                                            SqlCommand command = new SqlCommand(sqlexp, reg);
+                                            SqlDataReader reader = command.ExecuteReader();
+                                            SqlCommand cm1 = reg.CreateCommand();
+
+                                            try
+                                            {
+                                                int fak = 0;
+                                                int rol = 0;
+                                                while (reader.Read())
+                                                {
+                                                    if (reader.GetValue(1).Equals(TextBox5.Text) && reader.GetValue(3).Equals(TextBox8.Text))
+                                                    {
+                                                        object x = reader.GetValue(0);
+                                                        object z = reader.GetValue(2);
+                                                        fak = (int)x;
+                                                        rol = (int)z;
+                                                    }
+
+                                                }
+                                                reader.Close();
+                                                cm1.CommandText = $"INSERT INTO users(first_name, middle_name, login, email, password, faculty_id,role_id) VALUES ('{surname}', '{name}','{login}','{email}','{pass}', '{fak}', '{rol}');";
+                                                cm1.ExecuteNonQuery();
+
+
+                                                MessageBox.Show("Вы успешно зарегестрированы!");
+
+                                                Entry mn = new Entry();
+                                                mn.Show();
+                                                this.Close();
+                                            }
+                                            catch (Exception ex)
+                                            {
+
+                                                MessageBox.Show(ex.Message);
+
+                                            }
+                                            reader.Close();
+
+                                        }
+                                    
                                 }
                             }
                         }
