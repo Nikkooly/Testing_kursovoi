@@ -84,13 +84,14 @@ namespace WpfApp1
                                 }
                                 else
                                 {
-                                    if(TextBox8.Text!="Student" || TextBox8.Text != "Teacher" || TextBox8.Text != "Admin")
+                                    if (!TextBox8.Text.Equals("Student") || !TextBox8.Text.Equals("Teacher"))
                                     {
-                                        MessageBox.Show("В этом поле можно ввести только Student или Teacher");
+                                        MessageBox.Show("В этом поле можно ввести только Student или Teacher "+"X" +TextBox8.Text+"X");
                                     }
-                                    
+                                    else
+                                    {
                                         string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                                        string sqlexp = "SELECT f.id,f.name,r.id,r.name from facylties as f,roles as r";                                        
+                                        string sqlexp = "SELECT f.id,f.name,r.id,r.name from facylties as f,roles as r";
                                         using (SqlConnection reg = new SqlConnection(ConnectionString))
                                         {
                                             reg.Open();
@@ -133,7 +134,7 @@ namespace WpfApp1
                                             reader.Close();
 
                                         }
-                                    
+                                    }
                                 }
                             }
                         }

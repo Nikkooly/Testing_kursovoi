@@ -100,10 +100,7 @@ namespace WpfApp1
                     reader.Close();
                 }
                     SendEmailAsync(TextBox1.Text, log, pass).GetAwaiter();
-                    MessageBox.Show("Письмо успешно отправлено");
-                    MessageBox.Show(TextBox1.Text);
-                    MessageBox.Show(log);
-                    MessageBox.Show(pass);
+                    MessageBox.Show("Письмо успешно отправлено");                  
                     Entry ee = new Entry();
                     ee.Show();                    
                     this.Close();
@@ -123,8 +120,8 @@ namespace WpfApp1
             m.Subject = "Восстановление пароля";
             m.Body = $"Ваш логин {login} ваш пароль {password}.</br> Удалите это сообщение!.</br> Хорошего дня =)";
             m.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("Wblitz1@yandex.by", "mypassword");
+            SmtpClient smtp = new SmtpClient("smtp.yandex.by", 587);
+            smtp.Credentials = new NetworkCredential("Wblitz1@yandex.by", "10012000nick");
             smtp.EnableSsl = true;
             await smtp.SendMailAsync(m);
         }
