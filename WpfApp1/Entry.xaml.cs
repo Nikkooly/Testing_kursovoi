@@ -118,8 +118,7 @@ namespace WpfApp1
                     reader.Close();
                     connection.Close();
                 }
-            }
-                       
+            }                       
         }
     }
     
