@@ -29,14 +29,15 @@ namespace WpfApp1
             this.Close();
         }
 
-        private void no_click(object sender, RoutedEventArgs e)
+        private void Accept_Click(object sender, RoutedEventArgs e)
         {
-
+            App.Current.Shutdown();
         }
 
-        private void yes_click(object sender, RoutedEventArgs e)
+        private void No_click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
+           
         }
     }
 }

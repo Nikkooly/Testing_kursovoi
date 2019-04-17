@@ -21,11 +21,6 @@
                     <Image Source="resources\close.png" Margin="0,0,0,0" />
                 </StackPanel>
             </Button>
-            <Button  x:Name="back_btn_registration" HorizontalAlignment="Left" Background="White" BorderBrush="White" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="30" Click="Back_click_teacher">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\back.png" Margin="0,0,0,0" />
-                </StackPanel>
-            </Button>
         </Grid>
     </Grid>
 </Window>
