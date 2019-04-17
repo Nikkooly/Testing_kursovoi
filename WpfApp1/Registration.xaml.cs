@@ -49,7 +49,7 @@ namespace WpfApp1
         {
             string pass=password.Password;
             string passchecked = PasswordChecked.Password;
-            if (TextBox1.Text == "" || TextBox2.Text == "" || TextBox3.Text == "" || TextBox4.Text == "" ) //|| TextBox5.Text == "" || TextBox6.Text == "" || TextBox7.Text == "" || TextBox8.Text == "")
+            if (TextBox1.Text == "" || TextBox2.Text == "" || TextBox3.Text == "" || TextBox4.Text == ""  || TextBox5.Text == ""  || TextBox8.Text == "")
             {
                 MessageBox.Show("Пожалуйста заполните все поля");
             }
@@ -84,12 +84,12 @@ namespace WpfApp1
                                 }
                                 else
                                 {
-                                    if (!TextBox8.Text.Equals("Student") || !TextBox8.Text.Equals("Teacher"))
-                                    {
-                                        MessageBox.Show("В этом поле можно ввести только Student или Teacher "+"X" +TextBox8.Text+"X");
-                                    }
-                                    else
-                                    {
+                                    ////if (!TextBox8.Text.Equals("Student") || !TextBox8.Text.Equals("Teacher"))
+                                    ////{
+                                    ////    MessageBox.Show("В этом поле можно ввести только Student или Teacher "+"X" +TextBox8.Text+"X");
+                                    ////}
+                                    ////else
+                                    ////{
                                         string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
                                         string sqlexp = "SELECT f.id,f.name,r.id,r.name from facylties as f,roles as r";
                                         using (SqlConnection reg = new SqlConnection(ConnectionString))
@@ -134,7 +134,7 @@ namespace WpfApp1
                                             reader.Close();
 
                                         }
-                                    }
+                                    //}
                                 }
                             }
                         }

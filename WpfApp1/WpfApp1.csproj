@@ -70,6 +70,9 @@
     <Compile Include="Admin_panel.xaml.cs">
       <DependentUpon>Admin_panel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CheckClose.xaml.cs">
+      <DependentUpon>CheckClose.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entry.xaml.cs">
       <DependentUpon>Entry.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
       <DependentUpon>Teacher_panel.xaml</DependentUpon>
     </Compile>
     <Page Include="Admin_panel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CheckClose.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,6 +177,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\znanie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\test.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\quest.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

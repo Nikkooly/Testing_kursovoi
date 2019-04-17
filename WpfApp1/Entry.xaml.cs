@@ -79,7 +79,7 @@ namespace WpfApp1
                                 c= true;
                                 object s = reader.GetValue(2);
                                 id = (int)s;
-                                if (id == 1)
+                                if (id == 3)
                                 {
                                     Admin_panel adp = new Admin_panel();
                                     adp.Show();
@@ -91,7 +91,7 @@ namespace WpfApp1
                                     ss.Show();
                                     this.Close();
                                 }
-                                if (id == 3)
+                                if (id == 1)
                                 {
                                     Teacher_panel tp = new Teacher_panel();
                                     tp.Show();

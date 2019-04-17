@@ -23,5 +23,26 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+
+        private void Create_test_click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Close_click_teacher(object sender, RoutedEventArgs e)
+        {
+            CheckClose check = new CheckClose();
+            check.Show();
+            //this.Close();
+        }
+
+        private void Back_click_teacher(object sender, RoutedEventArgs e)
+        {
+            CheckClose check = new CheckClose();
+            check.Show();
+            //Entry entry = new Entry();
+            //entry.Show();
+            //this.Close();
+        }
     }
 }
