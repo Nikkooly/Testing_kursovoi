@@ -26,6 +26,7 @@ namespace WpfApp1
     {
         entry ent = new entry();
         public static string teachername = entry.people;
+        public static int id_teacher = entry.identry;
         public Teacher_panel()
         {            
             
@@ -35,6 +36,7 @@ namespace WpfApp1
         private void Create_test_click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(teachername);
+            MessageBox.Show(id_teacher.ToString());
         }
 
         private void Close_click_teacher(object sender, RoutedEventArgs e)
@@ -49,8 +51,6 @@ namespace WpfApp1
             quest.Show();
             
         }
-
-
 
         private void Label1_Click(object sender, RoutedEventArgs e)
         {

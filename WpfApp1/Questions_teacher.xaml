@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid Background="AliceBlue">
         <Grid Background="White" Margin="10,10,10,9.6">
-            <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="16" Margin="78,-1,75,503.8">
+            <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="16" Margin="78,-1,75,553.4">
                <Run Text="Questions"/>
             </TextBlock>
             <TextBlock Margin="68,162,47,401.4" TextAlignment="Center" Foreground="RED" FontFamily="Arial"  FontSize="12">
@@ -26,8 +26,9 @@
                     <Image Source="resources\back.png" Margin="0,0,0,0" />
                 </StackPanel>
             </Button>
-            <Label Content="Предмет:" HorizontalAlignment="Left" Margin="58,76,0,378.4" FontSize="14" FontFamily="Arial" />
+            <Label Content="Предмет:" HorizontalAlignment="Left" Margin="58,76,0,476.4" FontSize="14" FontFamily="Arial" />
             <Label x:Name="question" Visibility="Hidden"  Content="Вопрос:"   HorizontalAlignment="Left" Margin="10,242,0,212.4" FontSize="14" FontFamily="Arial" />
+            <Label x:Name="question_without" Visibility="Hidden"  Content="Вопрос:"   HorizontalAlignment="Left" Margin="10,242,0,212.4" FontSize="14" FontFamily="Arial" />
             <Label x:Name="answerwithout" Visibility="Hidden" ToolTip="Введите в поле справа номер правильного ответа"  Content="Ответ:"  HorizontalAlignment="Left" Margin="10,284,0,172.4" FontSize="14" FontFamily="Arial" RenderTransformOrigin="0.5,0.5" />
             <Label x:Name="answerwith" Visibility="Hidden" ToolTip="Введите в поле справа номер правильного ответа"  Content="Ответ:"  HorizontalAlignment="Left" Margin="10,441,0,115.4" FontSize="14" FontFamily="Arial" RenderTransformOrigin="0.5,0.5" />
 
@@ -35,16 +36,18 @@
             <Label x:Name="answer2" Content="Ответ 2:" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,320,0,135.4" FontSize="14" FontFamily="Arial" />
             <Label x:Name="answer3" Content="Ответ 3:" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,358,0,95.4" FontSize="14" FontFamily="Arial"  />
             <Label x:Name="answer4" Content="Ответ 4:" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,400,0,55.4" FontSize="14" FontFamily="Arial" />
-            <Label Content="Тема вопроса:" HorizontalAlignment="Left" Margin="58,115,0,340.4" FontSize="14" FontFamily="Arial" />
-            <TextBox x:Name="Subject" HorizontalAlignment="Left" Height="22" Margin="207,76,0,0" VerticalAlignment="Top" Width="120"  />
-            <TextBox x:Name="Theme_question" HorizontalAlignment="Left" Height="22" Margin="207,115,0,0" VerticalAlignment="Top" Width="120"  />
-            <TextBox x:Name="Question"  Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,246,0,0" VerticalAlignment="Top" Width="278"  />
+            <Label Content="Тема вопроса:" HorizontalAlignment="Left" Margin="58,115,0,436.4" FontSize="14" FontFamily="Arial" />
+            <TextBox x:Name="Subject" HorizontalAlignment="Left" Height="22" Margin="207,76,0,0" VerticalAlignment="Top" Width="120" TextChanged="Subject_TextChanged"   />
+            <TextBox x:Name="Theme_question" HorizontalAlignment="Left" Height="22" Margin="207,115,0,0" VerticalAlignment="Top" Width="120" TextChanged="Theme_question_TextChanged"  />
+            <TextBox x:Name="Question"  Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,246,0,0" VerticalAlignment="Top" Width="278" TextChanged="Question_TextChanged" />
+            <TextBox x:Name="Question_Without"  Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,246,0,0" VerticalAlignment="Top" Width="278" />
             <TextBox x:Name="AnswerWithout" Visibility="Hidden" ToolTip="Введите здесь номер правильного ответа"  HorizontalAlignment="Left" Height="22" Margin="92,286,0,0" VerticalAlignment="Top" Width="278"  />
-            <TextBox x:Name="Answer1" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,283,0,0" VerticalAlignment="Top" Width="278"  />
+            <TextBox x:Name="AnswerWith" Visibility="Hidden" ToolTip="Введите здесь номер правильного ответа"  HorizontalAlignment="Left" Height="22" Margin="92,443,0,0" VerticalAlignment="Top" Width="278" TextChanged="AnswerWith_TextChanged"  />
+            <TextBox x:Name="Answer1" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,283,0,0" VerticalAlignment="Top" Width="278" TextChanged="Answer1_TextChanged" />
             <TextBox x:Name="Answer2" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,323,0,0" VerticalAlignment="Top" Width="278"  />
-            <TextBox x:Name="Answer3" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,363,0,0" VerticalAlignment="Top" Width="278"  />
-            <TextBox x:Name="Answer4" Visibility="Hidden"  HorizontalAlignment="Left" Height="22" Margin="92,403,0,0" VerticalAlignment="Top" Width="278"  />
-            <TextBox x:Name="Answer" ToolTip="Введите здесь номер правильного ответа" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,443,0,0" VerticalAlignment="Top" Width="278"  />
+            <TextBox x:Name="Answer3" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,363,0,0" VerticalAlignment="Top" Width="278" TextChanged="Answer3_TextChanged"  />
+            <TextBox x:Name="Answer4" Visibility="Hidden"  HorizontalAlignment="Left" Height="22" Margin="92,403,0,0" VerticalAlignment="Top" Width="278" TextChanged="Answer4_TextChanged"  />
+            
             <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="26,196,0,0" VerticalAlignment="Top" Width="167" Click="With_answers_click">
                 <Run Text="С ответами" FontSize="16"/>
             </Button>
