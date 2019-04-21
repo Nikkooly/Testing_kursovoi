@@ -36,8 +36,7 @@ namespace WpfApp1
 
         private void No_click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-           
+            this.Close();           
         }
     }
 }

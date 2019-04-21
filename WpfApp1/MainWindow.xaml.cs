@@ -27,7 +27,7 @@ namespace WpfApp1
 
         private void Entry_Click(object sender, RoutedEventArgs e)
         {
-            Entry ent = new Entry();
+            entry ent = new entry();
             ent.Show();
             this.Close();
         }

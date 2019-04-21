@@ -15,21 +15,13 @@ using System.Windows.Shapes;
 namespace WpfApp1
 {
     /// <summary>
-    /// Логика взаимодействия для Students_main.xaml
+    /// Логика взаимодействия для Info_question.xaml
     /// </summary>
-    public partial class Students_main : Window
+    public partial class Info_question : Window
     {
-        public Students_main()
+        public Info_question()
         {
             InitializeComponent();
-        }
-
-        
-
-        private void Close_click_student(object sender, RoutedEventArgs e)
-        {
-            CheckClose check = new CheckClose();
-            check.Show();
         }
     }
 }

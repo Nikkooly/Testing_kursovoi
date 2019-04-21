@@ -22,9 +22,9 @@ namespace WpfApp1
     /// <summary>
     /// Логика взаимодействия для Entry.xaml
     /// </summary>
-    public partial class Entry : Window
+    public partial class entry : Window
     {
-        public Entry()
+        public entry()
         {
             InitializeComponent();
         }
@@ -50,6 +50,9 @@ namespace WpfApp1
         public static int id = 0;
         public static string pass;
         public static string log;
+        public static string people;
+        public static int identry;
+        
         private void Entry_btn_entry_Click(object sender, RoutedEventArgs e)
         {
             if (TextBox1.Text.Equals("") || passwords.Password.Equals(""))
@@ -60,7 +63,7 @@ namespace WpfApp1
             else
             {
                 string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                string sqlExpression = "SELECT login,password,role_id FROM users";
+                string sqlExpression = "SELECT login,password,role_id,first_name,middle_name,id FROM users";
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
@@ -79,6 +82,12 @@ namespace WpfApp1
                                 c= true;
                                 object s = reader.GetValue(2);
                                 id = (int)s;
+                                object ident = reader.GetValue(5);
+                                identry = (int)ident;
+                                object surnam = reader.GetValue(3);
+                                object nam = reader.GetValue(4);
+                                people = String.Concat((string)surnam+" ", (string)nam);
+                                
                                 if (id == 3)
                                 {
                                     Admin_panel adp = new Admin_panel();

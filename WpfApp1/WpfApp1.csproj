@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>GeoGebra.ico</ApplicationIcon>
+    <ApplicationIcon>Kubity.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -76,10 +76,16 @@
     <Compile Include="Entry.xaml.cs">
       <DependentUpon>Entry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Info_question.xaml.cs">
+      <DependentUpon>Info_question.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Questions_teacher.xaml.cs">
+      <DependentUpon>Questions_teacher.xaml</DependentUpon>
     </Compile>
     <Compile Include="RecoveryPassword.xaml.cs">
       <DependentUpon>RecoveryPassword.xaml</DependentUpon>
@@ -105,6 +111,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Info_question.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -117,6 +127,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Questions_teacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RecoveryPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,9 +172,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="GeoGebra.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="resources\students.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +194,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\quest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\student_test.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Kubity.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\teacher.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -53,7 +53,7 @@ namespace WpfApp1
 
         private void Entry_click_forgotpassword(object sender, RoutedEventArgs e)
         {
-            Entry entr = new Entry();
+            entry entr = new entry();
             entr.Show();
             this.Close();
         }       
@@ -101,7 +101,7 @@ namespace WpfApp1
                 }
                     SendEmailAsync(TextBox1.Text, log, pass).GetAwaiter();
                     MessageBox.Show("Письмо успешно отправлено");                  
-                    Entry ee = new Entry();
+                    entry ee = new entry();
                     ee.Show();                    
                     this.Close();
                 

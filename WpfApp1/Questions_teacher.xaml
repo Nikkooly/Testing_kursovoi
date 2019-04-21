@@ -1,0 +1,75 @@
+﻿<Window x:Class="WpfApp1.Questions_teacher"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Teacher panel" Height="600" Width="400" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid Background="AliceBlue">
+        <Grid Background="White" Margin="10,10,10,9.6">
+            <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="16" Margin="78,-1,75,503.8">
+               <Run Text="Questions"/>
+            </TextBlock>
+            <TextBlock Margin="68,162,47,401.4" TextAlignment="Center" Foreground="RED" FontFamily="Arial"  FontSize="12">
+               <Run Text="Выберите вариант вопроса!"/>
+
+            </TextBlock>
+            <Button  x:Name="close_btn_registration" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="349,0,0,552.4" VerticalAlignment="Bottom" Click="Close_click_question" Width="30">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="resources\close.png" Margin="0,0,0,0" />
+                </StackPanel>
+            </Button>
+            <Button  x:Name="back_btn_registration" HorizontalAlignment="Left" Background="White" BorderBrush="White" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="30" Click="Back_click_question">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="resources\back.png" Margin="0,0,0,0" />
+                </StackPanel>
+            </Button>
+            <Label Content="Предмет:" HorizontalAlignment="Left" Margin="58,76,0,378.4" FontSize="14" FontFamily="Arial" />
+            <Label x:Name="question" Visibility="Hidden"  Content="Вопрос:"   HorizontalAlignment="Left" Margin="10,242,0,212.4" FontSize="14" FontFamily="Arial" />
+            <Label x:Name="answerwithout" Visibility="Hidden" ToolTip="Введите в поле справа номер правильного ответа"  Content="Ответ:"  HorizontalAlignment="Left" Margin="10,284,0,172.4" FontSize="14" FontFamily="Arial" RenderTransformOrigin="0.5,0.5" />
+            <Label x:Name="answerwith" Visibility="Hidden" ToolTip="Введите в поле справа номер правильного ответа"  Content="Ответ:"  HorizontalAlignment="Left" Margin="10,441,0,115.4" FontSize="14" FontFamily="Arial" RenderTransformOrigin="0.5,0.5" />
+
+            <Label x:Name="answer1" Content="Ответ 1:" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,281,0,175.4" FontSize="14" FontFamily="Arial" />
+            <Label x:Name="answer2" Content="Ответ 2:" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,320,0,135.4" FontSize="14" FontFamily="Arial" />
+            <Label x:Name="answer3" Content="Ответ 3:" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,358,0,95.4" FontSize="14" FontFamily="Arial"  />
+            <Label x:Name="answer4" Content="Ответ 4:" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,400,0,55.4" FontSize="14" FontFamily="Arial" />
+            <Label Content="Тема вопроса:" HorizontalAlignment="Left" Margin="58,115,0,340.4" FontSize="14" FontFamily="Arial" />
+            <TextBox x:Name="Subject" HorizontalAlignment="Left" Height="22" Margin="207,76,0,0" VerticalAlignment="Top" Width="120"  />
+            <TextBox x:Name="Theme_question" HorizontalAlignment="Left" Height="22" Margin="207,115,0,0" VerticalAlignment="Top" Width="120"  />
+            <TextBox x:Name="Question"  Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,246,0,0" VerticalAlignment="Top" Width="278"  />
+            <TextBox x:Name="AnswerWithout" Visibility="Hidden" ToolTip="Введите здесь номер правильного ответа"  HorizontalAlignment="Left" Height="22" Margin="92,286,0,0" VerticalAlignment="Top" Width="278"  />
+            <TextBox x:Name="Answer1" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,283,0,0" VerticalAlignment="Top" Width="278"  />
+            <TextBox x:Name="Answer2" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,323,0,0" VerticalAlignment="Top" Width="278"  />
+            <TextBox x:Name="Answer3" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,363,0,0" VerticalAlignment="Top" Width="278"  />
+            <TextBox x:Name="Answer4" Visibility="Hidden"  HorizontalAlignment="Left" Height="22" Margin="92,403,0,0" VerticalAlignment="Top" Width="278"  />
+            <TextBox x:Name="Answer" ToolTip="Введите здесь номер правильного ответа" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,443,0,0" VerticalAlignment="Top" Width="278"  />
+            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="26,196,0,0" VerticalAlignment="Top" Width="167" Click="With_answers_click">
+                <Run Text="С ответами" FontSize="16"/>
+            </Button>
+            <Button HorizontalAlignment="Left" x:Name="Newquestion"  Visibility="Hidden" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="203,359,0,0" VerticalAlignment="Top" Width="167" Click="New_question_click">
+                <Run Text="Новый вопрос" FontSize="16"/>
+            </Button>
+            <Button HorizontalAlignment="Left"  x:Name="Newquestionwithanswer" Visibility="Hidden"   BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="203,523,0,0" VerticalAlignment="Top" Width="167" Click="New_question_withanswer_click">
+                <Run Text="Новый вопрос" FontSize="16"/>
+            </Button>
+            <Button HorizontalAlignment="Left"  x:Name="closewithanswer" Visibility="Hidden" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="10,523,0,0" VerticalAlignment="Top" Width="167" Click="Close_question_withanswer_click">
+                <Run Text="Закрыть" FontSize="16"/>
+            </Button>
+            <Image x:Name="teacher"  Source="resources\teacher.png" Margin="92,400,59,10.4" Visibility="Hidden"/>
+            <Button HorizontalAlignment="Left" x:Name="closequestion" Visibility="Hidden"  BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="10,361,0,0" VerticalAlignment="Top" Width="167" Click="Close_click">
+                <Run Text="Закрыть" FontSize="16"/>
+            </Button>
+            <Button HorizontalAlignment="Left" x:Name="savequestion" Visibility="Hidden" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="102,320,0,0" VerticalAlignment="Top" Width="167" Click="Save_question_click">
+                <Run Text="Сохранить вопрос" FontSize="16"/>
+            </Button>
+            <Button HorizontalAlignment="Left"   x:Name="savequestionwithanswer" Visibility="Hidden" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="116,484,0,0" VerticalAlignment="Top" Width="167" Click="Save_question_withanswer_click">
+                <Run Text="Сохранить вопрос" FontSize="16"/>
+            </Button>
+            <Button HorizontalAlignment="Left"  BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="207,196,0,0" VerticalAlignment="Top" Width="167" Click="WithoutAnswers_click">
+                <Run Text="Без ответов" FontSize="16"/>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

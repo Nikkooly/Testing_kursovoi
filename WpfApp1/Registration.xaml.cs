@@ -121,7 +121,7 @@ namespace WpfApp1
 
                                                 MessageBox.Show("Вы успешно зарегестрированы!");
 
-                                                Entry mn = new Entry();
+                                                entry mn = new entry();
                                                 mn.Show();
                                                 this.Close();
                                             }
