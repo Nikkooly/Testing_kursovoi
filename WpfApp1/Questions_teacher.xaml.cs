@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Questions_teacher : Window
     {
+        public static int id_teacher = entry.identry;
         public Questions_teacher()
         {
             InitializeComponent();
@@ -102,7 +104,104 @@ namespace WpfApp1
             {
                 MessageBox.Show("Не все поля заполнены");
             }
+            else
+            {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlexp = "SELECT id,name FROM subjects";
+            string sqlexpquestion = "SELECT id,question FROM questions";
+            using (SqlConnection reg = new SqlConnection(ConnectionString))
+            {
+                    try
+                    {
+                        reg.Open();
+                        SqlCommand cm1 = reg.CreateCommand();
+                        SqlCommand command = new SqlCommand(sqlexp, reg);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (!subject.Equals(equals_subject))
+                        {
+                            while (reader.Read())
+                            {
+                                if (reader.GetValue(1).Equals(subject))
+                                {
+                                    cm1.CommandText = $"INSERT INTO subjects(name) VALUES ('{subject}');";
+                                    object x = reader.GetValue(0);
+                                    object z = reader.GetValue(1);
+                                    equals_subject = (string)z;
+                                    id_subject = (int)x;
+                                    cm1.ExecuteNonQuery();
+                                }
+                            }
+                           reader.Close();
+                        }
+                        else
+                        {
+                            while (reader.Read())
+                            {
+                                if (reader.GetValue(1).Equals(subject))
+                                {
+                                    object x = reader.GetValue(0);
+                                    object z = reader.GetValue(1);
+                                    equals_subject = (string)z;
+                                    id_subject = (int)x;
+                                }
+                            }
+                            reader.Close();
+                        }
+                    }
+                    catch(Exception)
+                    {
+                      
+                    }
+            }
+            
+            using (SqlConnection reg_questions = new SqlConnection(ConnectionString))
+            {
+                reg_questions.Open();
+                SqlCommand cm1 = reg_questions.CreateCommand();
+                try
+                {
+                    cm1.CommandText = $"INSERT INTO questions(question,teacher_id,subject_id,theme) VALUES ('{Question_Without.Text}','{id_teacher}','{id_subject}','{theme}');";
+                    cm1.ExecuteNonQuery();                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            using (SqlConnection reg_answers = new SqlConnection(ConnectionString))
+                {
+                    reg_answers.Open();
+                    SqlCommand cm1 = reg_answers.CreateCommand();
+                    SqlCommand command = new SqlCommand(sqlexpquestion, reg_answers);
+                    SqlDataReader reader = command.ExecuteReader();
+                    try
+                    {
+                        int is_true = 1;
+                        while (reader.Read())
+                        {
+                            if (reader.GetValue(1).Equals(Question_Without.Text))
+                            {
+                               
+                                object a = reader.GetValue(0);
+                                id_question = (int)a;
+                                
+                            }
+                        }
+                        reader.Close();
+                        cm1.CommandText = $"INSERT INTO answers(question_id,answer,is_true) VALUES ('{id_question}','{AnswerWithout.Text}','{is_true}');";
+                        cm1.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    reader.Close();
+                }
+            }
+            MessageBox.Show("Вопрос успешно добавлен!");           
         }
+        
 
         private void Close_click(object sender, RoutedEventArgs e)
         {
@@ -112,7 +211,7 @@ namespace WpfApp1
         private void New_question_click(object sender, RoutedEventArgs e)
         {
 
-            Question.Clear();
+            Question_Without.Clear();
             Answer1.Clear();
             Answer2.Clear();
             Answer3.Clear();
@@ -126,6 +225,105 @@ namespace WpfApp1
             if (Subject.Text == "" || Theme_question.Text == "" || Question.Text == "" || Answer1.Text == "" || Answer2.Text == "" || Answer3.Text == "" || Answer4.Text == "" || AnswerWith.Text == "")
             {
                 MessageBox.Show("Не все поля заполнены");
+            }
+            else
+            {
+                string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+                string sqlexp = "SELECT id,name FROM subjects";
+                string sqlexpquestion = "SELECT id,question FROM questions";
+                using (SqlConnection reg = new SqlConnection(ConnectionString))
+                {
+                    try
+                    {
+                        reg.Open();
+                        SqlCommand cm1 = reg.CreateCommand();
+                        SqlCommand command = new SqlCommand(sqlexp, reg);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (!subject.Equals(equals_subject))
+                        {
+                            while (reader.Read())
+                            {
+                                if (reader.GetValue(1).Equals(subject))
+                                {
+                                    cm1.CommandText = $"INSERT INTO subjects(name) VALUES ('{subject}');";
+                                    object x = reader.GetValue(0);
+                                    object z = reader.GetValue(1);
+                                    equals_subject = (string)z;
+                                    id_subject = (int)x;
+                                    cm1.ExecuteNonQuery();
+                                }
+                            }
+                            reader.Close();
+                        }
+                        else
+                        {
+                            while (reader.Read())
+                            {
+                                if (reader.GetValue(1).Equals(subject))
+                                {
+                                    object x = reader.GetValue(0);
+                                    object z = reader.GetValue(1);
+                                    equals_subject = (string)z;
+                                    id_subject = (int)x;
+                                }
+                            }
+                            reader.Close();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+                using (SqlConnection reg_questions = new SqlConnection(ConnectionString))
+                {
+                    reg_questions.Open();
+                    SqlCommand cm1 = reg_questions.CreateCommand();
+                    try
+                    {
+                        cm1.CommandText = $"INSERT INTO questions(question,teacher_id,subject_id,theme) VALUES ('{Question.Text}','{id_teacher}','{id_subject}','{theme}');";
+                        cm1.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                using (SqlConnection reg_answers = new SqlConnection(ConnectionString))
+                {
+                    reg_answers.Open();
+                    SqlCommand cm1 = reg_answers.CreateCommand();
+                    SqlCommand command = new SqlCommand(sqlexpquestion, reg_answers);
+                    SqlDataReader reader = command.ExecuteReader();
+                    string[] answers = new string[4];
+                    answers[0] = Answer1.Text;
+                    answers[1] = Answer2.Text;
+                    answers[2] = Answer3.Text;
+                    answers[3] = Answer4.Text;
+                    //MessageBox.Show(answers[4]);
+                    //try
+                    //{
+                    //    int is_true = 1;
+                    //    while (reader.Read())
+                    //    {
+                    //        if (reader.GetValue(1).Equals(Question_Without.Text))
+                    //        {
+
+                    //            object a = reader.GetValue(0);
+                    //            id_question = (int)a;
+
+                    //        }
+                    //    }
+                    //    reader.Close();
+                    //    cm1.CommandText = $"INSERT INTO answers(question_id,answer,is_true) VALUES ('{id_question}','{AnswerWithout.Text}','{is_true}');";
+                    //    cm1.ExecuteNonQuery();
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    MessageBox.Show(ex.Message);
+                    //}
+                    reader.Close();
+                }
             }
         }
 
@@ -145,6 +343,9 @@ namespace WpfApp1
             this.Close();
         }
         //все значения с текстбоксов
+        public static int id_subject;
+        public static int id_question;
+        public static string equals_subject;
         public static string subject;
         public static string theme;
         public static string questions;
@@ -157,6 +358,8 @@ namespace WpfApp1
         public static string answer_without;
         private void Subject_TextChanged(object sender, TextChangedEventArgs e) => subject = Subject.Text;
         private void Theme_question_TextChanged(object sender, TextChangedEventArgs e) => theme = Theme_question.Text;
+        private void AnswerWith_TextChanged(object sender, TextChangedEventArgs e) => answer_with = AnswerWith.Text;
+        private void AnswerWithout_TextChanged(object sender, TextChangedEventArgs e) => answer_without = AnswerWithout.Text;
         private void Question_TextChanged(object sender, TextChangedEventArgs e)
         {
             questions = Question.Text;
@@ -206,7 +409,7 @@ namespace WpfApp1
             toolTip.Content = toolTipPanel;
             answer4.ToolTip = toolTip;
         }
-        private void AnswerWith_TextChanged(object sender, TextChangedEventArgs e) =>  answer_with = AnswerWith.Text;
+        
         
         private void Question_Without_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -217,9 +420,7 @@ namespace WpfApp1
             toolTipPanel.Children.Add(new TextBlock { Text = questions_without, FontSize = 12 });
             toolTip.Content = toolTipPanel;
             question_without.ToolTip = toolTip;
-        }
-        private void AnswerWithout_TextChanged(object sender, TextChangedEventArgs e)=>   answer_without = AnswerWithout.Text;
-         
-       
+        }      
+                
     }
 }

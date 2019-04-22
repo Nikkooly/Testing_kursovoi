@@ -22,8 +22,7 @@
             <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="113,148,0,0" VerticalAlignment="Top" Width="168">
                 <Run Text="Результаты тестов" FontSize="16"/>
             </Button>
-            <Button x:Name="label1"  Content="Преподаватель: " Background="White" BorderBrush="AliceBlue" Margin="46,445,234,10.4" Click="Label1_Click" />
-            <Label x:Name="label2"  Margin="163,445,16,11.4"  />
+            <Button x:Name="label1"  Content="Преподаватель " Background="White" Foreground="LightGray" BorderBrush="White" FontSize="13" HorizontalAlignment="Center" Margin="139,444,141,11.4" Click="Teacher_name_Click" />
             <Button  x:Name="close_btn_registration" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="349,0,0,454" VerticalAlignment="Bottom" Click="Close_click_teacher" Width="30">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="resources\close.png" Margin="0,0,0,0" />

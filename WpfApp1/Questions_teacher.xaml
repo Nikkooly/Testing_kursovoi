@@ -29,7 +29,7 @@
             <Label Content="Предмет:" HorizontalAlignment="Left" Margin="58,76,0,476.4" FontSize="14" FontFamily="Arial" />
             <Label x:Name="question" Visibility="Hidden"  Content="Вопрос:"   HorizontalAlignment="Left" Margin="10,242,0,212.4" FontSize="14" FontFamily="Arial" />
             <Label x:Name="question_without" Visibility="Hidden"  Content="Вопрос:"   HorizontalAlignment="Left" Margin="10,242,0,212.4" FontSize="14" FontFamily="Arial" />
-            <Label x:Name="answerwithout" Visibility="Hidden" ToolTip="Введите в поле справа номер правильного ответа"  Content="Ответ:"  HorizontalAlignment="Left" Margin="10,284,0,172.4" FontSize="14" FontFamily="Arial" RenderTransformOrigin="0.5,0.5" />
+            <Label x:Name="answerwithout" Visibility="Hidden" ToolTip="Введите в поле справа номер правильного ответа"  Content="Ответ:"  HorizontalAlignment="Left" Margin="10,285,0,172.4" FontSize="14" FontFamily="Arial" RenderTransformOrigin="0.5,0.5" />
             <Label x:Name="answerwith" Visibility="Hidden" ToolTip="Введите в поле справа номер правильного ответа"  Content="Ответ:"  HorizontalAlignment="Left" Margin="10,441,0,115.4" FontSize="14" FontFamily="Arial" RenderTransformOrigin="0.5,0.5" />
 
             <Label x:Name="answer1" Content="Ответ 1:" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,281,0,175.4" FontSize="14" FontFamily="Arial" />

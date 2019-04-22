@@ -52,9 +52,11 @@ namespace WpfApp1
             
         }
 
-        private void Label1_Click(object sender, RoutedEventArgs e)
+        
+
+        private void Teacher_name_Click(object sender, RoutedEventArgs e)
         {
-            label2.Content = teachername;
+            MessageBox.Show(teachername);
         }
     }
 }
