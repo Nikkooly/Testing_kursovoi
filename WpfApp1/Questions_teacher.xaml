@@ -42,12 +42,11 @@
             <TextBox x:Name="Question"  Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,246,0,0" VerticalAlignment="Top" Width="278" TextChanged="Question_TextChanged" />
             <TextBox x:Name="Question_Without"  Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,246,0,0" VerticalAlignment="Top" Width="278" />
             <TextBox x:Name="AnswerWithout" Visibility="Hidden" ToolTip="Введите здесь номер правильного ответа"  HorizontalAlignment="Left" Height="22" Margin="92,286,0,0" VerticalAlignment="Top" Width="278"  />
-            <TextBox x:Name="AnswerWith" Visibility="Hidden" ToolTip="Введите здесь номер правильного ответа"  HorizontalAlignment="Left" Height="22" Margin="92,443,0,0" VerticalAlignment="Top" Width="278" TextChanged="AnswerWith_TextChanged"  />
             <TextBox x:Name="Answer1" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,283,0,0" VerticalAlignment="Top" Width="278" TextChanged="Answer1_TextChanged" />
             <TextBox x:Name="Answer2" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,323,0,0" VerticalAlignment="Top" Width="278"  />
             <TextBox x:Name="Answer3" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,363,0,0" VerticalAlignment="Top" Width="278" TextChanged="Answer3_TextChanged"  />
             <TextBox x:Name="Answer4" Visibility="Hidden"  HorizontalAlignment="Left" Height="22" Margin="92,403,0,0" VerticalAlignment="Top" Width="278" TextChanged="Answer4_TextChanged"  />
-            
+
             <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="26,196,0,0" VerticalAlignment="Top" Width="167" Click="With_answers_click">
                 <Run Text="С ответами" FontSize="16"/>
             </Button>
@@ -67,12 +66,18 @@
             <Button HorizontalAlignment="Left" x:Name="savequestion" Visibility="Hidden" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="102,320,0,0" VerticalAlignment="Top" Width="167" Click="Save_question_click">
                 <Run Text="Сохранить вопрос" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left"   x:Name="savequestionwithanswer" Visibility="Hidden" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="116,484,0,0" VerticalAlignment="Top" Width="167" Click="Save_question_withanswer_click">
+            <Button HorizontalAlignment="Left" Visibility="Hidden"  x:Name="savequestionwithanswer"   BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="116,484,0,0" VerticalAlignment="Top" Width="167" Click="Save_question_withanswer_click">
                 <Run Text="Сохранить вопрос" FontSize="16"/>
             </Button>
             <Button HorizontalAlignment="Left"  BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="207,196,0,0" VerticalAlignment="Top" Width="167" Click="WithoutAnswers_click">
                 <Run Text="Без ответов" FontSize="16"/>
             </Button>
+            <ComboBox x:Name="Combobox1" Visibility="Hidden" HorizontalAlignment="Left"  Margin="116,443,0,0" VerticalAlignment="Top"  Width="167"  Height="22">
+                <ComboBoxItem x:Name="comboboxitem1" Content="Ответ 1"></ComboBoxItem>
+                <ComboBoxItem x:Name="comboboxitem2"  Content="Ответ 2"></ComboBoxItem>
+                <ComboBoxItem x:Name="comboboxitem3" Content="Ответ 3"></ComboBoxItem>
+                <ComboBoxItem x:Name="comboboxitem4" Content="Ответ 4"></ComboBoxItem>
+            </ComboBox>
         </Grid>
     </Grid>
 </Window>
