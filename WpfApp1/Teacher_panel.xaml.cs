@@ -13,8 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data.Linq;
-//using System.Linq;
-//using System.Data.Linq;
 using System.Data.Linq.Mapping;
 
 namespace WpfApp1
@@ -35,8 +33,8 @@ namespace WpfApp1
            
         private void Create_test_click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(teachername);
-            MessageBox.Show(id_teacher.ToString());
+            CheckTest check = new CheckTest();
+            check.Show();
         }
 
         private void Close_click_teacher(object sender, RoutedEventArgs e)
@@ -51,12 +49,28 @@ namespace WpfApp1
             quest.Show();
             
         }
-
         
-
         private void Teacher_name_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(teachername);
+        }
+
+        private void Show_tests_click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Show_questions_click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Info_about_questions info = new Info_about_questions();
+                info.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

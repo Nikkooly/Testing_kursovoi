@@ -229,7 +229,7 @@ namespace WpfApp1
 
         private void Save_question_withanswer_click(object sender, RoutedEventArgs e)
         {
-            if (Subject.Text == "" || Theme_question.Text == "" || Question.Text == "" || Answer1.Text == "" || Answer2.Text == "" || Answer3.Text == "" || Answer4.Text == "")
+            if (Subject.Text == "" || Theme_question.Text == "" || Question.Text == "" || Answer1.Text == "" || Answer2.Text == "" || Answer3.Text == "" || Answer4.Text == "" ||Combobox1.Text == "")
             {
                 MessageBox.Show("Не все поля заполнены");
             }
@@ -249,16 +249,17 @@ namespace WpfApp1
 
                         if (!subject.Equals(equals_subject))
                         {
+                            cm1.CommandText = $"INSERT INTO subjects(name) VALUES ('{subject}');";
+                            cm1.ExecuteNonQuery();
                             while (reader.Read())
                             {
                                 if (reader.GetValue(1).Equals(subject))
-                                {
-                                    cm1.CommandText = $"INSERT INTO subjects(name) VALUES ('{subject}');";
+                                {                                   
                                     object x = reader.GetValue(0);
                                     object z = reader.GetValue(1);
                                     equals_subject = (string)z;
                                     id_subject = (int)x;
-                                    cm1.ExecuteNonQuery();
+                                    
                                 }
                             }
                             reader.Close();
@@ -407,67 +408,13 @@ namespace WpfApp1
         private void Subject_TextChanged(object sender, TextChangedEventArgs e) => subject = Subject.Text;
         private void Theme_question_TextChanged(object sender, TextChangedEventArgs e) => theme = Theme_question.Text;
         private void AnswerWithout_TextChanged(object sender, TextChangedEventArgs e) => answer_without = AnswerWithout.Text;
-        private void Question_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            questions = Question.Text;
-            ToolTip toolTip = new ToolTip();
-            StackPanel toolTipPanel = new StackPanel();
-            toolTipPanel.Children.Add(new TextBlock { Text = questions, FontSize = 12 });        
-            toolTip.Content = toolTipPanel;
-            question.ToolTip = toolTip;
-        }
-        private void Answer1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            answer1_with = Answer1.Text;
-            questions = Question.Text;
-            ToolTip toolTip = new ToolTip();
-            StackPanel toolTipPanel = new StackPanel();
-            toolTipPanel.Children.Add(new TextBlock { Text = answer1_with, FontSize = 12 });
-            toolTip.Content = toolTipPanel;
-            answer1.ToolTip = toolTip;
-        }
-        private void Answer2_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            answer2_with = Answer2.Text;
-            questions = Question.Text;
-            ToolTip toolTip = new ToolTip();
-            StackPanel toolTipPanel = new StackPanel();
-            toolTipPanel.Children.Add(new TextBlock { Text = answer2_with, FontSize = 12 });
-            toolTip.Content = toolTipPanel;
-            answer2.ToolTip = toolTip;
-        }
-        private void Answer3_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            answer3_with = Answer3.Text;
-            questions = Question.Text;
-            ToolTip toolTip = new ToolTip();
-            StackPanel toolTipPanel = new StackPanel();
-            toolTipPanel.Children.Add(new TextBlock { Text = answer3_with, FontSize = 12 });
-            toolTip.Content = toolTipPanel;
-            answer3.ToolTip = toolTip;
-        }
-        private void Answer4_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            answer4_with = Answer4.Text;
-            questions = Question.Text;
-            ToolTip toolTip = new ToolTip();
-            StackPanel toolTipPanel = new StackPanel();
-            toolTipPanel.Children.Add(new TextBlock { Text = answer4_with, FontSize = 12 });
-            toolTip.Content = toolTipPanel;
-            answer4.ToolTip = toolTip;
-        }
-        
-        
-        private void Question_Without_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            questions_without = Question_Without.Text;
-            questions = Question.Text;
-            ToolTip toolTip = new ToolTip();
-            StackPanel toolTipPanel = new StackPanel();
-            toolTipPanel.Children.Add(new TextBlock { Text = questions_without, FontSize = 12 });
-            toolTip.Content = toolTipPanel;
-            question_without.ToolTip = toolTip;
-        }
+        private void Question_TextChanged(object sender, TextChangedEventArgs e) => questions = Question.Text;        
+        private void Answer1_TextChanged(object sender, TextChangedEventArgs e) => answer1_with = Answer1.Text;        
+        private void Answer2_TextChanged(object sender, TextChangedEventArgs e) => answer2_with = Answer2.Text;       
+        private void Answer3_TextChanged(object sender, TextChangedEventArgs e) => answer3_with = Answer3.Text;       
+        private void Answer4_TextChanged(object sender, TextChangedEventArgs e) => answer4_with = Answer4.Text;                    
+        private void Question_Without_TextChanged(object sender, TextChangedEventArgs e) => questions_without = Question_Without.Text;
+       
         
     }
 }
