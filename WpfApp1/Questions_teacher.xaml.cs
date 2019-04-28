@@ -20,6 +20,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Questions_teacher : Window
     {
+       
         public static int id_teacher = entry.identry;
         public Questions_teacher()
         {
@@ -66,8 +67,7 @@ namespace WpfApp1
             closequestion.Visibility = Visibility.Hidden;
             Newquestion.Visibility = Visibility.Hidden;
             teacher.Visibility = Visibility.Hidden;
-            Combobox1.Visibility = Visibility.Visible;
-
+            Combobox1.Visibility = Visibility.Visible;           
         }
 
         private void WithoutAnswers_click(object sender, RoutedEventArgs e)
@@ -94,10 +94,9 @@ namespace WpfApp1
             savequestionwithanswer.Visibility = Visibility.Hidden;
             answerwith.Visibility = Visibility.Hidden;
             Combobox1.Visibility = Visibility.Hidden;
-            teacher.Visibility = Visibility.Visible;
-
+            teacher.Visibility = Visibility.Visible;          
+                    
         }
-
         private void Save_question_click(object sender, RoutedEventArgs e)
         {
             try
@@ -109,32 +108,46 @@ namespace WpfApp1
                 else
                 {
                     string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                    string sqlexp = "SELECT id,name FROM subjects";
+                    string sqlexp = $"SELECT id,name FROM subjects";
                     string sqlexpquestion = "SELECT id,question FROM questions";
                     using (SqlConnection reg = new SqlConnection(ConnectionString))
                     {
+
+                        reg.Open();
+                        SqlCommand command = new SqlCommand(sqlexp, reg);
+                        SqlDataReader reader = command.ExecuteReader();
                         try
                         {
-                            reg.Open();
-                            SqlCommand cm1 = reg.CreateCommand();
-                            SqlCommand command = new SqlCommand(sqlexp, reg);
-                            SqlDataReader reader = command.ExecuteReader();
-
-                            if (!subject.Equals(equals_subject))
+                            
+                            while (reader.Read())
                             {
+                                if (reader.GetValue(1).Equals(subject))
+                                {
+                                    object z = reader.GetValue(1);
+                                    subj = (string)z;                                   
+                                }
+                            }
+                            reader.Close();
+                            reader = command.ExecuteReader();
+                            if (!subject.Equals(subj))
+                            {
+                                string commandText = $"INSERT INTO subjects(name) VALUES ('{subject}');";
+                                SqlCommand insCommand = new SqlCommand(commandText, reg);
+                                reader.Close();
+                                insCommand.ExecuteNonQuery();
+                                reader = command.ExecuteReader();
                                 while (reader.Read())
                                 {
                                     if (reader.GetValue(1).Equals(subject))
                                     {
-                                        cm1.CommandText = $"INSERT INTO subjects(name) VALUES ('{subject}');";
                                         object x = reader.GetValue(0);
                                         object z = reader.GetValue(1);
                                         equals_subject = (string)z;
                                         id_subject = (int)x;
-                                        cm1.ExecuteNonQuery();
+
                                     }
                                 }
-                                reader.Close();
+
                             }
                             else
                             {
@@ -148,11 +161,15 @@ namespace WpfApp1
                                         id_subject = (int)x;
                                     }
                                 }
-                                reader.Close();
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            reader.Close();
 
                         }
                     }
@@ -205,8 +222,8 @@ namespace WpfApp1
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                MessageBox.Show("Вопрос успешно добавлен!");
             }
+            MessageBox.Show("Вопрос c одним вариантом ответа успешно добавлен!");
         }
         
 
@@ -236,33 +253,45 @@ namespace WpfApp1
             else
             {
                 string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                string sqlexp = "SELECT id,name FROM subjects";
+                string sqlexp = $"SELECT id,name FROM subjects";
                 string sqlexpquestion = "SELECT id,question FROM questions";
                 using (SqlConnection reg = new SqlConnection(ConnectionString))
                 {
+                    reg.Open();
+                    SqlCommand command = new SqlCommand(sqlexp, reg);
+                    SqlDataReader reader = command.ExecuteReader();
                     try
                     {
-                        reg.Open();
-                        SqlCommand cm1 = reg.CreateCommand();
-                        SqlCommand command = new SqlCommand(sqlexp, reg);
-                        SqlDataReader reader = command.ExecuteReader();
-
-                        if (!subject.Equals(equals_subject))
+                        while (reader.Read())
                         {
-                            cm1.CommandText = $"INSERT INTO subjects(name) VALUES ('{subject}');";
-                            cm1.ExecuteNonQuery();
+                            if (reader.GetValue(1).Equals(subject))
+                            {
+                                object z = reader.GetValue(1);
+                                subj = (string)z;
+                            }
+                        }
+                        reader.Close();
+                        reader = command.ExecuteReader();
+                        if (!subject.Equals(subj))
+                        {
+                            string commandText = $"INSERT INTO subjects(name) VALUES ('{subject}');";
+                            SqlCommand insCommand = new SqlCommand(commandText, reg);
+                            reader.Close();
+                            insCommand.ExecuteNonQuery();
+                            reader = command.ExecuteReader();
                             while (reader.Read())
                             {
                                 if (reader.GetValue(1).Equals(subject))
                                 {                                   
                                     object x = reader.GetValue(0);
                                     object z = reader.GetValue(1);
-                                    equals_subject = (string)z;
+                                    subject_from_bd = (string)z;
+                                    
                                     id_subject = (int)x;
                                     
                                 }
                             }
-                            reader.Close();
+                            
                         }
                         else
                         {
@@ -276,11 +305,16 @@ namespace WpfApp1
                                     id_subject = (int)x;
                                 }
                             }
-                            reader.Close();
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        reader.Close();
+
                     }
                 }
                 using (SqlConnection reg_questions = new SqlConnection(ConnectionString))
@@ -368,7 +402,7 @@ namespace WpfApp1
                     }
                     reader.Close();
                 }
-                MessageBox.Show("Вопрос успешно добавлен!");
+                MessageBox.Show("Вопрос c несколькими вариантами ответа успешно добавлен!");
                 
             }
         }
@@ -393,8 +427,10 @@ namespace WpfApp1
         int b_answer3 = 0;
         int b_answer4 = 0;
         public static int id_subject;
+        public static string subj;
         public static int id_question;
         public static string combobox;
+        public  string subject_from_bd;
         public static string equals_subject;
         public static string subject;
         public static string theme;

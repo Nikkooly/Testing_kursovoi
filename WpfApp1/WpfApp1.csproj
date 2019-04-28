@@ -86,6 +86,9 @@
     <Compile Include="Admin_panel.xaml.cs">
       <DependentUpon>Admin_panel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangeQuestions.xaml.cs">
+      <DependentUpon>ChangeQuestions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CheckClose.xaml.cs">
       <DependentUpon>CheckClose.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
       <DependentUpon>Teacher_panel.xaml</DependentUpon>
     </Compile>
     <Page Include="Admin_panel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangeQuestions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
