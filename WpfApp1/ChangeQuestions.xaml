@@ -33,16 +33,20 @@
             <Button x:Name="Update" HorizontalAlignment="Left"   BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,412,0,0" VerticalAlignment="Top" Width="144" Click="Update_info_click">
                 <Run Text="Обновить вопрос" FontSize="16"/>
             </Button>
+            <Image  x:Name="Napilnik" Source="resources\napil.jpg" Margin="74,342,49,20.4"/>
             <Button x:Name="Update_answers" HorizontalAlignment="Left"   BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,554,0,0" VerticalAlignment="Top" Width="144" Click="Update_answers_click">
-                <Run Text="Обновить ответ(ы)" FontSize="16"/>
+                <Run Text="Обновить ответы" FontSize="16"/>
+            </Button>
+            <Button x:Name="Update_answer1" HorizontalAlignment="Left"   BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,493,0,0" VerticalAlignment="Top" Width="144" Click="Update_answer1_click">
+                <Run Text="Обновить ответ" FontSize="16"/>
             </Button>
             <Button x:Name="FindQuestion"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,379,0,0" VerticalAlignment="Top" Width="144" Click="Find_question_click">
-                <Run Text="Поиск вопроса" FontSize="16"/>
+                <Run Text="Показать вопрос" FontSize="16"/>
             </Button>
             <Button HorizontalAlignment="Left" BorderBrush="AliceBlue"  Background="AliceBlue" Height="28" Margin="196,348,0,0" VerticalAlignment="Top" Width="179" Click="Answer_about_question_click">
                 <Run Text="Редактировать вопрос?" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue"  Background="AliceBlue" Height="28" Margin="191,452,0,0" VerticalAlignment="Top" Width="184" Click="Change_answers_click">
+            <Button x:Name="Change_answer"  HorizontalAlignment="Left" BorderBrush="AliceBlue"  Background="AliceBlue" Height="28" Margin="191,452,0,0" VerticalAlignment="Top" Width="184" Click="Change_answers_click">
                 <Run Text="Редактировать ответ(ы)?" FontSize="16"/>
             </Button>
             <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="196,216,0,0" VerticalAlignment="Top" Width="207" Click="Show_question_clickAsync">
@@ -61,10 +65,17 @@
             <Label   x:Name="Answer3"   Content="Ответ 3:" HorizontalAlignment="Left" Margin="21,574,0,80.4" FontSize="14" FontFamily="Arial" />
             <Label   x:Name="Answer4"   Content="Ответ 4:" HorizontalAlignment="Left" Margin="21,614,0,39.4" FontSize="14" FontFamily="Arial" />
             <Label   Content="Введите тему вопроса:" HorizontalAlignment="Left" Margin="10,309,0,295" FontSize="14" FontFamily="Arial" />
+            <Label   x:Name="ComboBoxLabel"   Content="Правильный ответ:" HorizontalAlignment="Left" Margin="21,641,0,13.4" FontSize="14" FontFamily="Arial" />
             <Label   Content=" Для поиска нужного вопроса введите значения в поля снизу" Foreground="Red" HorizontalAlignment="Left" Margin="108,246,0,410.4" FontSize="12" FontFamily="Arial" />
             <Line X1="589.6" Y1="340" X2="9.5" Y2="340" Stroke="LightGray" />
             <Line  x:Name="Line" X1="589.6" Y1="445" X2="9.5" Y2="445" Stroke="LightGray"  />
             <Image x:Name="Image" Visibility="Hidden" Source="resources\study.gif" Margin="-50,381,10,3"/>
+            <ComboBox x:Name="Combobox1" Text="Ответ 1"  HorizontalAlignment="Left"  Margin="201,643,0,0" VerticalAlignment="Top"  Width="167"  Height="22">
+                <ComboBoxItem x:Name="comboboxitem1" Content="Ответ 1"></ComboBoxItem>
+                <ComboBoxItem x:Name="comboboxitem2"  Content="Ответ 2"></ComboBoxItem>
+                <ComboBoxItem x:Name="comboboxitem3" Content="Ответ 3"></ComboBoxItem>
+                <ComboBoxItem x:Name="comboboxitem4" Content="Ответ 4"></ComboBoxItem>
+            </ComboBox>
         </Grid>
     </Grid>
 </Window>

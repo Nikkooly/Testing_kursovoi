@@ -43,7 +43,7 @@ namespace WpfApp1
                 tables.Clear();
                 await _newcon.OpenAsync();
                 SqlDataAdapter adapter =
- new SqlDataAdapter($"Select q.id,q.question,q.theme,a.answer from questions as q inner join answers as a on q.id=a.question_id where q.teacher_id='{id_teacher}'", _newcon);
+ new SqlDataAdapter($"Select q.id,q.question,q.theme,a.answer,a.is_true from questions as q inner join answers as a on q.id=a.question_id where q.teacher_id='{id_teacher}'", _newcon);
                 adapter.Fill(tables);
                 User_Grid.DataContext = tables.DefaultView;
                 _newcon.Close();
