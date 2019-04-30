@@ -38,7 +38,7 @@ namespace WpfApp1
             {
                 tables.Clear();
                 await _newcon.OpenAsync();
-                SqlDataAdapter adapter = new SqlDataAdapter($"Select q.id,q.question,q.theme,a.answer from questions as q, answers as a where q.teacher_id='{id_teacher}'", _newcon);
+                SqlDataAdapter adapter = new SqlDataAdapter($"Select q.id,q.question,q.theme,a.answer from questions as q inner join answers as a on q.id=a.question_id where q.teacher_id='{id_teacher}'", _newcon);
                 adapter.Fill(tables);
                 User_Grid.DataContext = tables.DefaultView;
                 _newcon.Close();
@@ -48,8 +48,7 @@ namespace WpfApp1
                 MessageBox.Show(ex.Message);
             }
         }
-        public static string s;
-        public static int id_question;
+        
         private void Box_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -73,7 +72,7 @@ namespace WpfApp1
                 tables.Clear();
                 await _newcon.OpenAsync();
                 SqlDataAdapter adapter =
- new SqlDataAdapter($"Select q.id,q.question,q.theme,a.answer from questions as q, answers as a where q.teacher_id='{id_teacher}' and q.id in (select id from questions where id = '{id_question}')", _newcon);
+ new SqlDataAdapter($"Select q.id,q.question,q.theme,a.answer from questions as q inner join answers as a on q.id=a.question_id where q.teacher_id='{id_teacher}' and q.id in (select id from questions where id = '{id_question}')", _newcon);
                 adapter.Fill(tables);
                 User_Grid_id.DataContext = tables.DefaultView;
                 _newcon.Close();
@@ -98,7 +97,7 @@ namespace WpfApp1
             {
                 tables.Clear();
                 await _newcon.OpenAsync();
-                SqlDataAdapter adapter = new SqlDataAdapter($"Select q.id,q.question,q.theme,a.answer from questions as q, answers as a where q.theme='{str}'", _newcon);
+                SqlDataAdapter adapter = new SqlDataAdapter($"Select q.id,q.question,q.theme,a.answer from questions as q inner join answers as a on q.id=a.question_id where q.theme='{str}'", _newcon);
                 adapter.Fill(tables);
                 User_Grid_theme.DataContext = tables.DefaultView;
                 _newcon.Close();
@@ -112,6 +111,162 @@ namespace WpfApp1
         private void x_TextChanged(object sender, TextChangedEventArgs e)
         {
             str = Box.Text;
+        }
+
+        private void Update_info_click(object sender, RoutedEventArgs e)
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand cm1 = connection.CreateCommand();
+                try
+                {
+                    cm1.CommandText = $"UPDATE questions SET question='{QuestionBox.Text}' WHERE id='{id_question}'";
+                    cm1.ExecuteNonQuery();
+                    MessageBox.Show("Вопрос успешно обновлен!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        private void Find_question_click(object sender, RoutedEventArgs e)
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlExpression = $"SELECT id,question FROM questions where id='{id_question}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.GetValue(0).Equals(id_question))
+                        {
+                            object z = reader.GetValue(1);
+                            question = (string)z;
+                            QuestionBox.Text = question;                                                                                
+                        }
+                        else
+                        {
+                            MessageBox.Show("Вопроса с таким id не существует!");
+                            
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+        }
+
+        private void FindId_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                s = IdBox.Text;
+                id_question = Convert.ToInt32(s);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public static string s;
+        public static string ass;
+        public static int id_question;
+        public static int id_answer1;
+        public static int id_answer2;
+        public static int id_answer3;
+        public static int id_answer4;
+        public static string question;
+        public static string answers;
+
+        private void Answer_about_question_click(object sender, RoutedEventArgs e)
+        {
+            Image.Visibility = Visibility.Hidden;
+            IdBox.Visibility = Visibility.Visible;
+            Line.Visibility = Visibility.Visible;
+            IdInput.Visibility = Visibility.Visible;
+            InputQuestion.Visibility = Visibility.Visible;
+            Update.Visibility = Visibility.Visible;
+            FindQuestion.Visibility = Visibility.Visible;
+            QuestionBox.Visibility = Visibility.Visible;
+        }
+
+        private void Change_answers_click(object sender, RoutedEventArgs e)
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlExpression = $"SELECT id,question_id,answer FROM answers where question_id='{id_question}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                   
+                        for (int i = 0; reader.Read(); i++)
+                        {
+                            object a = reader.GetValue(0);
+                            object x = reader.GetValue(1);
+                            object z = reader.GetValue(2);
+                            
+                            if (i == 0)
+                            {
+                                Answer1Box.Text = z.ToString();
+                                id_answer1 = (int)a;
+                            }
+                            if (i == 1)
+                            {
+                                Answer2Box.Text = z.ToString();
+                                id_answer2 = (int)a;
+                            }
+                            if (i == 2)
+                            {
+                            Answer3Box.Text = z.ToString();
+                                id_answer3 = (int)a;
+                                  
+                            }
+                            if (i == 3)
+                            {
+                                Answer4Box.Text = z.ToString();
+                                id_answer4 = (int)a;                            
+                            }
+                           
+                        }            
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    MessageBox.Show(Answer3Box.Text);
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+        }
+
+        private void Update_answers_click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
