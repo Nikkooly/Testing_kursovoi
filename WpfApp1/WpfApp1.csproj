@@ -266,5 +266,8 @@
   <ItemGroup>
     <Resource Include="resources\napil.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\znak.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
