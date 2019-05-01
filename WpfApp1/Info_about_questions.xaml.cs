@@ -77,7 +77,7 @@ namespace WpfApp1
             try
             {
                 string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                string sqlExpression = $"DELETE FROM questions WHERE id = {id_question};";
+                string sqlExpression = "delete from questions where id='" + id_question + "'";
 
                 using (SqlConnection cn = new SqlConnection(ConnectionString))
                 {

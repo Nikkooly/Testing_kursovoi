@@ -33,7 +33,7 @@
             <Button x:Name="Update" HorizontalAlignment="Left"   BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,412,0,0" VerticalAlignment="Top" Width="144" Click="Update_info_click">
                 <Run Text="Обновить вопрос" FontSize="16"/>
             </Button>
-            <Image  x:Name="Napilnik" Source="resources\napil.jpg" Margin="74,342,49,20.4"/>
+            <Image  x:Name="Napilnik" Source="resources\napil.jpg" Margin="82,365,91,37.4"/>
             <Button x:Name="Update_answers" HorizontalAlignment="Left"   BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,554,0,0" VerticalAlignment="Top" Width="144" Click="Update_answers_click">
                 <Run Text="Обновить ответы" FontSize="16"/>
             </Button>

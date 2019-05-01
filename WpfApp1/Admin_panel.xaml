@@ -27,11 +27,14 @@
             <Button  x:Name="Id_Subjects_Delete" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="313,267,0,0" VerticalAlignment="Top" Width="79" Click="Find_Id_click">
                 <Run Text="Поиск" FontSize="16"/>
             </Button>
-            <Button  x:Name="Subject_Delete" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="20,413,0,0" VerticalAlignment="Top" Width="174" Click="Subject_Delete_click">
+            <Button  x:Name="Subject_Delete" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="20,437,0,0" VerticalAlignment="Top" Width="174" Click="Subject_Delete_click">
                 <Run Text="Удалить" FontSize="16"/>
             </Button>
-            <Button  x:Name="Change_Subject_Delete" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="209,413,0,0" VerticalAlignment="Top" Width="183" Click="Change_Subject_click">
-                <Run Text="Редактировать" FontSize="16"/>
+            <Button  x:Name="Insert_Subject" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="117,399,0,0" VerticalAlignment="Top" Width="174" Click="Subject_Insert_click">
+                <Run Text="Добавить" FontSize="16"/>
+            </Button>
+            <Button  x:Name="Change_Subject_Delete" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="209,437,0,0" VerticalAlignment="Top" Width="183" Click="Change_Subject_click">
+                <Run Text="Обновить" FontSize="16"/>
             </Button>
             <Button  x:Name="Theme_Subjects_Delete" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="313,305,0,0" VerticalAlignment="Top" Width="79" Click="Find_Theme_click">
                 <Run Text="Поиск" FontSize="16"/>
@@ -41,16 +44,17 @@
                     <Image Source="resources\close.png" Margin="0,0,0,0" Height="23" Width="22" />
                 </StackPanel>
             </Button>
-            <Label   Content="Перед удалением проверьте введенные данные!" Foreground="Red" HorizontalAlignment="Left" Margin="20,235,0,218.4" FontSize="14" FontFamily="Arial" />
-            <Label   Content="Поиск по id:" HorizontalAlignment="Left" Margin="10,274,0,180.4" FontSize="14" FontFamily="Arial" />
-            <Label   Content="Результат поиска:" HorizontalAlignment="Left" Margin="139,341,0,113.4" FontSize="14" FontFamily="Arial" />
-            <Label   Content="Поиск по теме:" HorizontalAlignment="Left" Margin="10,308,0,146.4" FontSize="14" FontFamily="Arial" />
+            <Label  x:Name="Info" Content="Перед удалением проверьте введенные данные!" Foreground="Red" HorizontalAlignment="Left" Margin="20,235,0,218.4" FontSize="14" FontFamily="Arial" />
+            <Label x:Name="IdFind"  Content="Поиск по id:" HorizontalAlignment="Left" Margin="10,274,0,180.4" FontSize="14" FontFamily="Arial" />
+            <Label  x:Name="Result" Content="Результат поиска:" HorizontalAlignment="Left" Margin="139,341,0,113.4" FontSize="14" FontFamily="Arial" />
+            <Label  x:Name="ThemeFind" Content="Поиск по теме:" HorizontalAlignment="Left" Margin="10,308,0,146.4" FontSize="14" FontFamily="Arial" />
             <DataGrid  ItemsSource="{Binding}"  x:Name="User_Grid" Background="AliceBlue" HorizontalAlignment="Left" Height="192" Margin="245,26,0,0" VerticalAlignment="Top" Width="419"/>
             <Line X1="680" Y1="225" X2="0" Y2="225" Stroke="LightGray" />
-            <Image Source="resources\znak.jpg" Margin="428,218,10,-26.6"/>
+            <Image x:Name="Znak" Source="resources\znak.jpg" Margin="428,218,10,-26.6"/>
             <TextBox x:Name="FindIdBox"  HorizontalAlignment="Left" Height="22" Margin="117,274,0,0" VerticalAlignment="Top" Width="174" />
             <TextBox x:Name="DeleteSubjectBox"  HorizontalAlignment="Left" Height="22" Margin="117,372,0,0" VerticalAlignment="Top" Width="174" />
-            <TextBox x:Name="FindRhemeBox"  HorizontalAlignment="Left" Height="22" Margin="117,310,0,0" VerticalAlignment="Top" Width="174" />
+            <TextBox x:Name="FindThemeBox"  HorizontalAlignment="Left" Height="22" Margin="117,310,0,0" VerticalAlignment="Top" Width="174" />
+            <Image x:Name="AdminRules" Visibility="Hidden" Source="resources\admin.jpg" Margin="220,229,205,0.4"/>
         </Grid>
     </Grid>
 </Window>
