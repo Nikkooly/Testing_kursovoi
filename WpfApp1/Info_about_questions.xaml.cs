@@ -75,7 +75,8 @@ namespace WpfApp1
         private void Delete_click(object sender, RoutedEventArgs e)
         {
             try
-            {
+            {                
+                id_question = Convert.ToInt32(DeleteBox.Text);
                 string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
                 string sqlExpression = "delete from questions where id='" + id_question + "'";
 
@@ -94,19 +95,7 @@ namespace WpfApp1
             }
 
         }
-        public static string s;
         public static int id_question;
-        private void DeleteBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                s = DeleteBox.Text;
-                id_question = Convert.ToInt32(s);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
     }
 }
