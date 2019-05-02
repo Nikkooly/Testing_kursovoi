@@ -42,19 +42,492 @@ namespace WpfApp1
         }
         private readonly SqlConnection _newcon = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
         private readonly DataTable tables = new DataTable();
-        private void Students_click(object sender, RoutedEventArgs e)
-        {
+        //------------------------------------------------------Student--------------------------------------------------------------------------//
 
+        private async void Students_click(object sender, RoutedEventArgs e)
+        {
+            
+            AdminRules.Visibility = Visibility.Hidden;
+            Info.Visibility = Visibility.Hidden;
+            IdFind.Visibility = Visibility.Hidden;
+            ThemeFindFaculty.Visibility = Visibility.Hidden;
+            ThemeFind.Visibility = Visibility.Hidden;
+            Result.Visibility = Visibility.Hidden;
+            FindIdBox.Visibility = Visibility.Hidden;
+            FindThemeBox.Visibility = Visibility.Hidden;
+            Id_Subjects_Delete.Visibility = Visibility.Hidden;
+            Theme_Subjects_Delete.Visibility = Visibility.Hidden;
+            DeleteSubjectBox.Visibility = Visibility.Hidden;
+            Insert_Subject.Visibility = Visibility.Hidden;
+            Subject_Delete.Visibility = Visibility.Hidden;
+            Change_Subject_Delete.Visibility = Visibility.Hidden;
+            Znak.Visibility = Visibility.Hidden;
+            AdminRules.Visibility = Visibility.Hidden;
+            Id_Faculty_Delete.Visibility = Visibility.Hidden;
+            Faculty_Delete.Visibility = Visibility.Hidden;
+            Insert_Faculty.Visibility = Visibility.Hidden;
+            Change_Faculty_Delete.Visibility = Visibility.Hidden;
+            Theme_Faculty_Delete.Visibility = Visibility.Hidden;
+            ThemeFindFaculty.Visibility = Visibility.Hidden;
+            //---------------------------------------------------//
+            FindStudent.Visibility = Visibility.Visible;
+            FindSurnameStudentBox.Visibility = Visibility.Visible;
+            FindIdStudentBox.Visibility = Visibility.Visible;
+            FindSurnameStudent.Visibility = Visibility.Visible;
+            FindIdTeacher.Visibility = Visibility.Hidden;
+            FindSurnameTeacher.Visibility = Visibility.Hidden;
+            ChangeStudentLabel.Visibility = Visibility.Visible;
+            ChangeStudentBox.Visibility = Visibility.Visible;
+            ChangeTeacher.Visibility = Visibility.Hidden;
+            FindIdStudent.Visibility = Visibility.Visible;
+            ChangeStudent.Visibility = Visibility.Visible;
+            LineVertical.Visibility = Visibility.Visible;
+            SurnameLabel.Visibility = Visibility.Hidden;
+            SurnameBox.Visibility = Visibility.Hidden;
+            NameLabel.Visibility = Visibility.Hidden;
+            NameBox.Visibility = Visibility.Hidden;
+            LoginLabel.Visibility = Visibility.Hidden;
+            LoginBox.Visibility = Visibility.Hidden;
+            PostLabel.Visibility = Visibility.Hidden;
+            PostBox.Visibility = Visibility.Hidden;
+            FacultyLabel.Visibility = Visibility.Hidden;
+            FacultyBox.Visibility = Visibility.Hidden;
+            UpdateTeacher.Visibility = Visibility.Hidden;
+            UpdateStudent.Visibility = Visibility.Hidden;
+
+
+            try
+            {
+               
+                tables.Clear();
+                await _newcon.OpenAsync();
+                SqlDataAdapter adapter = new SqlDataAdapter($"Select u.id,u.first_name,u.middle_name,f.name,u.login,u.email FROM users as u inner join facylties as f on u.faculty_id=f.id where role_id='{2}'", _newcon);
+                adapter.Fill(tables);
+                User_Grid.DataContext = tables.DefaultView;
+                _newcon.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void FindIdStudentClick(object sender, RoutedEventArgs e)
+        {           
+            int id_student = Int32.Parse(FindIdStudentBox.Text);            
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlExpression = $"SELECT u.first_name,u.middle_name,f.name,u.id FROM users as u inner join facylties as f on u.faculty_id=f.id where u.id='{id_student}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        object a = reader.GetValue(0);
+                        object x = reader.GetValue(1);
+                        object z = reader.GetValue(2);
+                        object s = reader.GetValue(3);
+                        id_admin_panel = Int32.Parse(s.ToString());
+                        ChangeStudentBox.Text = a.ToString() + " " + x.ToString() + " " + z.ToString();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+        }
+        public static int id_admin_panel; 
+        private void FindSurnameStudentClick(object sender, RoutedEventArgs e)
+        {            
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlExpression = $"SELECT u.first_name,u.middle_name,f.name,u.id FROM users as u inner join facylties as f on u.faculty_id=f.id where u.first_name='{FindSurnameStudentBox.Text}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        object a = reader.GetValue(0);
+                        object x = reader.GetValue(1);
+                        object z = reader.GetValue(2);
+                        object s = reader.GetValue(3);
+                        id_admin_panel = Int32.Parse(s.ToString());
+                        ChangeStudentBox.Text = a.ToString() + " " + x.ToString() + " " + z.ToString();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                    connection.Close();
+                }
+            }
         }
 
-        private void Teacher_click(object sender, RoutedEventArgs e)
+        private void ChangeStudentClick(object sender, RoutedEventArgs e)
         {
+            SurnameLabel.Visibility = Visibility.Visible;
+            SurnameBox.Visibility = Visibility.Visible;
+            NameLabel.Visibility = Visibility.Visible;
+            NameBox.Visibility = Visibility.Visible;
+            LoginLabel.Visibility = Visibility.Visible;
+            LoginBox.Visibility = Visibility.Visible;
+            PostLabel.Visibility = Visibility.Visible;
+            PostBox.Visibility = Visibility.Visible;
+            FacultyLabel.Visibility = Visibility.Visible;
+            FacultyBox.Visibility = Visibility.Visible;
+            UpdateTeacher.Visibility = Visibility.Hidden;
+            UpdateStudent.Visibility = Visibility.Visible;
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+                string sqlExpression = $"SELECT u.first_name,u.middle_name,u.login,u.email,f.name FROM users as u inner join facylties as f on u.faculty_id=f.id where u.id='{id_admin_panel}'";
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    try
+                    {
 
+                    while (reader.Read()) { 
+                            object a = reader.GetValue(0);
+                            object x = reader.GetValue(1);
+                            object z = reader.GetValue(2);
+                            object s = reader.GetValue(2);
+                            object k = reader.GetValue(4);
+                           
+                                SurnameBox.Text = a.ToString();                          
+                                NameBox.Text = x.ToString();                           
+                                LoginBox.Text = z.ToString();
+                                PostBox.Text = s.ToString();                          
+                                FacultyBox.Text = k.ToString();
+                           
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        reader.Close();
+                        connection.Close();
+                    }
+                }
+            
+        }
+        public static int fakk_id;
+        public static string faculty;
+        private void Fak(object sender, TextChangedEventArgs e)
+        {
+            faculty = FacultyBox.Text;
+        }
+        private void UpdateStudentClick(object sender, RoutedEventArgs e)
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlExpression = $"SELECT id,name From facylties where name='{faculty}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                SqlCommand cm1 = connection.CreateCommand();
+                try
+                {
+                    
+                    while (reader.Read())
+                    {
+                        
+                        object s = reader.GetValue(0);
+                        fakk_id = Convert.ToInt32(s);                            
+                    }
+                    reader.Close();
+                    if (fakk_id == 0)
+                    {
+                        MessageBox.Show("Такого факультета не существует");                       
+                    }
+                    else
+                    {
+                        cm1.CommandText = "update users set first_name='" + SurnameBox.Text + "',middle_name='" + NameBox.Text + "',login='" + LoginBox.Text + "',email='" + PostBox.Text + "',faculty_id='" + fakk_id + "' where id='" + id_admin_panel + "'";
+                        cm1.ExecuteNonQuery();
+                        MessageBox.Show("Данные успешно обновлены!");
+                    }
+                }
+                
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    SurnameBox.Clear();
+                    NameBox.Clear();
+                    LoginBox.Clear();
+                    PostBox.Clear();
+                    FacultyBox.Clear();
+                    connection.Close();
+                    reader.Close();
+                }
+            }
+        }
+        //------------------------------------------------------Teacher--------------------------------------------------------------------------//
+
+        private async void Teacher_click(object sender, RoutedEventArgs e)
+        {
+            
+            AdminRules.Visibility = Visibility.Hidden;
+            Info.Visibility = Visibility.Hidden;
+            IdFind.Visibility = Visibility.Hidden;
+            ThemeFindFaculty.Visibility = Visibility.Hidden;
+            ThemeFind.Visibility = Visibility.Hidden;
+            Result.Visibility = Visibility.Hidden;
+            FindIdBox.Visibility = Visibility.Hidden;
+            FindThemeBox.Visibility = Visibility.Hidden;
+            Id_Subjects_Delete.Visibility = Visibility.Hidden;
+            Theme_Subjects_Delete.Visibility = Visibility.Hidden;
+            DeleteSubjectBox.Visibility = Visibility.Hidden;
+            Insert_Subject.Visibility = Visibility.Hidden;
+            Subject_Delete.Visibility = Visibility.Hidden;
+            Change_Subject_Delete.Visibility = Visibility.Hidden;
+            Znak.Visibility = Visibility.Hidden;
+            AdminRules.Visibility = Visibility.Hidden;
+            Id_Faculty_Delete.Visibility = Visibility.Hidden;
+            Faculty_Delete.Visibility = Visibility.Hidden;
+            Insert_Faculty.Visibility = Visibility.Hidden;
+            Change_Faculty_Delete.Visibility = Visibility.Hidden;
+            Theme_Faculty_Delete.Visibility = Visibility.Hidden;
+            ThemeFindFaculty.Visibility = Visibility.Hidden;
+            //---------------------------------------------------//
+            FindStudent.Visibility = Visibility.Visible;
+            FindIdStudentBox.Visibility = Visibility.Visible;
+            FindSurnameStudent.Visibility = Visibility.Hidden;
+            FindIdTeacher.Visibility = Visibility.Visible;
+            FindSurnameTeacher.Visibility = Visibility.Visible;
+            ChangeStudentLabel.Visibility = Visibility.Visible;
+            ChangeStudentBox.Visibility = Visibility.Visible;
+            ChangeTeacher.Visibility = Visibility.Visible;
+            FindIdStudent.Visibility = Visibility.Hidden;
+            ChangeStudent.Visibility = Visibility.Hidden;
+            LineVertical.Visibility = Visibility.Visible;
+            FindSurnameStudentBox.Visibility = Visibility.Visible;
+            SurnameLabel.Visibility = Visibility.Hidden;
+            SurnameBox.Visibility = Visibility.Hidden;
+            NameLabel.Visibility = Visibility.Hidden;
+            NameBox.Visibility = Visibility.Hidden;
+            LoginLabel.Visibility = Visibility.Hidden;
+            LoginBox.Visibility = Visibility.Hidden;
+            PostLabel.Visibility = Visibility.Hidden;
+            PostBox.Visibility = Visibility.Hidden;
+            FacultyLabel.Visibility = Visibility.Hidden;
+            FacultyBox.Visibility = Visibility.Hidden;
+            UpdateTeacher.Visibility = Visibility.Hidden;
+            UpdateStudent.Visibility = Visibility.Hidden;
+
+            try
+            {
+                
+                tables.Clear();
+                await _newcon.OpenAsync();
+                SqlDataAdapter adapter = new SqlDataAdapter($"Select u.id,u.first_name,u.middle_name,f.name,u.login,u.email FROM users as u inner join facylties as f on u.faculty_id=f.id where role_id='{1}'", _newcon);
+                adapter.Fill(tables);
+                User_Grid.DataContext = tables.DefaultView;
+                _newcon.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void FindIdTeacherClick(object sender, RoutedEventArgs e)
+        {
+            int id_teacher = Int32.Parse(FindIdStudentBox.Text);
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlExpression = $"SELECT u.first_name,u.middle_name,f.name,u.id FROM users as u inner join facylties as f on u.faculty_id=f.id where u.id='{id_teacher}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        object a = reader.GetValue(0);
+                        object x = reader.GetValue(1);
+                        object z = reader.GetValue(2);
+                        object s = reader.GetValue(3);
+                        id_admin_panel = Int32.Parse(s.ToString());
+                        ChangeStudentBox.Text = a.ToString() + " " + x.ToString() + " " + z.ToString();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+        }
+
+        private void FindSurnameTeacherClick(object sender, RoutedEventArgs e)
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlExpression = $"SELECT u.first_name,u.middle_name,f.name,u.id FROM users as u inner join facylties as f on u.faculty_id=f.id where u.first_name='{FindSurnameStudentBox.Text}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        object a = reader.GetValue(0);
+                        object x = reader.GetValue(1);
+                        object z = reader.GetValue(2);
+                        object s = reader.GetValue(3);
+                        id_admin_panel = Int32.Parse(s.ToString());
+                        ChangeStudentBox.Text = a.ToString() + " " + x.ToString() + " " + z.ToString();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+        }
+        private void ChangeTeacherClick(object sender, RoutedEventArgs e)
+        {
+            SurnameLabel.Visibility = Visibility.Visible;
+            SurnameBox.Visibility = Visibility.Visible;
+            NameLabel.Visibility = Visibility.Visible;
+            NameBox.Visibility = Visibility.Visible;
+            LoginLabel.Visibility = Visibility.Visible;
+            LoginBox.Visibility = Visibility.Visible;
+            PostLabel.Visibility = Visibility.Visible;
+            PostBox.Visibility = Visibility.Visible;
+            FacultyLabel.Visibility = Visibility.Visible;
+            FacultyBox.Visibility = Visibility.Visible;
+            UpdateTeacher.Visibility = Visibility.Visible;
+            UpdateStudent.Visibility = Visibility.Hidden;
+
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlExpression = $"SELECT u.first_name,u.middle_name,u.login,u.email,f.name FROM users as u inner join facylties as f on u.faculty_id=f.id where u.id='{id_admin_panel}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+
+                    while (reader.Read())
+                    {
+                        object a = reader.GetValue(0);
+                        object x = reader.GetValue(1);
+                        object z = reader.GetValue(2);
+                        object s = reader.GetValue(2);
+                        object k = reader.GetValue(4);
+
+                        SurnameBox.Text = a.ToString();
+                        NameBox.Text = x.ToString();
+                        LoginBox.Text = z.ToString();
+                        PostBox.Text = s.ToString();
+                        FacultyBox.Text = k.ToString();
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+        }
+        private void UpdateTeacherClick(object sender, RoutedEventArgs e)
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlExpression = $"SELECT id,name From facylties where name='{faculty}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                SqlCommand cm1 = connection.CreateCommand();
+                try
+                {
+
+                    while (reader.Read())
+                    {
+
+                        object s = reader.GetValue(0);
+                        fakk_id = Convert.ToInt32(s);
+                    }
+                    reader.Close();
+                    if (fakk_id == 0)
+                    {
+                        MessageBox.Show("Такого факультета не существует");
+                    }
+                    else
+                    {
+                        cm1.CommandText = "update users set first_name='" + SurnameBox.Text + "',middle_name='" + NameBox.Text + "',login='" + LoginBox.Text + "',email='" + PostBox.Text + "',faculty_id='" + fakk_id + "' where id='" + id_admin_panel + "'";
+                        cm1.ExecuteNonQuery();
+                        MessageBox.Show("Данные успешно обновлены!");
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    SurnameBox.Clear();
+                    NameBox.Clear();
+                    LoginBox.Clear();
+                    PostBox.Clear();
+                    FacultyBox.Clear();
+                    connection.Close();
+                    reader.Close();
+                }
+            }
         }
         //------------------------------------------------------Faculty--------------------------------------------------------------------------//
 
         private async void Fak_click(object sender, RoutedEventArgs e)
         {
+            
             Info.Visibility = Visibility.Visible;
             IdFind.Visibility = Visibility.Visible;
             ThemeFindFaculty.Visibility = Visibility.Visible;
@@ -76,14 +549,41 @@ namespace WpfApp1
             Change_Faculty_Delete.Visibility = Visibility.Visible;
             Theme_Faculty_Delete.Visibility = Visibility.Visible;
             ThemeFindFaculty.Visibility = Visibility.Visible;
+            //-------------------------------------------------------//
+            FindStudent.Visibility = Visibility.Hidden;
+            FindIdStudentBox.Visibility = Visibility.Hidden;
+            FindSurnameStudent.Visibility = Visibility.Hidden;
+            FindIdTeacher.Visibility = Visibility.Hidden;
+            FindSurnameTeacher.Visibility = Visibility.Hidden;
+            ChangeStudentLabel.Visibility = Visibility.Hidden;
+            ChangeStudentBox.Visibility = Visibility.Hidden;
+            ChangeTeacher.Visibility = Visibility.Hidden;
+            FindIdStudent.Visibility = Visibility.Hidden;
+            ChangeStudent.Visibility = Visibility.Hidden;
+            LineVertical.Visibility = Visibility.Hidden;
+            FindSurnameStudentBox.Visibility = Visibility.Hidden;
+            SurnameLabel.Visibility = Visibility.Hidden;
+            SurnameBox.Visibility = Visibility.Hidden;
+            NameLabel.Visibility = Visibility.Hidden;
+            NameBox.Visibility = Visibility.Hidden;
+            LoginLabel.Visibility = Visibility.Hidden;
+            LoginBox.Visibility = Visibility.Hidden;
+            PostLabel.Visibility = Visibility.Hidden;
+            PostBox.Visibility = Visibility.Hidden;
+            FacultyLabel.Visibility = Visibility.Hidden;
+            FacultyBox.Visibility = Visibility.Hidden;
+            UpdateTeacher.Visibility = Visibility.Hidden;
+            UpdateStudent.Visibility = Visibility.Hidden;
             try
             {
+                
                 tables.Clear();
                 await _newcon.OpenAsync();
                 SqlDataAdapter adapter = new SqlDataAdapter($"Select * FROM facylties", _newcon);
                 adapter.Fill(tables);
                 User_Grid.DataContext = tables.DefaultView;
                 _newcon.Close();
+                
             }
             catch (Exception ex)
             {
@@ -254,6 +754,7 @@ namespace WpfApp1
         //------------------------------------------------------Subjects--------------------------------------------------------------------------//
         private async void Subjects_click(object sender, RoutedEventArgs e)
         {
+            
             InitializeComponent();
             Info.Visibility = Visibility.Visible;
             IdFind.Visibility = Visibility.Visible;
@@ -275,14 +776,41 @@ namespace WpfApp1
             Change_Faculty_Delete.Visibility = Visibility.Hidden;
             Theme_Faculty_Delete.Visibility = Visibility.Hidden;
             ThemeFindFaculty.Visibility = Visibility.Hidden;
+            //---------------------------------------------------//
+            FindStudent.Visibility = Visibility.Hidden;
+            FindIdStudentBox.Visibility = Visibility.Hidden;
+            FindSurnameStudent.Visibility = Visibility.Hidden;
+            FindIdTeacher.Visibility = Visibility.Hidden;
+            FindSurnameTeacher.Visibility = Visibility.Hidden;
+            ChangeStudentLabel.Visibility = Visibility.Hidden;
+            ChangeStudentBox.Visibility = Visibility.Hidden;
+            ChangeTeacher.Visibility = Visibility.Hidden;
+            FindIdStudent.Visibility = Visibility.Hidden;
+            ChangeStudent.Visibility = Visibility.Hidden;
+            LineVertical.Visibility = Visibility.Hidden;
+            FindSurnameStudentBox.Visibility = Visibility.Hidden;
+            SurnameLabel.Visibility = Visibility.Hidden;
+            SurnameBox.Visibility = Visibility.Hidden;
+            NameLabel.Visibility = Visibility.Hidden;
+            NameBox.Visibility = Visibility.Hidden;
+            LoginLabel.Visibility = Visibility.Hidden;
+            LoginBox.Visibility = Visibility.Hidden;
+            PostLabel.Visibility = Visibility.Hidden;
+            PostBox.Visibility = Visibility.Hidden;
+            FacultyLabel.Visibility = Visibility.Hidden;
+            FacultyBox.Visibility = Visibility.Hidden;
+            UpdateTeacher.Visibility = Visibility.Hidden;
+            UpdateStudent.Visibility = Visibility.Hidden;
             try
             {
+                
                 tables.Clear();
                 await _newcon.OpenAsync();
                 SqlDataAdapter adapter = new SqlDataAdapter($"Select * FROM subjects", _newcon);
                 adapter.Fill(tables);
                 User_Grid.DataContext = tables.DefaultView;
                 _newcon.Close();
+                
             }
             catch (Exception ex)
             {
@@ -461,6 +989,6 @@ namespace WpfApp1
         public static string insert;
         public static int id_subj;
 
-        
+       
     }
 }
