@@ -99,8 +99,7 @@ namespace WpfApp1
 
             try
             {
-                this.tables.Rows.Clear();  // удаление всех строк 
-                int count = this.tables.Columns.Count;                
+                this.tables.Rows.Clear();                             
                 this.tables.Columns.Clear();
                 
                 await _newcon.OpenAsync();
@@ -347,8 +346,7 @@ namespace WpfApp1
             try
             {
 
-                this.tables.Rows.Clear();  // удаление всех строк 
-                int count = this.tables.Columns.Count;
+                this.tables.Rows.Clear();
                 this.tables.Columns.Clear();
                 await _newcon.OpenAsync();
                 SqlDataAdapter adapter = new SqlDataAdapter($"Select u.id,u.first_name,u.middle_name,f.name,u.login,u.email FROM users as u inner join facylties as f on u.faculty_id=f.id where role_id='{1}'", _newcon);
@@ -586,8 +584,7 @@ namespace WpfApp1
             try
             {
 
-                this.tables.Rows.Clear();  // удаление всех строк 
-                int count = this.tables.Columns.Count;
+                this.tables.Rows.Clear(); 
                 this.tables.Columns.Clear();
                 await _newcon.OpenAsync();
                 SqlDataAdapter adapter = new SqlDataAdapter($"Select id,name FROM facylties", _newcon);
@@ -817,8 +814,7 @@ namespace WpfApp1
             try
             {
 
-                this.tables.Rows.Clear();  // удаление всех строк 
-                int count = this.tables.Columns.Count;
+                this.tables.Rows.Clear();  
                 this.tables.Columns.Clear();
                 await _newcon.OpenAsync();
                 SqlDataAdapter adapter = new SqlDataAdapter($"Select id,name FROM subjects", _newcon);
