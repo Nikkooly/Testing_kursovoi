@@ -94,16 +94,19 @@ namespace WpfApp1
             FacultyBox.Visibility = Visibility.Hidden;
             UpdateTeacher.Visibility = Visibility.Hidden;
             UpdateStudent.Visibility = Visibility.Hidden;
-
+            User_Grid.Visibility = Visibility.Hidden;
+            User1_Grid.Visibility = Visibility.Visible;
 
             try
             {
-               
-                tables.Clear();
+                this.tables.Rows.Clear();  // удаление всех строк 
+                int count = this.tables.Columns.Count;                
+                this.tables.Columns.Clear();
+                
                 await _newcon.OpenAsync();
                 SqlDataAdapter adapter = new SqlDataAdapter($"Select u.id,u.first_name,u.middle_name,f.name,u.login,u.email FROM users as u inner join facylties as f on u.faculty_id=f.id where role_id='{2}'", _newcon);
                 adapter.Fill(tables);
-                User_Grid.DataContext = tables.DefaultView;
+                User1_Grid.DataContext = tables.DefaultView;
                 _newcon.Close();
             }
             catch (Exception ex)
@@ -338,15 +341,19 @@ namespace WpfApp1
             FacultyBox.Visibility = Visibility.Hidden;
             UpdateTeacher.Visibility = Visibility.Hidden;
             UpdateStudent.Visibility = Visibility.Hidden;
+            User_Grid.Visibility = Visibility.Hidden;
+            User1_Grid.Visibility = Visibility.Visible;
 
             try
             {
-                
-                tables.Clear();
+
+                this.tables.Rows.Clear();  // удаление всех строк 
+                int count = this.tables.Columns.Count;
+                this.tables.Columns.Clear();
                 await _newcon.OpenAsync();
                 SqlDataAdapter adapter = new SqlDataAdapter($"Select u.id,u.first_name,u.middle_name,f.name,u.login,u.email FROM users as u inner join facylties as f on u.faculty_id=f.id where role_id='{1}'", _newcon);
                 adapter.Fill(tables);
-                User_Grid.DataContext = tables.DefaultView;
+                User1_Grid.DataContext = tables.DefaultView;
                 _newcon.Close();
             }
             catch (Exception ex)
@@ -574,12 +581,16 @@ namespace WpfApp1
             FacultyBox.Visibility = Visibility.Hidden;
             UpdateTeacher.Visibility = Visibility.Hidden;
             UpdateStudent.Visibility = Visibility.Hidden;
+            User_Grid.Visibility = Visibility.Visible;
+            User1_Grid.Visibility = Visibility.Hidden;
             try
             {
-                
-                tables.Clear();
+
+                this.tables.Rows.Clear();  // удаление всех строк 
+                int count = this.tables.Columns.Count;
+                this.tables.Columns.Clear();
                 await _newcon.OpenAsync();
-                SqlDataAdapter adapter = new SqlDataAdapter($"Select * FROM facylties", _newcon);
+                SqlDataAdapter adapter = new SqlDataAdapter($"Select id,name FROM facylties", _newcon);
                 adapter.Fill(tables);
                 User_Grid.DataContext = tables.DefaultView;
                 _newcon.Close();
@@ -801,12 +812,16 @@ namespace WpfApp1
             FacultyBox.Visibility = Visibility.Hidden;
             UpdateTeacher.Visibility = Visibility.Hidden;
             UpdateStudent.Visibility = Visibility.Hidden;
+            User_Grid.Visibility = Visibility.Visible;
+            User1_Grid.Visibility = Visibility.Hidden;
             try
             {
-                
-                tables.Clear();
+
+                this.tables.Rows.Clear();  // удаление всех строк 
+                int count = this.tables.Columns.Count;
+                this.tables.Columns.Clear();
                 await _newcon.OpenAsync();
-                SqlDataAdapter adapter = new SqlDataAdapter($"Select * FROM subjects", _newcon);
+                SqlDataAdapter adapter = new SqlDataAdapter($"Select id,name FROM subjects", _newcon);
                 adapter.Fill(tables);
                 User_Grid.DataContext = tables.DefaultView;
                 _newcon.Close();
