@@ -22,7 +22,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Teacher_panel : Window
     {
-        entry ent = new entry();
+        //entry ent = new entry();
         public static string teachername = entry.people;
         public static int id_teacher = entry.identry;
         public Teacher_panel()
