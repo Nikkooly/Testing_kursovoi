@@ -56,8 +56,8 @@
             </Button>
             <Label Content="Примечания к тесту:" x:Name="InfoTest"  HorizontalContentAlignment="Center"  FontSize="12.5" Margin="142,389,166,165.4" />
             <RadioButton  x:Name="MixButton" GroupName="TypeQuestions" Content="Смешанный"  IsChecked="True" Margin="197,254,116,306.4" FontSize="14" />
-            <RadioButton  x:Name="WithAnswersButton" GroupName="TypeQuestions"  Content="Без вариантов ответов"  Margin="197,279,116,280.4" FontSize="14" />
-            <RadioButton  x:Name="WithoutAnswersButton" GroupName="TypeQuestions"  Content="С вариантами ответов"  Margin="197,305,105,256.4" FontSize="14" />
+            <RadioButton  x:Name="WithAnswersButton" GroupName="TypeQuestions"  Content="С вариантами ответов"  Margin="197,279,116,280.4" FontSize="14" />
+            <RadioButton  x:Name="WithoutAnswersButton" GroupName="TypeQuestions"  Content="Без вариантов ответов"  Margin="197,305,105,256.4" FontSize="14" />
             <Button  x:Name="Up" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,376.4" VerticalAlignment="Bottom" Click="Upclick" Width="23">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="resources\strelka.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />

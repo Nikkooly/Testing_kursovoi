@@ -63,7 +63,7 @@ namespace WpfApp1
 
         private void Downclick(object sender, RoutedEventArgs e)
         {
-            
+
             int s = Convert.ToInt32(TimeBox.Text);
             if (s > 1)
             {
@@ -80,15 +80,33 @@ namespace WpfApp1
         private void UpNumberclick(object sender, RoutedEventArgs e)
         {
             int s = Convert.ToInt32(NumberBox.Text);
-            if (s < count)
+            if (MixButton.IsChecked == true)
             {
-                s++;
-                NumberBox.Text = s.ToString();
+                if (s < count)
+                {
+                    s++;
+                    NumberBox.Text = s.ToString();
 
+                }
+                else
+                {
+                    MessageBox.Show("В базе данных всего " + count + " вопроса(ов) по теме " + ThemeBox.Text + "." + "\n" + "Дальнейшее увеличение числа вопросов невозможно!");
+                }
             }
-            else
+            if (WithAnswersButton.IsChecked == true)
             {
-                MessageBox.Show("В базе данных всего "+count+" вопроса(ов) по теме "+ThemeBox.Text+"."+"\n"+"Дальнейшее увеличение числа вопросов невозможно!");
+                NumberBox.Clear();
+                NumberBox.Text = "1";
+                if (s < countWith)
+                {
+                    s++;
+                    NumberBox.Text = s.ToString();
+
+                }
+                else
+                {
+                    MessageBox.Show("В базе данных всего " + countWith + " вопроса(ов) по теме " + ThemeBox.Text + " c вариантами ответов." + "\n" + "Дальнейшее увеличение числа вопросов невозможно!");
+                }
             }
         }
 
@@ -113,23 +131,23 @@ namespace WpfApp1
                 e.Handled = true;
                 MessageBox.Show("В данное поле можно вводить только цифры.");
             }
-        }            
+        }
         public static string result;
         public static int id_questions;
         public static int tests_id;
-       
+
         private void CreateTestclick(object sender, RoutedEventArgs e)
         {
-            
+
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
             string sqlExpression = $"select q.id,count(a.id)" +
                 $" from questions as q inner join answers as a " +
-                $"on q.id = a.question_id " +                
+                $"on q.id = a.question_id " +
                 $"where q.teacher_id = '{id_teacher}' and q.theme in" +
-                $"(select q.theme from questions " +            
+                $"(select q.theme from questions " +
                 $"where q.theme = '{ThemeBox.Text}')" +
                 $"group by q.id";
-            string sqlWithAnswer = $"select q.id,count(a.question_id) " +
+            string sqlWithAnswer = $"select q.id " +
                 $"from questions as q inner join answers as a " +
                 $"on q.id = a.question_id " +
                 $"inner join subjects as s " +
@@ -137,183 +155,197 @@ namespace WpfApp1
                 $"where q.teacher_id = '{id_teacher}' and s.name in" +
                 $"(select s.name from subjects where name = '{SubjectBox.Text}' and q.theme in" +
                 $"(select q.theme from questions where q.theme ='{ThemeBox.Text}'))" +
-                $" group by q.id,q.theme " +
+                $" group by q.id " +
                 $"having count(*) = 4";
             string sqlId = $"select id from tests where name_of_test='{NameBox.Text}' and theme in (select theme from tests where theme='{ThemeBox.Text}')";
-
+            //------------------------------микс-----------------------------------//
             if (MixButton.IsChecked == true)
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                if (count != 0)
                 {
-                    connection.Open();                    
-                    SqlCommand cm1 = connection.CreateCommand();
-                    try
+                    using (SqlConnection connection = new SqlConnection(ConnectionString))
                     {
-                        if (subject_id != 0)
+                        connection.Open();
+                        SqlCommand cm1 = connection.CreateCommand();
+                        try
                         {
-                            cm1.CommandText = $"insert into tests(name_of_test,info,date,time,theme,subject_id,teacher_id) values('{NameBox.Text}','{InfoBox.Text}','{DateTime.Now}','{Convert.ToInt32(TimeBox.Text)}','{ThemeBox.Text}','{subject_id}','{id_teacher}')";
-                            cm1.ExecuteNonQuery();
+                            if (subject_id != 0)
+                            {
+                                cm1.CommandText = $"insert into tests(name_of_test,info,date,time,theme,subject_id,teacher_id) values('{NameBox.Text}','{InfoBox.Text}','{DateTime.Now}','{Convert.ToInt32(TimeBox.Text)}','{ThemeBox.Text}','{subject_id}','{id_teacher}')";
+                                cm1.ExecuteNonQuery();
+                            }
+                            else
+                            {
+                                InfoBox.Clear();
+                                ThemeBox.Clear();
+                                SubjectBox.Clear();
+                                MessageBox.Show("такого предмета не существует");
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            InfoBox.Clear();
-                            ThemeBox.Clear();
-                            SubjectBox.Clear();
-                            MessageBox.Show("такого предмета не существует");
+                            MessageBox.Show(ex.Message);
                         }
                     }
-                    catch (Exception ex)
+                    using (SqlConnection connection = new SqlConnection(ConnectionString))
                     {
-                        MessageBox.Show(ex.Message);
-                    }                    
-                }
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
-                {                    
-                    connection.Open();
+                        connection.Open();
 
-                    SqlCommand command = new SqlCommand(sqlId, connection);
-                    SqlDataReader reader = command.ExecuteReader();
-                                      
-                    try
-                    {                       
-                        while (reader.Read())
+                        SqlCommand command = new SqlCommand(sqlId, connection);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        try
                         {
-                            object s = reader.GetValue(0);
-                            tests_id = Convert.ToInt32(s);
+                            while (reader.Read())
+                            {
+                                object s = reader.GetValue(0);
+                                tests_id = Convert.ToInt32(s);
+                            }
+                            reader.Close();
                         }
-                        reader.Close();                       
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            reader.Close();
+                        }
                     }
-                    catch (Exception ex)
+                    using (SqlConnection connection = new SqlConnection(ConnectionString))
                     {
-                        MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        reader.Close();
+                        Random rnd = new Random();
+                        List<int> questions;
+                        connection.Open();
+
+                        SqlCommand command = new SqlCommand(sqlExpression, connection);
+                        SqlCommand cm1 = connection.CreateCommand();
+                        SqlDataReader reader = command.ExecuteReader();
+                        try
+                        {
+                            questions = new List<int>();
+                            while (reader.Read())
+                            {
+                                questions.Add(Convert.ToInt32(reader.GetValue(0)));
+                            }
+                            reader.Close();
+                            questions = questions.OrderBy(n => rnd.Next()).ToList();
+                            IEnumerable<int> quest = questions.Take(Convert.ToInt32(NumberBox.Text));
+                            foreach (int n in quest)
+                            {
+                                cm1.CommandText = $"Insert into questions_tests(test_id,question_id) values('{tests_id}','{n}')";
+                                cm1.ExecuteNonQuery();
+                            }
+                            reader.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            reader.Close();
+                        }
                     }
                 }
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                else
                 {
-                    Random rnd = new Random();
-                    List<int> questions;
-                    connection.Open();
-
-                    SqlCommand command = new SqlCommand(sqlExpression, connection);
-                    SqlCommand cm1 = connection.CreateCommand();
-                    SqlDataReader reader = command.ExecuteReader();
-                    try
-                    {
-                        questions = new List<int>();
-                        while (reader.Read())
-                        {                            
-                            questions.Add(Convert.ToInt32(reader.GetValue(0)));                            
-                        }
-                        reader.Close();
-                        questions = questions.OrderBy(n => rnd.Next()).ToList();
-                        IEnumerable<int> quest = questions.Take(Convert.ToInt32(NumberBox.Text));
-                        foreach(int n in quest)
-                        { 
-                            cm1.CommandText = $"Insert into questions_tests(test_id,question_id) values('{tests_id}','{n}')";
-                            cm1.ExecuteNonQuery();
-                        }
-                        reader.Close();
-                    }                                         
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        reader.Close();
-                    }
+                    MessageBox.Show("Ни одного вопроса по теме " + theme + " не найдено");
                 }
             }
             //----------------------------С вариантами ответа------------------------------------------------------//
             if (WithAnswersButton.IsChecked == true)
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                if (countWith != 0)
                 {
-                    connection.Open();
-                    SqlCommand cm1 = connection.CreateCommand();
-                    try
+                    using (SqlConnection connection = new SqlConnection(ConnectionString))
                     {
-                        if (subject_id != 0)
+                        connection.Open();
+                        SqlCommand cm1 = connection.CreateCommand();
+                        try
                         {
-                            cm1.CommandText = $"insert into tests(name_of_test,info,date,time,theme,subject_id,teacher_id) values('{NameBox.Text}','{InfoBox.Text}','{DateTime.Now}','{Convert.ToInt32(TimeBox.Text)}','{ThemeBox.Text}','{subject_id}','{id_teacher}')";
-                            cm1.ExecuteNonQuery();
+                            if (subject_id != 0)
+                            {
+                                cm1.CommandText = $"insert into tests(name_of_test,info,date,time,theme,subject_id,teacher_id) values('{NameBox.Text}','{InfoBox.Text}','{DateTime.Now}','{Convert.ToInt32(TimeBox.Text)}','{ThemeBox.Text}','{subject_id}','{id_teacher}')";
+                                cm1.ExecuteNonQuery();
+                            }
+                            else
+                            {
+                                InfoBox.Clear();
+                                ThemeBox.Clear();
+                                SubjectBox.Clear();
+                                MessageBox.Show("такого предмета не существует");
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            InfoBox.Clear();
-                            ThemeBox.Clear();
-                            SubjectBox.Clear();
-                            MessageBox.Show("такого предмета не существует");
+                            MessageBox.Show(ex.Message);
                         }
                     }
-                    catch (Exception ex)
+                    using (SqlConnection connection = new SqlConnection(ConnectionString))
                     {
-                        MessageBox.Show(ex.Message);
+                        connection.Open();
+
+                        SqlCommand command = new SqlCommand(sqlId, connection);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        try
+                        {
+                            while (reader.Read())
+                            {
+                                object s = reader.GetValue(0);
+                                tests_id = Convert.ToInt32(s);
+                            }
+                            reader.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            reader.Close();
+                        }
+                    }
+                    using (SqlConnection connection = new SqlConnection(ConnectionString))
+                    {
+                        Random rnd = new Random();
+                        List<int> questions;
+                        connection.Open();
+
+                        SqlCommand command = new SqlCommand(sqlWithAnswer, connection);
+                        SqlCommand cm1 = connection.CreateCommand();
+                        SqlDataReader reader = command.ExecuteReader();
+                        try
+                        {
+                            questions = new List<int>();
+                            while (reader.Read())
+                            {
+                                questions.Add(Convert.ToInt32(reader.GetValue(0)));
+                            }
+                            reader.Close();
+                            questions = questions.OrderBy(n => rnd.Next()).ToList();
+                            IEnumerable<int> quest = questions.Take(Convert.ToInt32(NumberBox.Text));
+                            foreach (int n in quest)
+                            {
+                                cm1.CommandText = $"Insert into questions_tests(test_id,question_id) values('{tests_id}','{n}')";
+                                cm1.ExecuteNonQuery();
+                            }
+                            reader.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            reader.Close();
+                        }
                     }
                 }
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                else
                 {
-                    connection.Open();
-
-                    SqlCommand command = new SqlCommand(sqlId, connection);
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    try
-                    {
-                        while (reader.Read())
-                        {
-                            object s = reader.GetValue(0);
-                            tests_id = Convert.ToInt32(s);
-                        }
-                        reader.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        reader.Close();
-                    }
-                }
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
-                {
-                    Random rnd = new Random();
-                    List<int> questions;
-                    connection.Open();
-
-                    SqlCommand command = new SqlCommand(sqlWithAnswer, connection);
-                    SqlCommand cm1 = connection.CreateCommand();
-                    SqlDataReader reader = command.ExecuteReader();
-                    try
-                    {
-                        questions = new List<int>();
-                        while (reader.Read())
-                        {
-                            questions.Add(Convert.ToInt32(reader.GetValue(0)));
-                        }
-                        reader.Close();
-                        questions = questions.OrderBy(n => rnd.Next()).ToList();
-                        IEnumerable<int> quest = questions.Take(Convert.ToInt32(NumberBox.Text));
-                        foreach (int n in quest)
-                        {
-                            cm1.CommandText = $"Insert into questions_tests(test_id,question_id) values('{tests_id}','{n}')";
-                            cm1.ExecuteNonQuery();
-                        }
-                        reader.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        reader.Close();
-                    }
+                    MessageBox.Show("Ни одного вопроса по теме " + theme + " c вариантами ответа не найдено");
                 }
             }
             MessageBox.Show("Успешно добавлено");
@@ -326,24 +358,57 @@ namespace WpfApp1
         public static string a;
         public static int b;
         public static int count;
-       public static string s = "";
+        public static int countWith;
+        public static string s = "";
         private void CheckTestclick(object sender, RoutedEventArgs e)
         {
-            //if (SubjectBox.Text == "" || ThemeBox.Text == "")
-            //{
-            //    MessageBox.Show("заполните все поля");                
-            //}
-            //else
-            //{
+            if (SubjectBox.Text == "" || ThemeBox.Text == "")
+            {
+                MessageBox.Show("заполните все поля");
+            }
+            else
+            {
                 string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                string sqlSubject = $"select s.id,q.theme,count(q.id) from subjects as s inner join questions as q on s.id=q.subject_id where name='{SubjectBox.Text}' and q.theme in (select q.theme from questions as q  where q.theme='{ThemeBox.Text}' and q.teacher_id in(select q.teacher_id from questions as q where teacher_id='{id_teacher}')) group by s.id,q.theme";
-            string sqlName = $"select name_of_test from tests";
-            
+            string sqlSubject = $"select s.id,q.theme,count(q.id) from subjects as s inner join questions as q on s.id=q.subject_id where name='{SubjectBox.Text}' and q.theme in (select q.theme from questions as q  where q.theme='{ThemeBox.Text}' and q.teacher_id in(select q.teacher_id from questions as q where teacher_id='{id_teacher}')) group by s.id,q.theme";
+
+            string sqlWith = $"select count(q.id) " +
+                $"from questions as q inner join subjects as s" +
+                $" on q.subject_id = s.id " +
+                $"where s.name = '{SubjectBox.Text}' and q.theme = '{ThemeBox.Text}' and q.teacher_id = '{id_teacher}' and q.id in" +
+                $" (select a.question_id " +
+                $"from answers as a " +
+                $"group by a.question_id" +
+                $" having count(a.id) = 4)";
+
             using (SqlConnection connection = new SqlConnection(ConnectionString))
-                {               
+            {
                 connection.Open();
-                    SqlCommand command = new SqlCommand(sqlSubject, connection);
-                    SqlDataReader reader = command.ExecuteReader();
+                SqlCommand command = new SqlCommand(sqlWith, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        object s = reader.GetValue(0);
+                        countWith = Convert.ToInt32(s);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlSubject, connection);
+                SqlDataReader reader = command.ExecuteReader();
                 try
                 {
                     while (reader.Read())
@@ -356,18 +421,14 @@ namespace WpfApp1
                         count = Convert.ToInt32(k);
                     }
                     reader.Close();
-
-                    if (count != 0)
+                         
+                    if (subject_id != 0 && theme != "")
                     {
-                        if (subject_id != 0 && theme != "")
-                        {                            
-                            
-                        }
+
                     }
+                    
                     else
                     {
-                        ThemeBox.Clear();
-                        SubjectBox.Clear();
                         MessageBox.Show("Ошибка. Проверьте правильность значений" + "\n" + " введенных в поле предмет и тема!");
                     }
                 }
@@ -380,38 +441,40 @@ namespace WpfApp1
                 {
                     reader.Close();
                 }
-                }
+            }
+            string sqlName = $"select name_of_test from tests";
             using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlName, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                try
-                {
-                    while (reader.Read())
                     {
-                        if (reader.GetValue(0).Equals(NameBox.Text))
+                        connection.Open();
+                        SqlCommand command = new SqlCommand(sqlName, connection);
+                        SqlDataReader reader = command.ExecuteReader();
+                        try
                         {
-                            MessageBox.Show("Ошибка. Тест с таким именем уже существует уже существует!");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Количество вопросов по данной теме : " + count.ToString());
-                            Test.Visibility = Visibility.Visible;
+                            while (reader.Read())
+                            {
+                                if (reader.GetValue(0).Equals(NameBox.Text))
+                                {                                  
+                                    MessageBox.Show("Ошибка. Тест с таким именем уже существует уже существует!");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Количество вопросов по данной теме : " + count.ToString());
+                                    Test.Visibility = Visibility.Visible;
+                                }
+                            }
+                            reader.Close();
 
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            reader.Close();
                         }
                     }
-                    reader.Close();
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    reader.Close();
-                }
+                
             }
         }
     }
