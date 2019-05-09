@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfApp1.StudentPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+       Title="Teacher panel" Height="400" Width="500" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None">
+
+    <Grid Background="AliceBlue">
+        <Grid Background="White" Margin="10,10,10,9.6" >
+            <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="20" Margin="0,0,0,0">
+                <Run Text="Панель студента"/>               
+               </TextBlock>
+            <Button  x:Name="close_app_newtest" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="450,0,0,351.4" VerticalAlignment="Bottom" Click="Close_click_question" Width="30">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="resources\close.png" Margin="0,0,0,0" />
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

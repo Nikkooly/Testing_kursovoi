@@ -97,7 +97,7 @@ namespace WpfApp1
                                 }
                                 if (id == 2)
                                 {
-                                    Students_main ss = new Students_main();
+                                    StudentPanel ss = new StudentPanel();
                                     ss.Show();
                                     this.Close();
                                 }

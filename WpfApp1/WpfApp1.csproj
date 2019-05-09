@@ -121,8 +121,8 @@
     <Compile Include="Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Students_main.xaml.cs">
-      <DependentUpon>Students_main.xaml</DependentUpon>
+    <Compile Include="StudentPanel.xaml.cs">
+      <DependentUpon>StudentPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Teacher_panel.xaml.cs">
       <DependentUpon>Teacher_panel.xaml</DependentUpon>
@@ -183,7 +183,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Students_main.xaml">
+    <Page Include="StudentPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
