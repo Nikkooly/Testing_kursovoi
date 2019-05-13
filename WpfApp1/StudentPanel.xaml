@@ -5,19 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-       Title="Teacher panel" Height="400" Width="500" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
+       Title="Teacher panel" Height="504.8" Width="462.4" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
         WindowStartupLocation="CenterScreen" WindowStyle="None">
 
     <Grid Background="AliceBlue">
         <Grid Background="White" Margin="10,10,10,9.6" >
             <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="20" Margin="0,0,0,0">
-                <Run Text="Панель студента"/>               
-               </TextBlock>
-            <Button  x:Name="close_app_newtest" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="450,0,0,351.4" VerticalAlignment="Bottom" Click="Close_click_question" Width="30">
+                <Run Text="Панель студента"/>
+            </TextBlock>
+            <Button  x:Name="close_app_newtest" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="412,0,0,455.2" VerticalAlignment="Bottom" Click="Close_click_question" Width="30">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="resources\close.png" Margin="0,0,0,0" />
                 </StackPanel>
             </Button>
+            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="40" Margin="133,45,0,0" VerticalAlignment="Top" Width="179" Click="PassTestclick">
+                <Run Text="Пройти тест" FontSize="18"/>
+            </Button>
+            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="40" Margin="133,103,0,0" VerticalAlignment="Top" Width="179" Click="CheckResultTestclick">
+                <Run Text="Узнать результаты" FontSize="18"/>
+            </Button>
+            <Line X1="442.5" X2="0" Y1="170" Y2="170" Stroke="LightGray"/>
+            <Image x:Name="FunnyImage" Visibility="Hidden" Source="resources\teststudent.jpg" Margin="0,98,0.4,-54.8"/>
+            <Grid Margin="0,0,0,0" x:Name="Results" Visibility="Hidden" >
+                <TextBlock Text="Результаты тестов" FontSize="18" FontWeight="Bold" Margin="152,181,126.4,275.8"/>
+                <Label x:Name="NameOfTestLabel" Content="Имя теста:" FontSize="18" Margin="10,219,329.4,231.8"/>
+                <Label x:Name="SubjectOfTestLabel" Content="Предмет:" FontSize="18" Margin="10,253,339.4,197.8"/>
+                <Label x:Name="ThemeOfTestLabel" Content="Тема:" FontSize="18" Margin="10,287,339.4,163.8"/>
+                <Label x:Name="TeacherOfTestLabel" Content="Преподаватель:" FontSize="18" Margin="10,316,289.4,134.8"/>
+                <Label x:Name="ResultOfTestLabel" Content="Результат:" FontSize="18" Margin="10,350,339.4,100.8"/>
+                <Label x:Name="NameOfTest"  FontSize="18" Margin="160,219,10.4,231.8"/>
+                <Label x:Name="SubjectOfTest"  FontSize="18" Margin="160,253,10.4,197.8"/>
+                <Label x:Name="ThemeOfTest"  FontSize="18" Margin="160,287,10.4,163.8"/>
+                <Label x:Name="TeacherOfTest"  FontSize="18" Margin="160,321,10.4,129.8"/>
+                <Label x:Name="ResultOfTest"  FontSize="18" Margin="160,355,10.4,95.8"/>
+                <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="31" Margin="96,444,0,0" VerticalAlignment="Top" Width="259" Click="ResultTestclick">
+                    <Run Text="Подробная информация" FontSize="18"/>
+                </Button>
+                <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="31" Margin="236,408,0,0" VerticalAlignment="Top" Width="196" Click="ForwardTestclick">
+                    <Run Text="Далее" FontSize="18"/>
+                </Button>
+                <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="31" Margin="10,408,0,0" VerticalAlignment="Top" Width="196" Click="BackTestclick">
+                    <Run Text="Назад" FontSize="18"/>
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

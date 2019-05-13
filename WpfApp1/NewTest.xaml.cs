@@ -88,6 +88,8 @@ namespace WpfApp1
                 else
                 {
                     MessageBox.Show("В базе данных всего " + count + " вопроса(ов) по теме " + ThemeBox.Text + "." + "\n" + "Дальнейшее увеличение числа вопросов невозможно!");
+                    NumberBox.Clear();
+                    NumberBox.Text = "1";
                 }
             }
             if (WithAnswersButton.IsChecked == true)
@@ -103,6 +105,8 @@ namespace WpfApp1
                 else
                 {
                     MessageBox.Show("В базе данных всего " + countWith + " вопроса(ов) по теме " + ThemeBox.Text + " c вариантами ответов." + "\n" + "Дальнейшее увеличение числа вопросов невозможно!");
+                    NumberBox.Clear();
+                    NumberBox.Text = "1";
                 }
             }
             if (WithoutAnswersButton.IsChecked == true)
@@ -118,6 +122,8 @@ namespace WpfApp1
                 else
                 {
                     MessageBox.Show("В базе данных всего " + countWithout + " вопроса(ов) по теме " + ThemeBox.Text + " без вариантов вариантами ответов." + "\n" + "Дальнейшее увеличение числа вопросов невозможно!");
+                    NumberBox.Clear();
+                    NumberBox.Text = "1";
                 }
             }
         }
@@ -125,15 +131,50 @@ namespace WpfApp1
         private void DownNumberclick(object sender, RoutedEventArgs e)
         {
             int s = Convert.ToInt32(NumberBox.Text);
-            if (s > 1)
+            if (WithoutAnswersButton.IsChecked == true)
             {
-                s--;
-                NumberBox.Text = s.ToString();
-            }
-            else
-            {
-                MessageBox.Show("Ошибка! Не менее 1 вопроса.");
+                if (s > 1 && s<countWithout)
+                {
+                    s--;
+                    NumberBox.Text = s.ToString();
+                }
+                else
+                {
 
+                    MessageBox.Show("Ошибка! Не менее 1 вопроса и не более " + countWithout + ".");
+                    NumberBox.Clear();
+                    NumberBox.Text = "1";
+                }
+            }
+            if (WithAnswersButton.IsChecked == true)
+            {
+                if (s > 1 && s<countWith)
+                {
+                    s--;
+                    NumberBox.Text = s.ToString();
+                }
+                else
+                {
+
+                    MessageBox.Show("Ошибка! Не менее 1 вопроса и не более "+countWith+".");
+                    NumberBox.Clear();
+                    NumberBox.Text = "1";
+                }
+            }
+            if (MixButton.IsChecked == true)
+            {
+                if (s > 1 && s<count)
+                {
+                    s--;
+                    NumberBox.Text = s.ToString();
+                }
+                else
+                {
+
+                    MessageBox.Show("Ошибка! Не менее 1 вопроса и не более " + count + ".");
+                    NumberBox.Clear();
+                    NumberBox.Text = "1";
+                }
             }
         }
 
@@ -151,6 +192,7 @@ namespace WpfApp1
 
         private void CreateTestclick(object sender, RoutedEventArgs e)
         {
+            int k = Convert.ToInt32(NumberBox.Text);
             if (Convert.ToInt32(TimeBox.Text) > 500)
             {
                 MessageBox.Show("Не более 500 минут");
@@ -171,6 +213,7 @@ namespace WpfApp1
             }
             else
             {
+                
                 string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
                 string sqlExpression = $"select q.id,count(a.id)" +
                     $" from questions as q inner join answers as a " +
@@ -393,99 +436,115 @@ namespace WpfApp1
                 if (WithoutAnswersButton.IsChecked == true)
                 {
                     if (countWithout != 0)
-                    {
-                        using (SqlConnection connection = new SqlConnection(ConnectionString))
-                        {
-                            connection.Open();
-                            SqlCommand cm1 = connection.CreateCommand();
-                            try
+                    {                       
+                            using (SqlConnection connection = new SqlConnection(ConnectionString))
                             {
-                                if (subject_id != 0)
+                                connection.Open();
+                                SqlCommand cm1 = connection.CreateCommand();
+                                try
                                 {
-                                    cm1.CommandText = $"insert into tests(name_of_test,info,date,time,theme,subject_id,teacher_id) values('{NameBox.Text}','{InfoBox.Text}','{DateTime.Now}','{Convert.ToInt32(TimeBox.Text)}','{ThemeBox.Text}','{subject_id}','{id_teacher}')";
-                                    cm1.ExecuteNonQuery();
+                                    if (subject_id != 0)
+                                    {
+                                        cm1.CommandText = $"insert into tests(name_of_test,info,date,time,theme,subject_id,teacher_id) values('{NameBox.Text}','{InfoBox.Text}','{DateTime.Now}','{Convert.ToInt32(TimeBox.Text)}','{ThemeBox.Text}','{subject_id}','{id_teacher}')";
+                                        cm1.ExecuteNonQuery();
+                                    }
+                                    else
+                                    {
+                                        InfoBox.Clear();
+                                        ThemeBox.Clear();
+                                        SubjectBox.Clear();
+                                        MessageBox.Show("такого предмета не существует");
+                                    }
                                 }
-                                else
+                                catch (Exception ex)
                                 {
-                                    InfoBox.Clear();
-                                    ThemeBox.Clear();
-                                    SubjectBox.Clear();
-                                    MessageBox.Show("такого предмета не существует");
+                                    MessageBox.Show(ex.Message);
                                 }
                             }
-                            catch (Exception ex)
+                            using (SqlConnection connection = new SqlConnection(ConnectionString))
                             {
-                                MessageBox.Show(ex.Message);
-                            }
-                        }
-                        using (SqlConnection connection = new SqlConnection(ConnectionString))
-                        {
-                            connection.Open();
+                                connection.Open();
 
-                            SqlCommand command = new SqlCommand(sqlId, connection);
-                            SqlDataReader reader = command.ExecuteReader();
+                                SqlCommand command = new SqlCommand(sqlId, connection);
+                                SqlDataReader reader = command.ExecuteReader();
 
-                            try
-                            {
-                                while (reader.Read())
+                                try
                                 {
-                                    object s = reader.GetValue(0);
-                                    tests_id = Convert.ToInt32(s);
+                                    while (reader.Read())
+                                    {
+                                        object s = reader.GetValue(0);
+                                        tests_id = Convert.ToInt32(s);
+                                    }
+                                    reader.Close();
                                 }
-                                reader.Close();
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message);
+                                }
+                                finally
+                                {
+                                    reader.Close();
+                                }
                             }
-                            catch (Exception ex)
+                            using (SqlConnection connection = new SqlConnection(ConnectionString))
                             {
-                                MessageBox.Show(ex.Message);
-                            }
-                            finally
-                            {
-                                reader.Close();
-                            }
-                        }
-                        using (SqlConnection connection = new SqlConnection(ConnectionString))
-                        {
-                            Random rnd = new Random();
-                            List<int> questions;
-                            connection.Open();
+                                Random rnd = new Random();
+                                List<int> questions;
+                                connection.Open();
 
-                            SqlCommand command = new SqlCommand(sqlWithoutAnswer, connection);
-                            SqlCommand cm1 = connection.CreateCommand();
-                            SqlDataReader reader = command.ExecuteReader();
-                            try
-                            {
-                                questions = new List<int>();
-                                while (reader.Read())
+                                SqlCommand command = new SqlCommand(sqlWithoutAnswer, connection);
+                                SqlCommand cm1 = connection.CreateCommand();
+                                SqlDataReader reader = command.ExecuteReader();
+                                try
                                 {
-                                    questions.Add(Convert.ToInt32(reader.GetValue(0)));
+                                    questions = new List<int>();
+                                    while (reader.Read())
+                                    {
+                                        questions.Add(Convert.ToInt32(reader.GetValue(0)));
+                                    }
+                                    reader.Close();
+                                    questions = questions.OrderBy(n => rnd.Next()).ToList();
+                                    IEnumerable<int> quest = questions.Take(Convert.ToInt32(NumberBox.Text));
+                                    foreach (int n in quest)
+                                    {
+                                        cm1.CommandText = $"Insert into questions_tests(test_id,question_id) values('{tests_id}','{n}')";
+                                        cm1.ExecuteNonQuery();
+                                    }
+                                    reader.Close();
                                 }
-                                reader.Close();
-                                questions = questions.OrderBy(n => rnd.Next()).ToList();
-                                IEnumerable<int> quest = questions.Take(Convert.ToInt32(NumberBox.Text));
-                                foreach (int n in quest)
+                                catch (Exception ex)
                                 {
-                                    cm1.CommandText = $"Insert into questions_tests(test_id,question_id) values('{tests_id}','{n}')";
-                                    cm1.ExecuteNonQuery();
+                                    MessageBox.Show(ex.Message);
                                 }
-                                reader.Close();
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                            }
-                            finally
-                            {
-                                reader.Close();
-                            }
-                        }
+                                finally
+                                {
+                                    reader.Close();
+                                }
+                            }                        
                     }
                     else
                     {
+                        
                         MessageBox.Show("Ни одного вопроса по теме " + theme + " без вариантов ответов не найдено");
                     }
                 }
-                MessageBox.Show("Успешно добавлено");
+                
             }
+            //if (count < k)
+            //{
+            //    if (countWith < k)
+            //    {
+            //        if (countWithout < k)
+            //        {
+            //            MessageBox.Show("Успешно добавлено");
+            //        }
+            //    }
+            //}
+            //else {
+            //    NumberBox.Clear();
+            //    NumberBox.Text = "1";
+            //    MessageBox.Show("Ошибка!");
+            //}
         }
         //-----------------------------проверка на предмет тему и название теста----------------------------------------------//
         public static int results;

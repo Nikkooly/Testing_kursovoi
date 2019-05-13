@@ -127,6 +127,9 @@
     <Compile Include="Teacher_panel.xaml.cs">
       <DependentUpon>Teacher_panel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
     <Page Include="Admin_panel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Teacher_panel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -277,6 +284,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\strelka1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\teststudent.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\back_strelka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\forward.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

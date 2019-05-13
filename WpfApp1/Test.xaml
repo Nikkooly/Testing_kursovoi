@@ -1,0 +1,55 @@
+﻿<Window x:Class="WpfApp1.Test"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+         Title="Teacher panel" Height="650" Width="1200" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None">
+
+    <Grid Background="AliceBlue">
+        <Grid Background="White" Margin="10,10,10,9.6" >
+            <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="28" Margin="0,0,0,0">
+                <Run Text="Тест"/>
+            </TextBlock>
+            <Button  x:Name="close_app_newtest" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="62" Margin="1115,0,0,568" VerticalAlignment="Bottom" Click="Close_click_question" Width="65">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="resources\close.png" Margin="0,0,0,0" />
+                </StackPanel>
+            </Button>
+            <Grid x:Name="TestStudent">
+                <Label x:Name="Testss" Content="Выберите предмет:" FontSize="28" Margin="10,80,907,499.4"/>
+                <Label x:Name="Name" Content="Выберите тест:" FontSize="28" Margin="625,80,301,499.4"/>
+                <Label x:Name="NameOfTest" Content="Имя теста" FontSize="28" Margin="10,212,916,367.4"/>
+                <Label x:Name="NameOf" HorizontalContentAlignment="Center" FontSize="28" Margin="236,212,614,367.4"/>
+                <Label x:Name="SubjectOf" HorizontalContentAlignment="Center" FontSize="28" Margin="236,263,614,316.4"/>
+                <Label x:Name="ThemeOf" HorizontalContentAlignment="Center" FontSize="28" Margin="236,314,614,265.4"/>
+                <Label x:Name="TeacherOf" HorizontalContentAlignment="Center" FontSize="28" Margin="236,370,614,209.4"/>
+                <Label x:Name="TimeOf" HorizontalContentAlignment="Center" FontSize="28" Margin="236,421,614,158.4"/>
+                <Label x:Name="SubjectOfTest" Content="Предмет" FontSize="28" Margin="10,263,916,316.4"/>
+                <Label x:Name="ThemeOfTest" Content="Тема" FontSize="28" Margin="10,314,916,265.4"/>
+                <Label x:Name="TeacherOfTest" Content="Преподаватель" FontSize="28" Margin="10,365,916,214.4"/>
+                <Label x:Name="TimeOfTest" Content="Время теста" FontSize="28" Margin="10,416,916,163.4"/>
+                <Label x:Name="InfoOfTest" Content="Информация о тесте" HorizontalContentAlignment="Center" FontSize="28" Margin="661,212,87,367.4"/>
+                <Label x:Name="InfoOf" Background="AliceBlue" HorizontalContentAlignment="Center" FontSize="28" Margin="615,268,10,105.4"/>
+                <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="40" Margin="448,152,0,0" VerticalAlignment="Top" Width="259" Click="PassTestclick">
+                    <Run Text="Выбрать" FontSize="28"/>
+                </Button>
+                <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="387,567,0,0" VerticalAlignment="Top" Width="387" Click="StartTestclick">
+                    <Run Text="Начать тест" FontSize="35"/>
+                </Button>
+                <Line X1="1180" X2="0" Y1="210" Y2="210" Stroke="LightGray"/>
+                <Line X1="580" X2="580" Y1="550" Y2="210" Stroke="LightGray"/>
+                <Line X1="1180" X2="0" Y1="550" Y2="550" Stroke="LightGray"/>
+                <ComboBox Name="SubjectList" Height="30" VerticalAlignment="Top" Margin="278,91,572,0" SelectionChanged="ComboBox_Selected"/>
+                <ComboBox Name="NameList" Height="30" VerticalAlignment="Top" Margin="845,91,10,0" SelectionChanged="NameSelected"/>
+                <Button   Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="62" Margin="0,0,0,568" VerticalAlignment="Bottom" Click="Back_click_question" Width="65">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="resources\back.png" Margin="0,0,0,0" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
