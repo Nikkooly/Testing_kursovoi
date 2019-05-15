@@ -32,7 +32,7 @@
                 <Label x:Name="TeacherOfTest" Content="Преподаватель" FontSize="28" Margin="10,365,916,214.4"/>
                 <Label x:Name="TimeOfTest" Content="Время теста" FontSize="28" Margin="10,416,916,163.4"/>
                 <Label x:Name="InfoOfTest" Content="Информация о тесте" HorizontalContentAlignment="Center" FontSize="28" Margin="661,212,87,367.4"/>
-                <Label x:Name="InfoOf" Background="AliceBlue" HorizontalContentAlignment="Center" FontSize="28" Margin="615,268,10,105.4"/>
+                <Label x:Name="InfoOf" Background="AliceBlue" HorizontalContentAlignment="Center"  FontSize="28" Margin="615,268,10,105.4"/>
                 <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="40" Margin="448,152,0,0" VerticalAlignment="Top" Width="259" Click="PassTestclick">
                     <Run Text="Выбрать" FontSize="28"/>
                 </Button>
