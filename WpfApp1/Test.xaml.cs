@@ -35,8 +35,9 @@ namespace WpfApp1
         public Test()
         {
             InitializeComponent();
-           
-            
+
+            TestStudent.Visibility = Visibility.Visible;
+            Testik.Visibility = Visibility.Hidden;
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
             string sqlSubject = $"select * from subjects";
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -132,7 +133,7 @@ namespace WpfApp1
                         SubjectOf.Content = subject;
                         ThemeOf.Content = theme;
                         TeacherOf.Content = teacher;
-                        InfoOf.Content = info;
+                        InfoOf.Text = info;
                         TimeOf.Content = time.ToString();
                     }
                     catch (Exception ex)
@@ -157,9 +158,84 @@ namespace WpfApp1
             _timer.Interval = TimeSpan.FromSeconds(1d);
             _timer.Tick += new EventHandler(Timer_Tick);
             _timer.Start();
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlCount = $"select count(qt.question_id)  from questions as q inner join questions_tests as qt on q.id = qt.question_id inner join tests as t on qt.test_id = t.id where t.name_of_test = '{NameList.SelectedValue.ToString()}' ";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlCount, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
 
+                    while (reader.Read())
+                    {
+                        CountTest.Content = Convert.ToInt32(reader.GetValue(0));
+                    }
+                    reader.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
         }
-        
+        public void MyMethod()
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlSubjectWithAnswers = $"select q.question,a.answer from questions as q inner join questions_tests as qt on q.id = qt.question_id inner join tests as t on qt.test_id = t.id inner join answers as a on q.id = a.question_id where t.name_of_test = '{NameList.SelectedValue.ToString()}'  and q.id in (select a.question_id from answers as a group by a.question_id having count(a.question_id) = 4)";
+            string sqlSubjectWithoutAnswers = $"select q.question,a.answer from questions as q inner join questions_tests as qt on q.id = qt.question_id inner join tests as t on qt.test_id = t.id inner join answers as a on q.id = a.question_id where t.name_of_test = '{NameList.SelectedValue.ToString()}'  and q.id in (select a.question_id from answers as a group by a.question_id having count(a.question_id) = 1)";
+            string sqlCount = $"select count(qt.question_id)  from questions as q inner join questions_tests as qt on q.id = qt.question_id inner join tests as t on qt.test_id = t.id where t.name_of_test = '{NameList.SelectedValue.ToString()}' ";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                List<string> questions;
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlSubjectWithAnswers, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    questions = new List<string>();
+                    while (reader.Read())
+                    {
+                        questions.Add((string)reader.GetValue(0));
+                    }
+                    reader.Close();
+                    reader = command.ExecuteReader();
+                    for (int i = 0; reader.Read(); i++)
+                    {
+                        if (i == 0)
+                            Answer1Test.Content = (string)reader.GetValue(1);
+                        if (i == 1)
+                            Answer2Test.Content = (string)reader.GetValue(1);
+                        if (i == 2)
+                            Answer3Test.Content = (string)reader.GetValue(1);
+                        if (i == 3)
+                            Answer4Test.Content = (string)reader.GetValue(1);
+                    }
+                    foreach (string x in questions)
+                    {
+                        Question.Text = x;
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+
+            
+        }
         public static int id_subj;
         private void ComboBox_Selected(object sender, SelectionChangedEventArgs e)
         {
@@ -243,6 +319,15 @@ namespace WpfApp1
         private void Back_click_question(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+      
+
+        private void UpQuestionclick(object sender, RoutedEventArgs e)
+        {
+            
+                MyMethod();
+           
         }
     }
 }

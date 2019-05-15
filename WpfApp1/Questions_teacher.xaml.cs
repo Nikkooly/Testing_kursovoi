@@ -422,7 +422,7 @@ namespace WpfApp1
             this.Close();
         }
         //все значения с текстбоксов
-        int b_answer1 = 1;
+        int b_answer1 = 0;
         int b_answer2 = 0;
         int b_answer3 = 0;
         int b_answer4 = 0;

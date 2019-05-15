@@ -27,7 +27,7 @@ namespace WpfApp1
         public entry()
         {
             InitializeComponent();
-            TextBox1.Text = "romaKsis";
+            TextBox1.Text = "vint_crew";
         }
 
         private void Back_click_entry(object sender, RoutedEventArgs e)

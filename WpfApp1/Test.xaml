@@ -21,18 +21,18 @@
             <Grid x:Name="TestStudent" Visibility="Hidden">
                 <Label x:Name="Testss" Content="Выберите предмет:" FontSize="28" Margin="10,80,907,499.4"/>
                 <Label x:Name="Name" Content="Выберите тест:" FontSize="28" Margin="625,80,301,499.4"/>
-                <Label x:Name="NameOfTest" Content="Имя теста" FontSize="28" Margin="10,212,916,367.4"/>
-                <Label x:Name="NameOf" HorizontalContentAlignment="Center" FontSize="28" Margin="236,212,614,367.4"/>
-                <Label x:Name="SubjectOf" HorizontalContentAlignment="Center" FontSize="28" Margin="236,263,614,316.4"/>
-                <Label x:Name="ThemeOf" HorizontalContentAlignment="Center" FontSize="28" Margin="236,314,614,265.4"/>
-                <Label x:Name="TeacherOf" HorizontalContentAlignment="Center" FontSize="28" Margin="236,370,614,209.4"/>
-                <Label x:Name="TimeOf" HorizontalContentAlignment="Center" FontSize="28" Margin="236,421,614,158.4"/>
-                <Label x:Name="SubjectOfTest" Content="Предмет" FontSize="28" Margin="10,263,916,316.4"/>
-                <Label x:Name="ThemeOfTest" Content="Тема" FontSize="28" Margin="10,314,916,265.4"/>
-                <Label x:Name="TeacherOfTest" Content="Преподаватель" FontSize="28" Margin="10,365,916,214.4"/>
-                <Label x:Name="TimeOfTest" Content="Время теста" FontSize="28" Margin="10,416,916,163.4"/>
+                <Label x:Name="NameOfTest" Content="Имя теста:" FontSize="28" Margin="10,212,916,367.4"/>
+                <Label x:Name="NameOf" HorizontalContentAlignment="Center" FontSize="22" Margin="236,212,614,367.4"/>
+                <Label x:Name="SubjectOf" HorizontalContentAlignment="Center" FontSize="22" Margin="236,263,614,316.4"/>
+                <Label x:Name="ThemeOf" HorizontalContentAlignment="Center" FontSize="22" Margin="236,314,614,265.4"/>
+                <Label x:Name="TeacherOf" HorizontalContentAlignment="Center" FontSize="22" Margin="236,370,614,209.4"/>
+                <Label x:Name="TimeOf" HorizontalContentAlignment="Center" FontSize="22" Margin="236,421,614,158.4"/>
+                <Label x:Name="SubjectOfTest" Content="Предмет:" FontSize="28" Margin="10,263,916,316.4"/>
+                <Label x:Name="ThemeOfTest" Content="Тема:" FontSize="28" Margin="10,314,916,265.4"/>
+                <Label x:Name="TeacherOfTest" Content="Преподаватель:" FontSize="28" Margin="10,365,916,214.4"/>
+                <Label x:Name="TimeOfTest" Content="Время теста:" FontSize="28" Margin="10,416,916,163.4"/>
                 <Label x:Name="InfoOfTest" Content="Информация о тесте" HorizontalContentAlignment="Center" FontSize="28" Margin="661,212,87,367.4"/>
-                <Label x:Name="InfoOf" Background="AliceBlue" HorizontalContentAlignment="Center"  FontSize="14" Margin="615,268,10,105.4"/>
+                <TextBlock x:Name="InfoOf" Background="AliceBlue" TextWrapping="Wrap" FontSize="14" Margin="615,268,10,105.4"/>
                 <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="40" Margin="448,152,0,0" VerticalAlignment="Top" Width="259" Click="PassTestclick">
                     <Run Text="Выбрать" FontSize="28"/>
                 </Button>
@@ -50,8 +50,8 @@
                     </StackPanel>
                 </Button>
             </Grid>
-            <Grid x:Name="Testik" >                               
-                    <TextBlock x:Name="TimeBlock"  HorizontalAlignment="Center"
+            <Grid x:Name="Testik" >
+                <TextBlock x:Name="TimeBlock"  HorizontalAlignment="Center"
                    VerticalAlignment="Bottom"
                    FontSize="28"
                    Text="{Binding Time,
@@ -59,8 +59,24 @@
                                                                  AncestorType={x:Type local:Test}}}"
                    TextWrapping="Wrap" />
                 <Label x:Name="QuestionTest" Content="Вопрос" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="10,54,1082,525.4"/>
-                <Label x:Name="Question"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="121,54,101,414.4"/>
-                <Label x:Name="Answer" Content="Ответ" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="10,222,1082,357.4"/>
+                <TextBlock x:Name="Question"  TextWrapping="Wrap" TextAlignment="Left" Background="AliceBlue" FontSize="20" Margin="121,54,101,414.4"/>
+                <Line X1="1180" X2="0" Y1="225" Y2="225" Stroke="LightGray"/>
+                <Grid x:Name="WithoutAnswer" Visibility="Hidden">
+                    <Label x:Name="AnswerTest" Content="Ответ" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="10,296,1082,283.4"/>
+                    <TextBox x:Name="Answer" Background="AliceBlue" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="121,238,101,229.4"/>
+                </Grid>
+                <Grid x:Name="WithAnswer">
+                    <RadioButton x:Name="Answer1Test"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  FontSize="20" Margin="10,224,106,355.4"/>
+                    <RadioButton x:Name="Answer2Test"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  FontSize="20" Margin="10,280,106,299.4"/>
+                    <RadioButton x:Name="Answer3Test" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  FontSize="20" Margin="10,336,106,243.4"/>
+                    <RadioButton x:Name="Answer4Test"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  FontSize="20" Margin="10,387,106,181.4"/>
+                </Grid>
+                <Button x:Name="UpClick"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="422,463,0,0" VerticalAlignment="Top" Width="387" Click="UpQuestionclick">
+                    <Run Text="Следующий вопрос" FontSize="35"/>
+                </Button>
+                <Label x:Name="CountTest"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="1079,569,59,10.4"/>
+                <Label x:Name="DelTest" Content="/" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="1058,569,101,10.4"/>
+                <Label x:Name="CountFirstTest" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="1016,569,122,10.4"/>
             </Grid>
         </Grid>
     </Grid>
