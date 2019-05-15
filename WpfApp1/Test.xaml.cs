@@ -12,7 +12,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Drawing;
+using System.Windows.Threading;
+using System.Windows.Navigation;
+using System.Windows.Media.TextFormatting;
 namespace WpfApp1
 {
     /// <summary>
@@ -20,11 +23,20 @@ namespace WpfApp1
     /// </summary>
     public partial class Test : Window
     {
+        private DispatcherTimer _timer;
+
+        public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(
+            "Time", typeof(TimeSpan), typeof(Test), new PropertyMetadata(default(TimeSpan)));
+
+        public static readonly DependencyProperty SecondsProperty = DependencyProperty.Register(
+            "Seconds", typeof(int), typeof(Test), new PropertyMetadata(default(int)));
         public static string s;
         public static string checkName;
         public Test()
         {
-            InitializeComponent();            
+            InitializeComponent();
+           
+            
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
             string sqlSubject = $"select * from subjects";
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -52,7 +64,30 @@ namespace WpfApp1
 
             }
         }
+        public int Seconds
+        {
+            get { return (int)GetValue(SecondsProperty); }
+            set { SetValue(SecondsProperty, value); }
 
+        }
+        public TimeSpan Time
+        {
+            get { return (TimeSpan)GetValue(TimeProperty); }
+            set { SetValue(TimeProperty, value); }
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {           
+            Time = Time.Subtract(TimeSpan.FromSeconds(1));
+            
+            if (Time == TimeSpan.Zero)
+            {                
+                var timer = (DispatcherTimer)sender;
+                timer.Stop();
+                
+                MessageBox.Show("Тест закончен");
+                this.Close();
+            }
+        }        
         private void Close_click_question(object sender, RoutedEventArgs e)
         {
             CheckClose chec = new CheckClose();
@@ -98,6 +133,7 @@ namespace WpfApp1
                         ThemeOf.Content = theme;
                         TeacherOf.Content = teacher;
                         InfoOf.Content = info;
+                        TimeOf.Content = time.ToString();
                     }
                     catch (Exception ex)
                     {
@@ -114,8 +150,16 @@ namespace WpfApp1
         private void StartTestclick(object sender, RoutedEventArgs e)
         {
             TestStudent.Visibility = Visibility.Hidden;
+            Testik.Visibility = Visibility.Visible;
+            Seconds = time * 60;
+            Time = TimeSpan.FromSeconds(Seconds);
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1d);
+            _timer.Tick += new EventHandler(Timer_Tick);
+            _timer.Start();
+
         }
-      
+        
         public static int id_subj;
         private void ComboBox_Selected(object sender, SelectionChangedEventArgs e)
         {
