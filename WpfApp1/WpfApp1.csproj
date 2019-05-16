@@ -135,6 +135,9 @@
     <Compile Include="CheckTest.xaml.cs">
       <DependentUpon>CheckTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EndTest.xaml.cs">
+      <DependentUpon>EndTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entry.xaml.cs">
       <DependentUpon>Entry.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CheckTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EndTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -333,6 +340,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\vitalik.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -102,8 +102,6 @@ namespace WpfApp1
         public static string info = "";
         private void PassTestclick(object sender, RoutedEventArgs e)
         {
-            //string checkSubject = SubjectList.SelectedValue.ToString();
-            
             if(SubjectList.Text=="" || NameList.Text == "")
             {
                 MessageBox.Show("Заполните поля");
@@ -185,45 +183,58 @@ namespace WpfApp1
                 }
             }
         }
+        public static int id_question;
         public void MyMethod()
         {
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-            string sqlSubjectWithAnswers = $"select q.question,a.answer from questions as q inner join questions_tests as qt on q.id = qt.question_id inner join tests as t on qt.test_id = t.id inner join answers as a on q.id = a.question_id where t.name_of_test = '{NameList.SelectedValue.ToString()}'  and q.id in (select a.question_id from answers as a group by a.question_id having count(a.question_id) = 4)";
+            string sqlSubjectWithAnswers = $"select distinct q.id from questions as q inner join questions_tests as qt on q.id = qt.question_id inner join tests as t on qt.test_id = t.id inner join answers as a on q.id = a.question_id where t.name_of_test = '{NameList.SelectedValue.ToString()}'";
             string sqlCount = $"select count(qt.question_id)  from questions as q inner join questions_tests as qt on q.id = qt.question_id inner join tests as t on qt.test_id = t.id where t.name_of_test = '{NameList.SelectedValue.ToString()}' ";
+            string sqlQuestion = $"select question from questions where id='{id_question}'";
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                List<string> questions;
-                List<string> answers;
+                List<int> questions;
                 connection.Open();
                 SqlCommand command = new SqlCommand(sqlSubjectWithAnswers, connection);
                 SqlDataReader reader = command.ExecuteReader();
                 try
                 {
-                    questions = new List<string>();
-                    answers = new List<string>();
+                    questions = new List<int>();
                     while (reader.Read())
                     {
-                        questions.Add((string)reader.GetValue(0));
-                        answers.Add((string)reader.GetValue(1));
+                        questions.Add(Convert.ToInt32(reader.GetValue(0)));
                     }
                     reader.Close();
-                    reader = command.ExecuteReader();
-                    for (int i = 0; reader.Read(); i++)
-                    {
-                        if (i == 0)
-                            Answer1Test.Content = (string)reader.GetValue(1);
-                        if (i == 1)
-                            Answer2Test.Content = (string)reader.GetValue(1);
-                        if (i == 2)
-                            Answer3Test.Content = (string)reader.GetValue(1);
-                        if (i == 3)
-                            Answer4Test.Content = (string)reader.GetValue(1);
-                    }
-                    foreach (string x in questions)
-                    {
-                        Question.Text = x;
-                    }
+                    id_question = Convert.ToInt32(questions.ElementAt(j));
+                    Que();
+                    Ans();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }           
+        }
+        public void Que()
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlQuestion = $"select question from questions where id='{id_question}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlQuestion, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
 
+                    while (reader.Read())
+                    {
+                        Question.Text = (string)reader.GetValue(0);
+                    }
+                    reader.Close();
 
                 }
                 catch (Exception ex)
@@ -235,8 +246,77 @@ namespace WpfApp1
                     reader.Close();
                 }
             }
+        }
+        public void Ans()
+        {
+            int count = 0;
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlCount = $"select count(answer) from answers where question_id='{id_question}'";
+            string sqlAnswer = $"select answer from answers where question_id='{id_question}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {                
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlCount, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                   
+                    while (reader.Read())
+                    {
+                        count = Convert.ToInt32(reader.GetValue(0));
+                    }
+                    reader.Close();
 
-            
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                List<string> answers;
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlAnswer, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    answers = new List<string>();
+                    while (reader.Read())
+                    {
+                        answers.Add((string)reader.GetValue(0));
+                        //Question.Text = (string)reader.GetValue(0);
+                    }
+                    reader.Close();
+                    if (count < 2)
+                    {
+                        WithAnswer.Visibility = Visibility.Hidden;
+                        WithoutAnswer.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        WithAnswer.Visibility = Visibility.Visible;
+                        WithoutAnswer.Visibility = Visibility.Hidden;
+                        Answer1Test.Content = answers.ElementAt(0);
+                        Answer2Test.Content = answers.ElementAt(1);
+                        Answer3Test.Content = answers.ElementAt(2);
+                        Answer4Test.Content = answers.ElementAt(3);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
         }
         public static int id_subj;
         private void ComboBox_Selected(object sender, SelectionChangedEventArgs e)
@@ -329,13 +409,17 @@ namespace WpfApp1
         {
             if (j < Convert.ToInt32(CountTest.Content))
             {
+                
                 MyMethod();
                 j++;
+
                 CountFirstTest.Content = j.ToString();
             }
             else
             {
-                MessageBox.Show("С вас хватит");
+                EndTest end = new EndTest();
+                end.Show();
+                //MessageBox.Show("С вас хватит");
             }
                     
         }

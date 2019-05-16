@@ -60,6 +60,7 @@
                    TextWrapping="Wrap" />
                 <Label x:Name="QuestionTest" Content="Вопрос" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="10,54,1082,525.4"/>
                 <TextBlock x:Name="Question"  TextWrapping="Wrap" TextAlignment="Left" Background="AliceBlue" FontSize="20" Margin="121,54,101,414.4"/>
+                <TextBlock x:Name="Hid" Visibility="Hidden" />
                 <Line X1="1180" X2="0" Y1="225" Y2="225" Stroke="LightGray"/>
                 <Grid x:Name="WithoutAnswer" Visibility="Hidden">
                     <Label x:Name="AnswerTest" Content="Ответ" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="10,296,1082,283.4"/>
