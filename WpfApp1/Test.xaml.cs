@@ -189,20 +189,22 @@ namespace WpfApp1
         {
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
             string sqlSubjectWithAnswers = $"select q.question,a.answer from questions as q inner join questions_tests as qt on q.id = qt.question_id inner join tests as t on qt.test_id = t.id inner join answers as a on q.id = a.question_id where t.name_of_test = '{NameList.SelectedValue.ToString()}'  and q.id in (select a.question_id from answers as a group by a.question_id having count(a.question_id) = 4)";
-            string sqlSubjectWithoutAnswers = $"select q.question,a.answer from questions as q inner join questions_tests as qt on q.id = qt.question_id inner join tests as t on qt.test_id = t.id inner join answers as a on q.id = a.question_id where t.name_of_test = '{NameList.SelectedValue.ToString()}'  and q.id in (select a.question_id from answers as a group by a.question_id having count(a.question_id) = 1)";
             string sqlCount = $"select count(qt.question_id)  from questions as q inner join questions_tests as qt on q.id = qt.question_id inner join tests as t on qt.test_id = t.id where t.name_of_test = '{NameList.SelectedValue.ToString()}' ";
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 List<string> questions;
+                List<string> answers;
                 connection.Open();
                 SqlCommand command = new SqlCommand(sqlSubjectWithAnswers, connection);
                 SqlDataReader reader = command.ExecuteReader();
                 try
                 {
                     questions = new List<string>();
+                    answers = new List<string>();
                     while (reader.Read())
                     {
                         questions.Add((string)reader.GetValue(0));
+                        answers.Add((string)reader.GetValue(1));
                     }
                     reader.Close();
                     reader = command.ExecuteReader();
@@ -322,12 +324,20 @@ namespace WpfApp1
         }
 
       
-
+        public static int j = 0;
         private void UpQuestionclick(object sender, RoutedEventArgs e)
         {
-            
+            if (j < Convert.ToInt32(CountTest.Content))
+            {
                 MyMethod();
-           
+                j++;
+                CountFirstTest.Content = j.ToString();
+            }
+            else
+            {
+                MessageBox.Show("С вас хватит");
+            }
+                    
         }
     }
 }

@@ -30,6 +30,8 @@ namespace WpfApp1
         public Registration()
         {
             InitializeComponent();
+            RoleCombo();
+            FacultyCombo();
         }
 
         private void Close_click_registration(object sender, RoutedEventArgs e)
@@ -49,7 +51,7 @@ namespace WpfApp1
         {
             string pass=password.Password;
             string passchecked = PasswordChecked.Password;
-            if (TextBox1.Text == "" || TextBox2.Text == "" || TextBox3.Text == "" || TextBox4.Text == ""  || TextBox5.Text == ""  || TextBox8.Text == "")
+            if (TextBox1.Text == "" || TextBox2.Text == "" || TextBox3.Text == "" || TextBox4.Text == "")
             {
                 MessageBox.Show("Пожалуйста заполните все поля");
             }
@@ -84,14 +86,10 @@ namespace WpfApp1
                                 }
                                 else
                                 {
-                                    ////if (!TextBox8.Text.Equals("Student") || !TextBox8.Text.Equals("Teacher"))
-                                    ////{
-                                    ////    MessageBox.Show("В этом поле можно ввести только Student или Teacher "+"X" +TextBox8.Text+"X");
-                                    ////}
-                                    ////else
-                                    ////{
                                         string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                                        string sqlexp = "SELECT f.id,f.name,r.id,r.name from facylties as f,roles as r";
+                                    string sqlexp = $"SELECT r.id from roles as r where name='{role}'";
+                                   
+                                       
                                         using (SqlConnection reg = new SqlConnection(ConnectionString))
                                         {
                                             reg.Open();
@@ -101,29 +99,11 @@ namespace WpfApp1
 
                                             try
                                             {
-                                                int fak = 0;
-                                                int rol = 0;
                                                 while (reader.Read())
                                                 {
-                                                    if (reader.GetValue(1).Equals(TextBox5.Text) && reader.GetValue(3).Equals(TextBox8.Text))
-                                                    {
-                                                        object x = reader.GetValue(0);
-                                                        object z = reader.GetValue(2);
-                                                        fak = (int)x;
-                                                        rol = (int)z;
-                                                    }
-
+                                                    rol = Convert.ToInt32(reader.GetValue(0));
                                                 }
                                                 reader.Close();
-                                                cm1.CommandText = $"INSERT INTO users(first_name, middle_name, login, email, password, faculty_id,role_id) VALUES ('{surname}', '{name}','{login}','{email}','{pass}', '{fak}', '{rol}');";
-                                                cm1.ExecuteNonQuery();
-
-
-                                                MessageBox.Show("Вы успешно зарегестрированы!");
-
-                                                entry mn = new entry();
-                                                mn.Show();
-                                                this.Close();
                                             }
                                             catch (Exception ex)
                                             {
@@ -132,9 +112,50 @@ namespace WpfApp1
 
                                             }
                                             reader.Close();
-
                                         }
-                                    //}
+                                        string sqlexp1 = $"SELECT r.id from facylties as r where name='{faculty}'";
+                                        using (SqlConnection reg = new SqlConnection(ConnectionString))
+                                        {
+                                            reg.Open();
+                                            SqlCommand command = new SqlCommand(sqlexp1, reg);
+                                            SqlDataReader reader = command.ExecuteReader();
+                                            SqlCommand cm1 = reg.CreateCommand();
+
+                                            try
+                                            {
+                                                while (reader.Read())
+                                                {
+                                                    fak = Convert.ToInt32(reader.GetValue(0));
+                                                }
+                                                reader.Close();
+                                            }
+                                            catch (Exception ex)
+                                            {
+
+                                                MessageBox.Show(ex.Message);
+
+                                            }
+                                            reader.Close();
+                                        }
+                                    using (SqlConnection reg = new SqlConnection(ConnectionString))
+                                    {
+                                        reg.Open();
+                                        SqlCommand cm1 = reg.CreateCommand();
+                                        if (rol != 0 && fak != 0)
+                                        {
+                                            cm1.CommandText = $"INSERT INTO users(first_name, middle_name, login, email, password, faculty_id,role_id) VALUES ('{surname}', '{name}','{login}','{email}','{pass}', '{fak}', '{rol}');";
+                                            cm1.ExecuteNonQuery();
+                                            MessageBox.Show("Вы успешно зарегестрированы!");
+                                            entry mn = new entry();
+                                            mn.Show();
+                                            this.Close();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Ошибка. Проверьте заполнение полей факультет и роль!");
+                                        }
+                                      
+                                    }
                                 }
                             }
                         }
@@ -142,7 +163,66 @@ namespace WpfApp1
                 }
             }
         }
+        private void RoleCombo()
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlRoles = $"SELECT * from roles";
+            using (SqlConnection reg = new SqlConnection(ConnectionString))
+            {
+                reg.Open();
+                SqlCommand command = new SqlCommand(sqlRoles, reg);
+                SqlDataReader reader = command.ExecuteReader();
+                SqlCommand cm1 = reg.CreateCommand();
 
+                try
+                {
+
+                    while (reader.Read())
+                    {
+                        RoleCombobox.Items.Add((string)reader.GetValue(1));
+                    }
+                    reader.Close();
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                reader.Close();
+
+            }
+        }
+        private void FacultyCombo()
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlFaculties = $"SELECT * from facylties";
+            using (SqlConnection reg = new SqlConnection(ConnectionString))
+            {
+                reg.Open();
+                SqlCommand command = new SqlCommand(sqlFaculties, reg);
+                SqlDataReader reader = command.ExecuteReader();
+                SqlCommand cm1 = reg.CreateCommand();
+
+                try
+                {
+
+                    while (reader.Read())
+                    {
+                        FacultyCombobox.Items.Add((string)reader.GetValue(1));
+                    }
+                    reader.Close();
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+
+                }
+                reader.Close();
+
+            }
+        }
         private void TextBox1_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (Char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)) & e.Key != Key.Back | e.Key == Key.Space)
@@ -172,15 +252,19 @@ namespace WpfApp1
             email = TextBox4.Text;
         }
         public static string faculty;
-        private void TextBox5_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            faculty = TextBox5.Text;
-        }
+      
         
         public static string role;
-        private void TextBox8_TextChanged(object sender, TextChangedEventArgs e)
+
+        private void FacultyChanged(object sender, SelectionChangedEventArgs e)
         {
-            role = TextBox8.Text;
+            faculty = FacultyCombobox.SelectedItem.ToString();
+        }
+        public static int fak = 0;
+        public static int rol = 0;
+        private void RoleChanged(object sender, SelectionChangedEventArgs e)
+        {
+            role = RoleCombobox.SelectedValue.ToString();
         }
     }
 }
