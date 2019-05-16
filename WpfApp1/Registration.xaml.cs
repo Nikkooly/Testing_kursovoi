@@ -137,18 +137,47 @@ namespace WpfApp1
                                             }
                                             reader.Close();
                                         }
+                                    string sqlexp2 = $"SELECT login from users login where login='{TextBox3.Text}'";
+                                    using (SqlConnection reg = new SqlConnection(ConnectionString))
+                                    {
+                                        reg.Open();
+                                        SqlCommand command = new SqlCommand(sqlexp2, reg);
+                                        SqlDataReader reader = command.ExecuteReader();
+                                        try
+                                        {
+                                            while (reader.Read())
+                                            {
+                                                loginCheck = (string)reader.GetValue(0);
+                                            }
+                                            reader.Close();
+                                        }
+                                        catch (Exception ex)
+                                        {
+
+                                            MessageBox.Show(ex.Message);
+
+                                        }
+                                        reader.Close();
+                                    }
                                     using (SqlConnection reg = new SqlConnection(ConnectionString))
                                     {
                                         reg.Open();
                                         SqlCommand cm1 = reg.CreateCommand();
                                         if (rol != 0 && fak != 0)
                                         {
-                                            cm1.CommandText = $"INSERT INTO users(first_name, middle_name, login, email, password, faculty_id,role_id) VALUES ('{surname}', '{name}','{login}','{email}','{pass}', '{fak}', '{rol}');";
-                                            cm1.ExecuteNonQuery();
-                                            MessageBox.Show("Вы успешно зарегестрированы!");
-                                            entry mn = new entry();
-                                            mn.Show();
-                                            this.Close();
+                                            if (!login.Equals(loginCheck))
+                                            {
+                                                cm1.CommandText = $"INSERT INTO users(first_name, middle_name, login, email, password, faculty_id,role_id) VALUES ('{surname}', '{name}','{login}','{email}','{pass}', '{fak}', '{rol}');";
+                                                cm1.ExecuteNonQuery();
+                                                MessageBox.Show("Вы успешно зарегестрированы!");
+                                                entry mn = new entry();
+                                                mn.Show();
+                                                this.Close();
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Такой логин уже существует!");
+                                            }
                                         }
                                         else
                                         {
@@ -252,8 +281,8 @@ namespace WpfApp1
             email = TextBox4.Text;
         }
         public static string faculty;
-      
-        
+
+        public static string loginCheck = "";
         public static string role;
 
         private void FacultyChanged(object sender, SelectionChangedEventArgs e)
