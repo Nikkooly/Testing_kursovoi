@@ -24,6 +24,7 @@ namespace WpfApp1
     /// </summary>
     public partial class entry : Window
     {
+
         public entry()
         {
             InitializeComponent();

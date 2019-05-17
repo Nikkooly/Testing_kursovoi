@@ -23,6 +23,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Test : Window
     {
+        public static int id_student = entry.identry;
         private DispatcherTimer _timer;
 
         public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(
@@ -79,14 +80,13 @@ namespace WpfApp1
         private void Timer_Tick(object sender, EventArgs e)
         {           
             Time = Time.Subtract(TimeSpan.FromSeconds(1));
-            
             if (Time == TimeSpan.Zero)
             {                
                 var timer = (DispatcherTimer)sender;
-                timer.Stop();
-                
+                timer.Stop();                
                 MessageBox.Show("Тест закончен");
                 this.Close();
+                j = 0;
             }
         }        
         private void Close_click_question(object sender, RoutedEventArgs e)
@@ -100,6 +100,7 @@ namespace WpfApp1
         public static string theme = "";
         public static string teacher = "";
         public static string info = "";
+        public static int test_id = 0;
         private void PassTestclick(object sender, RoutedEventArgs e)
         {
             if(SubjectList.Text=="" || NameList.Text == "")
@@ -109,7 +110,7 @@ namespace WpfApp1
             else
             {
                 string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                string sqlSubject = $"select t.name_of_test,s.name,t.theme,u.first_name,u.middle_name,t.time,t.info from tests as t inner join subjects as s on t.subject_id=s.id inner join users as u on t.teacher_id=u.id where t.name_of_test='{checkName}' and t.subject_id='{id_subj}'";
+                string sqlSubject = $"select t.name_of_test,s.name,t.theme,u.first_name,u.middle_name,t.time,t.info,t.id from tests as t inner join subjects as s on t.subject_id=s.id inner join users as u on t.teacher_id=u.id where t.name_of_test='{checkName}' and t.subject_id='{id_subj}'";
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
@@ -125,6 +126,7 @@ namespace WpfApp1
                             teacher = (string)reader.GetValue(3) +" "+ (string)reader.GetValue(4);
                             info = (string)reader.GetValue(6);
                             time = Convert.ToInt32(reader.GetValue(5));
+                            test_id= Convert.ToInt32(reader.GetValue(7));
                         }
                         //reader.Close();
                         NameOf.Content = name;
@@ -182,8 +184,11 @@ namespace WpfApp1
                     reader.Close();
                 }
             }
+            TestCreate();
         }
-        public static int id_question;
+        public static int id_question=0;
+        public static int unique_id=0;
+        public static int is_true = 0;
         public void MyMethod()
         {
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
@@ -207,6 +212,7 @@ namespace WpfApp1
                     id_question = Convert.ToInt32(questions.ElementAt(j));
                     Que();
                     Ans();
+                    AnswersTest();
                 }
                 catch (Exception ex)
                 {
@@ -247,6 +253,7 @@ namespace WpfApp1
                 }
             }
         }
+
         public void Ans()
         {
             int count = 0;
@@ -318,7 +325,132 @@ namespace WpfApp1
                 }
             }
         }
+        public static string answer = "";
+        public void AnswersTest()
+        {
+                string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlId = $"select max(id) from users_tests";
+            string sqlAnswer = $"select is_true from answers where question_id='{id_question}' and answer='{answer}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlId, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        unique_id = Convert.ToInt32(reader.GetValue(0));
+                    }
+                    reader.Close();                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlAnswer, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                       is_true = Convert.ToInt32(reader.GetValue(0));
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            //значения
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand cm1 = connection.CreateCommand();
+                if (WithAnswer.Visibility == Visibility.Visible)
+                {
+                    if (Answer1Test.IsChecked == true)
+                    {
+                        answer = (string)Answer1Test.Content;
+                    }
+                    else
+                    {
+                        if (Answer2Test.IsChecked == true)
+                        {
+                            answer = (string)Answer2Test.Content;
+                        }
+                        else
+                        {
+                            if (Answer3Test.IsChecked == true)
+                            {
+                                answer = (string)Answer3Test.Content;
+                            }
+                            else
+                            {
+                                if (Answer4Test.IsChecked == true)
+                                {
+                                    answer = (string)Answer4Test.Content;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Выберите хотя бы один вариант");
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    answer = Answer.Text;
+                }
+            }
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                connection.Open();
+                    SqlCommand cm1 = connection.CreateCommand();
+                    cm1.CommandText = $"insert into answers_tests(question_id,user_test_id,answer_student,is_true) values('{id_question}','{unique_id}','{answer}','{is_true}')";
+                    cm1.ExecuteNonQuery();
+
+                }                            
+            
+        }
         public static int id_subj;
+        public void TestCreate()
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+               
+                connection.Open();
+                SqlCommand cm1 = connection.CreateCommand();
+                try
+                {                 
+                  cm1.CommandText=$"Insert into users_tests(student_id,test_id) values('{id_student}','{test_id}')";
+                  cm1.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                   
+                }
+            }
+        }
         private void ComboBox_Selected(object sender, SelectionChangedEventArgs e)
         {
 
