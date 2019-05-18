@@ -23,6 +23,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Test : Window
     {
+        
         public static int id_student = entry.identry;
         private DispatcherTimer _timer;
 
@@ -86,6 +87,8 @@ namespace WpfApp1
                 timer.Stop();                
                 MessageBox.Show("Тест закончен");
                 this.Close();
+                EndTest end = new EndTest();
+                end.Close();
                 j = 0;
             }
         }        
@@ -567,8 +570,22 @@ namespace WpfApp1
             else
             {
                 MessageBox.Show("С вас хватит");
+                UpClick.Visibility = Visibility.Hidden;
+                EndClick.Visibility = Visibility.Visible;
+                EditClick.Visibility = Visibility.Visible;
             }
             Clear();
+        }
+
+        private void EndQuestionclick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void EditQuestionclick(object sender, RoutedEventArgs e)
+        {
+            EndTest end = new EndTest();
+            end.Show();
         }
     }
 }

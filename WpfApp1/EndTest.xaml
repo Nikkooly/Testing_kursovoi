@@ -5,35 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-       Title="Teacher panel" Height="350" Width="450" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
+       Title="Teacher panel" Height="550" Width="650" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
         WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid Background="AliceBlue">
         <Grid Background="White" Margin="3,3,3,2.6">
             <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" Height="23" VerticalAlignment="Top" >
-               <Run Text="Конец теста"/>
+               <Run Text="Редактирование ответов"/>
             </TextBlock>
-            <TextBlock  Margin="0,28,-0.4,278.8" TextAlignment="Center" FontFamily="Arial" FontSize="11" >
-               <Run Text="Прошли тест, наверное устали? Позвоните этому молодому человеку"/>
-            </TextBlock>
-            <TextBlock  Margin="-130,71,131.6,255.8" TextAlignment="Center" FontFamily="Arial" FontSize="11" >
-               <Run Text="Он поможет вам расслабится!"/>
-            </TextBlock>
-            <TextBlock  Margin="-147,94,148.6,232.8" TextAlignment="Center" FontFamily="Arial" FontSize="11" >
-               <Run Text="Звоните круглосуточно."/>
-            </TextBlock>
-            <TextBlock  Margin="-167,117,168.6,209.8" TextAlignment="Center" FontFamily="Arial" FontSize="11" >
-               <Run Text="+375298954635"/>
-            </TextBlock>
-            <TextBlock  Margin="-130,140,131.6,186.8" TextAlignment="Center" FontFamily="Arial" FontSize="11" >
-               <Run Text="Когда он пьяный будет скидка =)"/>
-            </TextBlock>
-            <Image Source="resources\vitalik.jpg" Height="200" Margin="154,58,-152.4,86.8"/>
-            <Button HorizontalAlignment="Left"  Click="Accept_Click" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="43,284,0,0" VerticalAlignment="Top" Width="139">
-                <Run Text="Да" FontSize="16"/>
-            </Button>
-            <Button HorizontalAlignment="Left" Click="No_click" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="238,284,0,0" VerticalAlignment="Top" Width="139" >
-                <Run Text="Нет" FontSize="16"/>
-            </Button>
+            <DataGrid  ItemsSource="{Binding}"  x:Name="User_Grid" Background="AliceBlue" HorizontalAlignment="Left" Height="222" Margin="10,23,0,0" VerticalAlignment="Top" Width="623"/>
+            <Label Content="Введите id:" HorizontalAlignment="Left" Margin="196,282,0,133" FontSize="14" FontFamily="Arial" />
+            <Label Content="Вопрос:" HorizontalAlignment="Left" Margin="10,366,0,99.4" FontSize="14" FontFamily="Arial" />
+            <Label Content="Ваш ответ:" HorizontalAlignment="Left" Margin="10,455,0,30.4" FontSize="14" FontFamily="Arial" />
+            <TextBlock x:Name="Question" HorizontalAlignment="Left" Background="AliceBlue" Margin="96,348,0,99.8" FontSize="14" FontFamily="Arial" Width="537" />
+            <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="22" Margin="304,282,0,0" VerticalAlignment="Top" Width="120" />
+            <Button Content="Просмотр" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="27" Margin="249,250,0,0" VerticalAlignment="Top" Width="126" Click="ShowClick" />
+            <Button Content="Поиск вопроса" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="27" Margin="249,316,0,0" VerticalAlignment="Top" Width="126" Click="FindClick" />
+            <Button Content="Обновить" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="29" Margin="512,455,0,0" VerticalAlignment="Top" Width="126" Click="UpdateClick" />
+            <Button Content="Завершить реадктирование" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="29" Margin="233,495,0,0" VerticalAlignment="Top" Width="191" Click="EndClick" />
+            <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Height="29" Margin="105,455,0,0" VerticalAlignment="Top" Width="402"/>
         </Grid>
     </Grid>
 </Window>
