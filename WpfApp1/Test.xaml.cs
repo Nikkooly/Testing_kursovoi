@@ -338,11 +338,49 @@ namespace WpfApp1
             }
         }
         public static string answer = "";
+        public static int rightanswer;
+        public static string ans = "";
         public void AnswersTest()
         {
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
             string sqlId = $"select max(id) from users_tests";
-            string sqlAnswer = $"select is_true from answers where question_id='{id_question}' and answer='{answer}'";
+            string sqlAnswer = $"select answer from answers where question_id='{id_question}' and is_true='true'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand cm1 = connection.CreateCommand();
+                if (WithAnswer.Visibility == Visibility.Visible)
+                {
+                    if (Answer1Test.IsChecked == true)
+                    {
+                        answer = (string)Answer1Test.Content;
+                    }
+                    else
+                    {
+                        if (Answer2Test.IsChecked == true)
+                        {
+                            answer = (string)Answer2Test.Content;
+                        }
+                        else
+                        {
+                            if (Answer3Test.IsChecked == true)
+                            {
+                                answer = (string)Answer3Test.Content;
+                            }
+                            else
+                            {
+                                if (Answer4Test.IsChecked == true)
+                                {
+                                    answer = (string)Answer4Test.Content;
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    answer = Answer.Text;
+                }
+            }
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
@@ -374,7 +412,15 @@ namespace WpfApp1
                 {
                     while (reader.Read())
                     {
-                       is_true = Convert.ToInt32(reader.GetValue(0));
+                        ans = (string)reader.GetValue(0);
+                        if (answer.Equals(ans))
+                        {
+                            rightanswer = 1;
+                        }
+                        else
+                        {
+                            rightanswer = 0;
+                        }
                     }
                     reader.Close();
                 }
@@ -388,49 +434,13 @@ namespace WpfApp1
                 }
             }
             //значения
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                SqlCommand cm1 = connection.CreateCommand();
-                if (WithAnswer.Visibility == Visibility.Visible)
-                {
-                    if (Answer1Test.IsChecked == true)
-                    {
-                        answer = (string)Answer1Test.Content;
-                    }
-                    else
-                    {
-                        if (Answer2Test.IsChecked == true)
-                        {
-                            answer = (string)Answer2Test.Content;
-                        }
-                        else
-                        {
-                            if (Answer3Test.IsChecked == true)
-                            {
-                                answer = (string)Answer3Test.Content;
-                            }
-                            else
-                            {
-                                if (Answer4Test.IsChecked == true)
-                                {
-                                    answer = (string)Answer4Test.Content;
-                                }                                
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    answer = Answer.Text;
-                }
-            }
+            
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                 connection.Open();
                     SqlCommand cm1 = connection.CreateCommand();
-                    cm1.CommandText = $"insert into answers_tests(question_id,user_test_id,answer_student,is_true) values('{id_question}','{unique_id}','{answer}','{is_true}')";
+                    cm1.CommandText = $"insert into answers_tests(question_id,user_test_id,answer_student,is_true,right_answer) values('{id_question}','{unique_id}','{answer}','{rightanswer}','{ans}')";
                     cm1.ExecuteNonQuery();
-
                 }                            
             
         }
@@ -556,9 +566,7 @@ namespace WpfApp1
             }
             else
             {
-                EndTest end = new EndTest();
-                end.Show();
-                //MessageBox.Show("С вас хватит");
+                MessageBox.Show("С вас хватит");
             }
             Clear();
         }
