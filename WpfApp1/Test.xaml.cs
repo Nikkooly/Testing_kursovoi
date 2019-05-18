@@ -184,8 +184,12 @@ namespace WpfApp1
                     reader.Close();
                 }
             }
-            TestCreate();
+            TestCreate();           
+            MyMethod();
+            j++;
+            CountFirstTest.Content = j.ToString();
         }
+        public static int j = 0;
         public static int id_question=0;
         public static int unique_id=0;
         public static int is_true = 0;
@@ -212,7 +216,6 @@ namespace WpfApp1
                     id_question = Convert.ToInt32(questions.ElementAt(j));
                     Que();
                     Ans();
-                    AnswersTest();
                 }
                 catch (Exception ex)
                 {
@@ -224,10 +227,19 @@ namespace WpfApp1
                 }
             }           
         }
+        public void Clear()
+        {
+            Answer.Clear();
+            Answer1Test.IsChecked = false;
+            Answer2Test.IsChecked = false;
+            Answer3Test.IsChecked = false;
+            Answer4Test.IsChecked = false;
+        }
         public void Que()
         {
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
             string sqlQuestion = $"select question from questions where id='{id_question}'";
+            
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
@@ -328,7 +340,7 @@ namespace WpfApp1
         public static string answer = "";
         public void AnswersTest()
         {
-                string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
             string sqlId = $"select max(id) from users_tests";
             string sqlAnswer = $"select is_true from answers where question_id='{id_question}' and answer='{answer}'";
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -402,11 +414,7 @@ namespace WpfApp1
                                 if (Answer4Test.IsChecked == true)
                                 {
                                     answer = (string)Answer4Test.Content;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Выберите хотя бы один вариант");
-                                }
+                                }                                
                             }
                         }
                     }
@@ -536,15 +544,14 @@ namespace WpfApp1
         }
 
       
-        public static int j = 0;
+        
         private void UpQuestionclick(object sender, RoutedEventArgs e)
         {
+            AnswersTest();
             if (j < Convert.ToInt32(CountTest.Content))
-            {
-                
+            {                
                 MyMethod();
                 j++;
-
                 CountFirstTest.Content = j.ToString();
             }
             else
@@ -553,7 +560,7 @@ namespace WpfApp1
                 end.Show();
                 //MessageBox.Show("С вас хватит");
             }
-                    
+            Clear();
         }
     }
 }

@@ -64,7 +64,7 @@
                 <Line X1="1180" X2="0" Y1="225" Y2="225" Stroke="LightGray"/>
                 <Grid x:Name="WithoutAnswer" Visibility="Hidden">
                     <Label x:Name="AnswerTest" Content="Ответ" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="10,296,1082,283.4"/>
-                    <TextBlock x:Name="Answer" Background="AliceBlue" TextAlignment="Left"  FontSize="20" Margin="121,238,101,229.4"/>
+                    <TextBox x:Name="Answer" Background="AliceBlue" TextAlignment="Left"  FontSize="20" Margin="121,238,101,229.4"/>
                 </Grid>
                 <Grid x:Name="WithAnswer">
                     <RadioButton x:Name="Answer1Test"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  FontSize="20" Margin="10,224,106,355.4"/>
