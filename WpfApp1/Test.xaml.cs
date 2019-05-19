@@ -583,7 +583,7 @@ namespace WpfApp1
         }
         public static int CountRightQuestions = 0;
         public static int CountQuestions = 0;
-        public static float Results = 0;
+        public static float Results;
         private void Result()
         {
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
@@ -631,7 +631,8 @@ namespace WpfApp1
                     reader.Close();
                 }
             }
-            Results = (CountRightQuestions / CountQuestions)*100;
+            
+            
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
 
@@ -639,7 +640,11 @@ namespace WpfApp1
                 SqlCommand cm1 = connection.CreateCommand();
                 try
                 {
-                    cm1.CommandText = $"Insert into results(unique_id,result) values('{unique_id}','{Results}')";
+
+                    float a = (float)CountQuestions;
+                    float b = (float)CountRightQuestions;
+                    Results = (b / a)*100;
+                    cm1.CommandText = $"Insert into results(unique_id,result) values('{unique_id}','{Results.ToString()}')";
                     cm1.ExecuteNonQuery();
                 }
                 catch (Exception ex)

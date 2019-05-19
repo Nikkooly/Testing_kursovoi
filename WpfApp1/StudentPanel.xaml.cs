@@ -24,9 +24,10 @@ namespace WpfApp1
             InitializeComponent();
             FunnyImage.Visibility = Visibility.Visible;
         }
-
+     
         private void PassTestclick(object sender, RoutedEventArgs e)
         {
+           
             FunnyImage.Visibility = Visibility.Hidden;
             Results.Visibility = Visibility.Hidden;
             Test test = new Test();
