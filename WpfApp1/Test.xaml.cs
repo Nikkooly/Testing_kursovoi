@@ -86,9 +86,8 @@ namespace WpfApp1
                 var timer = (DispatcherTimer)sender;
                 timer.Stop();                
                 MessageBox.Show("Тест закончен");
-                this.Close();
-                EndTest end = new EndTest();
-                end.Close();
+                Result();
+                App.Current.Shutdown();
                 j = 0;
             }
         }        
@@ -459,7 +458,7 @@ namespace WpfApp1
                 SqlCommand cm1 = connection.CreateCommand();
                 try
                 {                 
-                  cm1.CommandText=$"Insert into users_tests(student_id,test_id) values('{id_student}','{test_id}')";
+                  cm1.CommandText=$"Insert into users_tests(student_id,test_id,count_questions) values('{id_student}','{test_id}','{CountTest.Content}')";
                   cm1.ExecuteNonQuery();
                 }
                 catch (Exception ex)
@@ -579,13 +578,87 @@ namespace WpfApp1
 
         private void EndQuestionclick(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Result();
+            App.Current.Shutdown();
         }
+        public static int CountRightQuestions = 0;
+        public static int CountQuestions = 0;
+        public static float Results = 0;
+        private void Result()
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string SqlResult = $"select count(a.answer_student) from answers_tests as a where is_true='true' and user_test_id='{unique_id}'";
+            string SqlCount = $"select count_questions from users_tests where id='{unique_id}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {                
+                connection.Open();
+                SqlCommand command = new SqlCommand(SqlResult, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        CountRightQuestions = Convert.ToInt32(reader.GetValue(0));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(SqlCount, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        CountQuestions = Convert.ToInt32(reader.GetValue(0));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            Results = (CountRightQuestions / CountQuestions)*100;
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
 
+                connection.Open();
+                SqlCommand cm1 = connection.CreateCommand();
+                try
+                {
+                    cm1.CommandText = $"Insert into results(unique_id,result) values('{unique_id}','{Results}')";
+                    cm1.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+
+                }
+            }
+        }
         private void EditQuestionclick(object sender, RoutedEventArgs e)
         {
             EndTest end = new EndTest();
             end.Show();
+            if (Time == TimeSpan.Zero)
+            {
+            }
         }
     }
 }
