@@ -644,7 +644,7 @@ namespace WpfApp1
                     float a = (float)CountQuestions;
                     float b = (float)CountRightQuestions;
                     Results = (b / a)*100;
-                    cm1.CommandText = $"Insert into results(unique_id,result) values('{unique_id}','{Results.ToString()}')";
+                    cm1.CommandText = $"Insert into results(unique_id,result,date) values('{unique_id}','{Results.ToString()}','{DateTime.Now}')";
                     cm1.ExecuteNonQuery();
                 }
                 catch (Exception ex)
