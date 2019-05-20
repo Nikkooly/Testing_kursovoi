@@ -16,15 +16,16 @@
                <Run Text="Выберите вариант вопроса!"/>
 
             </TextBlock>
-            <Button  x:Name="close_btn_registration" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="349,0,0,552.4" VerticalAlignment="Bottom" Click="Close_click_question" Width="30">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\close.png" Margin="0,0,0,0" />
-                </StackPanel>
+            <Button  x:Name="close_btn_registration" BorderThickness="0" HorizontalAlignment="Left" Height="27" Margin="349,0,0,552.4" VerticalAlignment="Bottom" Click="Close_click_question" Width="27">
+                <Button.Background>
+                    <ImageBrush ImageSource="resources\close.png"
+                            Stretch="Uniform" />
+                </Button.Background>
             </Button>
-            <Button  x:Name="back_btn_registration" HorizontalAlignment="Left" Background="White" BorderBrush="White" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="30" Click="Back_click_question">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\back.png" Margin="0,0,0,0" />
-                </StackPanel>
+            <Button  x:Name="back_btn_registration" HorizontalAlignment="Left" BorderThickness="0" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="27" Click="Back_click_question">
+                <Button.Background>
+                    <ImageBrush ImageSource="resources\back.png"/>
+                </Button.Background>
             </Button>
             <Label Content="Предмет:" HorizontalAlignment="Left" Margin="58,76,0,476.4" FontSize="14" FontFamily="Arial" />
             <Label x:Name="question" Visibility="Hidden"  Content="Вопрос:"   HorizontalAlignment="Left" Margin="10,242,0,212.4" FontSize="14" FontFamily="Arial" />
@@ -47,29 +48,29 @@
             <TextBox x:Name="Answer3" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="92,363,0,0" VerticalAlignment="Top" Width="278" TextChanged="Answer3_TextChanged"  />
             <TextBox x:Name="Answer4" Visibility="Hidden"  HorizontalAlignment="Left" Height="22" Margin="92,403,0,0" VerticalAlignment="Top" Width="278" TextChanged="Answer4_TextChanged"  />
 
-            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="26,196,0,0" VerticalAlignment="Top" Width="167" Click="With_answers_click">
+            <Button HorizontalAlignment="Left" Foreground="White"  Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="34" Margin="26,196,0,0" VerticalAlignment="Top" Width="167" Click="With_answers_click">
                 <Run Text="С ответами" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left" x:Name="Newquestion"  Visibility="Hidden" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="203,359,0,0" VerticalAlignment="Top" Width="167" Click="New_question_click">
+            <Button HorizontalAlignment="Left" x:Name="Newquestion"  Visibility="Hidden" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="34" Margin="203,359,0,0" VerticalAlignment="Top" Width="167" Click="New_question_click">
                 <Run Text="Новый вопрос" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left"  x:Name="Newquestionwithanswer" Visibility="Hidden"   BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="203,523,0,0" VerticalAlignment="Top" Width="167" Click="New_question_withanswer_click">
+            <Button HorizontalAlignment="Left"  x:Name="Newquestionwithanswer" Visibility="Hidden"   Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="34" Margin="203,523,0,0" VerticalAlignment="Top" Width="167" Click="New_question_withanswer_click">
                 <Run Text="Новый вопрос" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left"  x:Name="closewithanswer" Visibility="Hidden" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="10,523,0,0" VerticalAlignment="Top" Width="167" Click="Close_question_withanswer_click">
+            <Button HorizontalAlignment="Left"  x:Name="closewithanswer" Visibility="Hidden" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="34" Margin="10,523,0,0" VerticalAlignment="Top" Width="167" Click="Close_question_withanswer_click">
                 <Run Text="Закрыть" FontSize="16"/>
             </Button>
             <Image x:Name="teacher"  Source="resources\teacher.png" Margin="92,400,59,10.4" Visibility="Hidden"/>
-            <Button HorizontalAlignment="Left" x:Name="closequestion" Visibility="Hidden"  BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="10,361,0,0" VerticalAlignment="Top" Width="167" Click="Close_click">
+            <Button HorizontalAlignment="Left" x:Name="closequestion" Visibility="Hidden"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="34" Margin="10,361,0,0" VerticalAlignment="Top" Width="167" Click="Close_click">
                 <Run Text="Закрыть" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left" x:Name="savequestion" Visibility="Hidden" BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="102,320,0,0" VerticalAlignment="Top" Width="167" Click="Save_question_click">
+            <Button HorizontalAlignment="Left" x:Name="savequestion" Visibility="Hidden" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="34" Margin="102,320,0,0" VerticalAlignment="Top" Width="175" Click="Save_question_click">
                 <Run Text="Сохранить вопрос" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left" Visibility="Hidden"  x:Name="savequestionwithanswer"   BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="116,484,0,0" VerticalAlignment="Top" Width="167" Click="Save_question_withanswer_click">
+            <Button HorizontalAlignment="Left" Visibility="Hidden"  x:Name="savequestionwithanswer"   Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="34" Margin="116,484,0,0" VerticalAlignment="Top" Width="167" Click="Save_question_withanswer_click">
                 <Run Text="Сохранить вопрос" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left"  BorderBrush="AliceBlue" Background="AliceBlue" Height="34" Margin="207,196,0,0" VerticalAlignment="Top" Width="167" Click="WithoutAnswers_click">
+            <Button HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="34" Margin="207,196,0,0" VerticalAlignment="Top" Width="167" Click="WithoutAnswers_click">
                 <Run Text="Без ответов" FontSize="16"/>
             </Button>
             <ComboBox x:Name="Combobox1" Visibility="Hidden" HorizontalAlignment="Left"  Margin="116,443,0,0" VerticalAlignment="Top"  Width="167"  Height="22">

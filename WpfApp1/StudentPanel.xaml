@@ -13,10 +13,11 @@
             <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="20" Margin="0,0,0,0">
                 <Run Text="Панель студента"/>
             </TextBlock>
-            <Button  x:Name="close_app_newtest" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="412,0,0,513.4" VerticalAlignment="Bottom" Click="Close_click_question" Width="30">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\close.png" Margin="0,0,0,0" />
-                </StackPanel>
+            <Button  x:Name="close_app_newtest" BorderThickness="0" HorizontalAlignment="Left" Height="27" Margin="412,0,0,513.4" VerticalAlignment="Bottom" Click="Close_click_question" Width="27">
+                <Button.Background>
+                    <ImageBrush ImageSource="resources\close.png"
+                            Stretch="Uniform" />
+                </Button.Background>
             </Button>
             <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="40" Margin="133,45,0,0" VerticalAlignment="Top" Width="187" Click="PassTestclick">
                 <Run Text="Пройти тест" FontSize="18"/>
@@ -25,24 +26,24 @@
                 <Run Text="Узнать результаты" FontSize="18"/>
             </Button>
             <Line X1="442.5" X2="0" Y1="170" Y2="170" Stroke="LightGray"/>
-            <Image x:Name="FunnyImage" Visibility="Hidden" Source="resources\teststudent.jpg" Margin="0,98,0.4,-54.8"/>
+            <Image x:Name="FunnyImage" Visibility="Hidden"  Source="resources\teststudent.jpg" Margin="0,98,0.4,-75.6"/>
             <Grid Margin="0,0,0,0" x:Name="Results" Visibility="Hidden" >
                 <TextBlock Text="Результаты тестов" FontSize="18" FontWeight="Bold" Margin="152,173,126.4,338.8"/>
                 <Label x:Name="NameOfTestLabel" Content="Имя теста:" FontSize="18" Margin="10,219,329.4,286.8"/>
                 <ComboBox x:Name="NameOfTest" Height="30" Margin="152,219,18.4,291.8"  SelectionChanged="NameOfTest_SelectionChanged"/>
-                <ComboBox x:Name="DateOfTest" Height="30" Margin="152,254,18.4,256.8" SelectionChanged="DateOfTest_SelectionChanged"/>
+                <ComboBox x:Name="DateOfTest" Height="30" Margin="152,254,18.4,256.8" />
                 <Label x:Name="DateOfTestLabel" Content="Дата:" FontSize="18" Margin="10,254,329.4,254.8"/>
                 <Button x:Name="ShowClick"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="30" Margin="152,297,0,0" VerticalAlignment="Top" Width="164" Click="Showclick">
                     <Run Text="Показать результат" FontSize="14"/>
                 </Button>
-                <Grid x:Name="ResultOfTest">
+                <Grid x:Name="ResultOfTest" >
                     <Label x:Name="ThemeOfTestLabel" Content="Тема теста:" FontSize="18" Margin="10,335,329.4,173.8"/>
                     <Label x:Name="ThemeLabel"  FontSize="14" Margin="151,335,17.4,173.8"/>
                     <Label x:Name="SubjectOfTestLabel" Content="Предмет:" FontSize="18" Margin="10,372,329.4,136.8"/>
-                    <Label x:Name="SubjectLabel"  FontSize="14" Margin="151,376,17.4,132.8"/>
+                    <Label x:Name="SubjectLabel"  FontSize="14" Margin="151,372,17.4,136.8"/>
                     <Label x:Name="TeacherOfTestLabel" Content="Составитель:" FontSize="18" Margin="10,409,317.4,99.8"/>
                     <Label x:Name="TeacherLabel"  FontSize="14" Margin="151,413,17.4,95.8"/>
-                    <Label x:Name="ResultOfTestLabel" Content="Результат:" FontSize="18" Margin="10,446,317.4,62.8"/>
+                    <Label x:Name="ResultOfTestLabel" Content="Результат:" FontSize="18" Margin="10,446,317.4,58.8"/>
                     <Label x:Name="ResultLabel"  FontSize="14" Margin="151,450,17.4,58.8"/>
                 </Grid>
             </Grid>

@@ -26,10 +26,10 @@ namespace WpfApp1
             InitializeComponent();
             FunnyImage.Visibility = Visibility.Visible;
         }
-     
+
         private void PassTestclick(object sender, RoutedEventArgs e)
         {
-           
+
             FunnyImage.Visibility = Visibility.Hidden;
             Results.Visibility = Visibility.Hidden;
             Test test = new Test();
@@ -41,7 +41,7 @@ namespace WpfApp1
             FunnyImage.Visibility = Visibility.Hidden;
             Results.Visibility = Visibility.Visible;
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-            string sqlName = $"select t.name_of_test from users_tests as u  inner join tests as t  on u.test_id = t.id where student_id = '{id_student}'";
+            string sqlName = $"select distinct t.name_of_test from users_tests as u  inner join tests as t  on u.test_id = t.id where student_id = '{id_student}'";
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
@@ -73,10 +73,45 @@ namespace WpfApp1
         }
 
 
-
+        public static string Name = "";
         private void Showclick(object sender, RoutedEventArgs e)
         {
+            if ( DateOfTest.Text == "")
+            {
+                MessageBox.Show("Заполните все поля");
+            }
+            else
+            {
+                string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+                string sqlSubject = $"select r.result,t.theme,s.name,us.first_name,us.middle_name from users_tests as u  inner join results as r  on u.id = r.unique_id  inner join tests as t  on u.test_id = t.id  inner join subjects as s  on t.subject_id = s.id  inner join users as us  on t.teacher_id = us.id where student_id = '{id_student}' and r.date='{DateOfTest.SelectedValue.ToString()}'";
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlSubject, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    try
+                    {
+                        while (reader.Read())
+                        {
+                            ThemeLabel.Content = (string)reader.GetValue(1);
+                            SubjectLabel.Content = (string)reader.GetValue(2);
+                            Name = (string)reader.GetValue(4);
+                            Name = Name.Substring(0, 1);
+                            TeacherLabel.Content = (string)reader.GetValue(3) + " " + Name + ".";
+                            ResultLabel.Content = (string)reader.GetValue(0) + "%";
+                        }
 
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        reader.Close();
+                    }
+                }
+            }
         }
         public static string name = "";
         private void NameOfTest_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -85,7 +120,7 @@ namespace WpfApp1
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
             string sqlDate = $"select r.date,t.name_of_test from users_tests as u inner join results as r on u.id = r.unique_id inner join tests as t on u.test_id=t.id where student_id = '{id_student}'";
             string sqlSubject = $"select t.name_of_test,u.student_id,r.result,t.theme,s.name,us.first_name,us.middle_name from users_tests as u  inner join results as r  on u.id = r.unique_id  inner join tests as t  on u.test_id = t.id  inner join subjects as s  on t.subject_id = s.id  inner join users as us  on t.teacher_id = us.id where student_id = '{id_student}'";
-            
+
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
@@ -97,8 +132,8 @@ namespace WpfApp1
                     {
                         if (name.Equals(reader.GetValue(1)))
                         {
-                            NameOfTest.Items.Add((string)reader.GetValue(0));
-                        }                       
+                            DateOfTest.Items.Add((string)reader.GetValue(0));
+                        }
                     }
 
                 }
@@ -112,10 +147,8 @@ namespace WpfApp1
                 }
             }
         }
-
-        private void DateOfTest_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
+
+    
 }
+

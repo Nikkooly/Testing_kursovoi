@@ -106,7 +106,8 @@ namespace WpfApp1
 
         private void Close_click_questionshow(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            CheckClose nw = new CheckClose();
+            nw.Show();
         }
 
         private async void Showtheme_question_clickAsync(object sender, RoutedEventArgs e)
@@ -466,5 +467,10 @@ namespace WpfApp1
         public static int id_answer4;
         public static string question;
         public static string answers;
+
+        private void Back_click_entry(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

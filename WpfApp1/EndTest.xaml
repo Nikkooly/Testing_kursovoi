@@ -17,12 +17,12 @@
             <Label Content="Вопрос:" HorizontalAlignment="Left" Margin="10,366,0,99.4" FontSize="14" FontFamily="Arial" />
             <Label Content="Ваш ответ:" HorizontalAlignment="Left" Margin="10,455,0,30.4" FontSize="14" FontFamily="Arial" />
             <TextBlock x:Name="Question" HorizontalAlignment="Left" Background="AliceBlue" Margin="96,348,0,99.8" FontSize="14" FontFamily="Arial" Width="537" />
-            <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="22" Margin="304,282,0,0" VerticalAlignment="Top" Width="120" />
-            <Button Content="Просмотр" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="27" Margin="249,250,0,0" VerticalAlignment="Top" Width="126" Click="ShowClick" />
-            <Button Content="Поиск вопроса" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="27" Margin="249,316,0,0" VerticalAlignment="Top" Width="126" Click="FindClick" />
-            <Button Content="Обновить" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="29" Margin="512,455,0,0" VerticalAlignment="Top" Width="126" Click="UpdateClick" />
-            <Button Content="Завершить реадктирование" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="29" Margin="233,495,0,0" VerticalAlignment="Top" Width="191" Click="EndClick" />
-            <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Height="29" Margin="105,455,0,0" VerticalAlignment="Top" Width="402"/>
+            <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="27" Margin="304,277,0,0" VerticalAlignment="Top" Width="120" />
+            <Button Content="Просмотр" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="27" Margin="249,250,0,0" VerticalAlignment="Top" Width="126" Click="ShowClick" />
+            <Button Content="Поиск вопроса" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="27" Margin="249,316,0,0" VerticalAlignment="Top" Width="133" Click="FindClick" />
+            <Button Content="Обновить" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="29" Margin="512,455,0,0" VerticalAlignment="Top" Width="126" Click="UpdateClick" />
+            <Button Content="Завершить реадктирование" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="29" Margin="233,495,0,0" VerticalAlignment="Top" Width="221" Click="EndClick" />
+            <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Height="34" Margin="105,450,0,0" VerticalAlignment="Top" Width="402"/>
         </Grid>
     </Grid>
 </Window>

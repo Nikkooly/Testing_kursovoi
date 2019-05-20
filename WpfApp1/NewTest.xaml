@@ -13,72 +13,73 @@
             <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="20" Margin="0,0,0,0"><Run Text="Test"/><InlineUIContainer>
                     
                 </InlineUIContainer></TextBlock>
-            <Button  x:Name="close_app_newtest" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="450,0,0,553.4" VerticalAlignment="Bottom" Click="Close_click_question" Width="30">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\close.png" Margin="0,0,0,0" />
-                </StackPanel>
+            <Button  x:Name="close_app_newtest" BorderThickness="0" HorizontalAlignment="Left" Height="27" Margin="450,0,0,553.4" VerticalAlignment="Bottom" Click="Close_click_question" Width="27">
+                <Button.Background>
+                    <ImageBrush ImageSource="resources\close.png"
+                            Stretch="Uniform" />
+                </Button.Background>
             </Button>
-            <Button  x:Name="back_teacherpanel" HorizontalAlignment="Left" Background="White" BorderBrush="White" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="30" Click="Back_click_question">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\back.png" Margin="0,0,0,0" />
-                </StackPanel>
+            <Button  x:Name="back_teacherpanel" HorizontalAlignment="Left" BorderThickness="0" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="27" Click="Back_click_question">
+                <Button.Background>
+                    <ImageBrush ImageSource="resources\back.png"/>
+                </Button.Background>
             </Button>
             <Label Content="Имя теста:" x:Name="TestNameLabel" FontSize="16" Margin="16,32,365,520.4" />
             <Label Content="Предмет:" x:Name="SubjectLabel" FontSize="16" Margin="16,62,365,483.4" />
             <Label Content="Тема теста:" x:Name="TestThemeLabel" FontSize="16" Margin="16,92,365,458.4" />
-            <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="22" Margin="181,39,0,0" VerticalAlignment="Top" Width="256"  />
-            <TextBox x:Name="SubjectBox" HorizontalAlignment="Left" Height="22" Margin="181,69,0,0" VerticalAlignment="Top" Width="256"  />
-            <TextBox x:Name="ThemeBox" HorizontalAlignment="Left" Height="22" Margin="181,99,0,0" VerticalAlignment="Top" Width="256"   />
-            <Button HorizontalAlignment="Left" Foreground="MediumPurple" BorderBrush="AliceBlue" Background="AliceBlue" Height="31" Margin="156,126,0,0" VerticalAlignment="Top" Width="168" Click="CheckTestclick">
+            <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="34" Margin="181,27,0,0" VerticalAlignment="Top" Width="256"  />
+            <TextBox x:Name="SubjectBox" HorizontalAlignment="Left" Height="29" Margin="181,62,0,0" VerticalAlignment="Top" Width="256"  />
+            <TextBox x:Name="ThemeBox" HorizontalAlignment="Left" Height="29" Margin="181,92,0,0" VerticalAlignment="Top" Width="256"   />
+            <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="156,126,0,0" VerticalAlignment="Top" Width="168" Click="CheckTestclick">
                 <Run Text="Проверка" FontSize="18"/>
             </Button>
             <Line X1="480" X2="0" Y1="170" Y2="170" Stroke="LightGray"/>
 
             <Grid x:Name="Test" Visibility="Hidden">
-            <Label Content="Время теста:" x:Name="TestTimeLabel" FontSize="16" Margin="16,184,361,364.4" />
-            <Label Content="минут" x:Name="TimeLabel" FontSize="16" Margin="299,188,125,361.4" />
-            <Label Content="Количество вопросов:" x:Name="NumberOfQuestionsLabel" FontSize="16" Margin="18,335,288,210.4" RenderTransformOrigin="0.5,0.5" >
-                <Label.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="0.437"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="0.392"/>
-                    </TransformGroup>
-                </Label.RenderTransform>
-            </Label>
-            <TextBox x:Name="TimeBox" HorizontalAlignment="Left" Height="22" Margin="197,190,0,0" VerticalAlignment="Top" Width="69" KeyDown="TimeBox_PreviewKeyDown" />
-            <TextBox x:Name="NumberBox" HorizontalAlignment="Left" Height="22" Margin="197,342,0,0" VerticalAlignment="Top" Width="69" KeyDown="TimeBox_PreviewKeyDown"  />
-            <Label Content="Выберите тип вопросов:" x:Name="Testview" Foreground="Red" HorizontalContentAlignment="Center"  FontSize="11" Margin="170,224,173,331.4" />
-           
-            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="31" Margin="156,539,0,0" VerticalAlignment="Top" Width="168" Click="CreateTestclick">
-                <Run Text="Создать тест" FontSize="18"/>
-            </Button>
-            <Label Content="Примечания к тесту:" x:Name="InfoTest"  HorizontalContentAlignment="Center"  FontSize="12.5" Margin="142,389,166,165.4" />
-            <RadioButton  x:Name="MixButton" GroupName="TypeQuestions" Content="Смешанный"  IsChecked="True" Margin="197,254,116,306.4" FontSize="14" />
-            <RadioButton  x:Name="WithAnswersButton" GroupName="TypeQuestions"  Content="С вариантами ответов"  Margin="197,279,116,280.4" FontSize="14" />
-            <RadioButton  x:Name="WithoutAnswersButton" GroupName="TypeQuestions"  Content="Без вариантов ответов"  Margin="197,305,105,256.4" FontSize="14" />
-            <Button  x:Name="Up" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,376.4" VerticalAlignment="Bottom" Click="Upclick" Width="23">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\strelka.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
-                </StackPanel>
-            </Button>
-            <TextBox x:Name="InfoBox" Background="AliceBlue" BorderBrush="White" HorizontalAlignment="Left" Height="109" Margin="24,415,0,0" VerticalAlignment="Top" Width="435"   />
-            <Button  x:Name="Down" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,356.4" VerticalAlignment="Bottom" Click="Downclick" Width="23">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\strelka1.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
-                </StackPanel>
-            </Button>
-            <Button  x:Name="UpNumber" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,225.4" VerticalAlignment="Bottom" Click="UpNumberclick" Width="23">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\strelka.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
-                </StackPanel>
-            </Button>
-            <Button  x:Name="DownNumber" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,205.4" VerticalAlignment="Bottom" Click="DownNumberclick" Width="23">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\strelka1.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
-                </StackPanel>
-            </Button>
+                <Label Content="Время теста:" x:Name="TestTimeLabel" FontSize="16" Margin="16,184,361,364.4" />
+                <Label Content="минут" x:Name="TimeLabel" FontSize="16" Margin="299,188,125,361.4" />
+                <Label Content="Количество вопросов:" x:Name="NumberOfQuestionsLabel" FontSize="16" Margin="18,335,288,210.4" RenderTransformOrigin="0.5,0.5" >
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0.437"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0.392"/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <TextBox x:Name="TimeBox" HorizontalAlignment="Left" Height="22" Margin="197,190,0,0" VerticalAlignment="Top" Width="69" KeyDown="TimeBox_PreviewKeyDown" />
+                <TextBox x:Name="NumberBox" HorizontalAlignment="Left" Height="22" Margin="197,342,0,0" VerticalAlignment="Top" Width="69" KeyDown="TimeBox_PreviewKeyDown"  />
+                <Label Content="Выберите тип вопросов:" x:Name="Testview" Foreground="Red" HorizontalContentAlignment="Center"  FontSize="11" Margin="170,224,173,331.4" />
+
+                <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="156,539,0,0" VerticalAlignment="Top" Width="168" Click="CreateTestclick">
+                    <Run Text="Создать тест" FontSize="18"/>
+                </Button>
+                <Label Content="Примечания к тесту:" x:Name="InfoTest"  HorizontalContentAlignment="Center"  FontSize="12.5" Margin="142,389,166,165.4" />
+                <RadioButton  x:Name="MixButton" GroupName="TypeQuestions" Content="Смешанный"  IsChecked="True" Margin="197,254,116,306.4" FontSize="14" />
+                <RadioButton  x:Name="WithAnswersButton" GroupName="TypeQuestions"  Content="С вариантами ответов"  Margin="197,279,116,280.4" FontSize="14" />
+                <RadioButton  x:Name="WithoutAnswersButton" GroupName="TypeQuestions"  Content="Без вариантов ответов"  Margin="197,305,105,256.4" FontSize="14" />
+                <Button  x:Name="Up" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,376.4" VerticalAlignment="Bottom" Click="Upclick" Width="23">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="resources\strelka.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
+                    </StackPanel>
+                </Button>
+                <TextBox x:Name="InfoBox" Background="AliceBlue" BorderBrush="White" HorizontalAlignment="Left" Height="109" Margin="24,415,0,0" VerticalAlignment="Top" Width="435"   />
+                <Button  x:Name="Down" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,356.4" VerticalAlignment="Bottom" Click="Downclick" Width="23">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="resources\strelka1.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
+                    </StackPanel>
+                </Button>
+                <Button  x:Name="UpNumber" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,225.4" VerticalAlignment="Bottom" Click="UpNumberclick" Width="23">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="resources\strelka.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
+                    </StackPanel>
+                </Button>
+                <Button  x:Name="DownNumber" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,205.4" VerticalAlignment="Bottom" Click="DownNumberclick" Width="23">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="resources\strelka1.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
+                    </StackPanel>
+                </Button>
             </Grid>
         </Grid>
     </Grid>

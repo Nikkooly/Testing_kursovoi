@@ -12,26 +12,31 @@
             <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="16" Margin="37,0,36,454.4" RenderTransformOrigin="0.5,0.5">
                <Run Text="Просмотр вопросов"/>
             </TextBlock>
-            <Button  x:Name="close_btn_show_questions" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="549,0,0,483" VerticalAlignment="Bottom" Click="Close_click_questionshow" Width="30">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\close.png" Margin="0,0,0,0" />
-                </StackPanel>
+            <Button  x:Name="close_btn_show_questions" BorderThickness="0" HorizontalAlignment="Left" Height="27" Margin="549,0,0,483" VerticalAlignment="Bottom" Click="Close_click_questionshow" Width="27">
+                <Button.Background>
+                    <ImageBrush ImageSource="resources\close.png"
+                            Stretch="Uniform" />
+                </Button.Background>
             </Button>
-
+            <Button  x:Name="back_btn_entry" HorizontalAlignment="Left" BorderThickness="0"  BorderBrush="White" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="27" Click="Back_click_entry">
+                <Button.Background>
+                    <ImageBrush ImageSource="resources\back.png"/>
+                </Button.Background>
+            </Button>
             <Line x:Name="Line"  Visibility="Hidden" X1="580" Y1="417" X2="0" Y2="417" Stroke="LightGray" />
-            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="209,293,0,0" VerticalAlignment="Top" Width="174" Click="Show_question_clickAsync">
+            <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="195,293,0,0" VerticalAlignment="Top" Width="220" Click="Show_question_clickAsync">
                 <Run Text="Посмотреть вопросы" FontSize="16"/>
             </Button>
-            <TextBox x:Name="DeleteBox" Visibility="Hidden"  HorizontalAlignment="Left" Height="22" Margin="209,453,0,0" VerticalAlignment="Top" Width="174" />
-            <Button x:Name="DeleteButton" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="209,335,0,0" VerticalAlignment="Top" Width="174" Click="Delete_question_click">
+            <TextBox x:Name="DeleteBox" Visibility="Hidden" HorizontalAlignment="Left" Height="27" Margin="209,448,0,0" VerticalAlignment="Top" Width="174" />
+            <Button x:Name="DeleteButton" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="195,335,0,0" VerticalAlignment="Top" Width="220" Click="Delete_question_click">
                 <Run Text="Удалить вопрос" FontSize="16"/>
             </Button>
-            <Button x:Name="Delete" Visibility="Hidden" HorizontalAlignment="Left"  BorderBrush="AliceBlue" Background="AliceBlue" Height="25" Margin="209,480,0,0" VerticalAlignment="Top" Width="174" Click="Delete_click">
+            <Button x:Name="Delete" Visibility="Hidden" HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="25" Margin="209,480,0,0" VerticalAlignment="Top" Width="174" Click="Delete_click">
                 <Run Text="Удалить" FontSize="16"/>
             </Button>
             <Label x:Name="DeleteLabel" Visibility="Hidden"  Content="Введите id вопроса для удаления:" HorizontalAlignment="Left" Margin="181,419,0,62" FontSize="14" FontFamily="Arial" />
-            <Button x:Name="ChangeButton" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="209,377,0,0" VerticalAlignment="Top" Width="174" Click="Change_questions_click">
-                <Run Text="Редактировать вопрос" FontSize="16"/>
+            <Button x:Name="ChangeButton" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="195,377,0,0" VerticalAlignment="Top" Width="220" Click="Change_questions_click">
+                <Run Text="Редактировать вопросы" FontSize="16"/>
             </Button>
             <DataGrid  ItemsSource="{Binding}"  x:Name="User_Grid" Background="AliceBlue" HorizontalAlignment="Left" Height="242" Margin="29,38,0,0" VerticalAlignment="Top" Width="534"/>
         </Grid>
