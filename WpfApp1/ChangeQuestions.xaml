@@ -24,32 +24,32 @@
             <TextBox x:Name="Answer3Box"   HorizontalAlignment="Left" Height="22" Margin="87,576,0,0" VerticalAlignment="Top" Width="330" />
             <TextBox x:Name="Answer4Box"  HorizontalAlignment="Left" Height="22" Margin="87,616,0,0" VerticalAlignment="Top" Width="330" />
             <TextBox x:Name="QuestionBox"  HorizontalAlignment="Left" Height="22" Margin="87,415,0,0" VerticalAlignment="Top" Width="330" />
-            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,268,0,0" VerticalAlignment="Top" Width="144" Click="Showid_question_clickAsync">
+            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue"  Foreground="MediumPurple" Background="AliceBlue" Height="28" Margin="426,268,0,0" VerticalAlignment="Top" Width="144" Click="Showid_question_clickAsync">
                 <Run Text="Поиск по id" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,309,0,0" VerticalAlignment="Top" Width="144" Click="Showtheme_question_clickAsync">
+            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue"  Foreground="MediumPurple" Background="AliceBlue" Height="28" Margin="426,309,0,0" VerticalAlignment="Top" Width="144" Click="Showtheme_question_clickAsync">
                 <Run Text="Поиск по теме" FontSize="16"/>
             </Button>
-            <Button x:Name="Update" HorizontalAlignment="Left"   BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,412,0,0" VerticalAlignment="Top" Width="144" Click="Update_info_click">
+            <Button x:Name="Update" HorizontalAlignment="Left"  Foreground="MediumPurple"  BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="404,412,0,0" VerticalAlignment="Top" Width="166" Click="Update_info_click">
                 <Run Text="Обновить вопрос" FontSize="16"/>
             </Button>
             <Image  x:Name="Napilnik" Source="resources\napil.jpg" Margin="82,365,91,37.4"/>
-            <Button x:Name="Update_answers" HorizontalAlignment="Left"   BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,554,0,0" VerticalAlignment="Top" Width="144" Click="Update_answers_click">
+            <Button x:Name="Update_answers"  Foreground="MediumPurple" HorizontalAlignment="Left"   BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="404,554,0,0" VerticalAlignment="Top" Width="166" Click="Update_answers_click">
                 <Run Text="Обновить ответы" FontSize="16"/>
             </Button>
-            <Button x:Name="Update_answer1" HorizontalAlignment="Left"   BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,493,0,0" VerticalAlignment="Top" Width="144" Click="Update_answer1_click">
+            <Button x:Name="Update_answer1"  Foreground="MediumPurple" HorizontalAlignment="Left"   BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="404,493,0,0" VerticalAlignment="Top" Width="166" Click="Update_answer1_click">
                 <Run Text="Обновить ответ" FontSize="16"/>
             </Button>
-            <Button x:Name="FindQuestion"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="426,379,0,0" VerticalAlignment="Top" Width="144" Click="Find_question_click">
+            <Button x:Name="FindQuestion"  Foreground="MediumPurple" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="404,379,0,0" VerticalAlignment="Top" Width="166" Click="Find_question_click">
                 <Run Text="Показать вопрос" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue"  Background="AliceBlue" Height="28" Margin="196,348,0,0" VerticalAlignment="Top" Width="179" Click="Answer_about_question_click">
+            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue"  Foreground="MediumPurple" Background="AliceBlue" Height="28" Margin="196,348,0,0" VerticalAlignment="Top" Width="211" Click="Answer_about_question_click">
                 <Run Text="Редактировать вопрос?" FontSize="16"/>
             </Button>
-            <Button x:Name="Change_answer"  HorizontalAlignment="Left" BorderBrush="AliceBlue"  Background="AliceBlue" Height="28" Margin="191,452,0,0" VerticalAlignment="Top" Width="184" Click="Change_answers_click">
+            <Button x:Name="Change_answer"  Foreground="MediumPurple"  HorizontalAlignment="Left" BorderBrush="AliceBlue"  Background="AliceBlue" Height="28" Margin="191,452,0,0" VerticalAlignment="Top" Width="212" Click="Change_answers_click">
                 <Run Text="Редактировать ответ(ы)?" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="196,216,0,0" VerticalAlignment="Top" Width="207" Click="Show_question_clickAsync">
+            <Button HorizontalAlignment="Left"  Foreground="MediumPurple" BorderBrush="AliceBlue" Background="AliceBlue" Height="28" Margin="196,216,0,0" VerticalAlignment="Top" Width="207" Click="Show_question_clickAsync">
                 <Run Text="Вывести все вопросы" FontSize="16"/>
             </Button>
             <Button  x:Name="close_btn_show_questions" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="554,0,0,651.4" VerticalAlignment="Bottom" Click="Close_click_questionshow" Width="26">
@@ -70,7 +70,7 @@
             <Line X1="589.6" Y1="340" X2="9.5" Y2="340" Stroke="LightGray" />
             <Line  x:Name="Line" X1="589.6" Y1="445" X2="9.5" Y2="445" Stroke="LightGray"  />
             <Image x:Name="Image" Visibility="Hidden" Source="resources\study.gif" Margin="-50,381,10,3"/>
-            <ComboBox x:Name="Combobox1" Text="Ответ 1"  HorizontalAlignment="Left"  Margin="201,643,0,0" VerticalAlignment="Top"  Width="167"  Height="22">
+            <ComboBox x:Name="Combobox1" Text="Ответ 1"  HorizontalAlignment="Left"  Margin="201,643,0,0" VerticalAlignment="Top"  Width="167"  Height="27">
                 <ComboBoxItem x:Name="comboboxitem1" Content="Ответ 1"></ComboBoxItem>
                 <ComboBoxItem x:Name="comboboxitem2"  Content="Ответ 2"></ComboBoxItem>
                 <ComboBoxItem x:Name="comboboxitem3" Content="Ответ 3"></ComboBoxItem>

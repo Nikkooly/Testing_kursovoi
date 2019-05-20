@@ -29,7 +29,7 @@
             <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="22" Margin="181,39,0,0" VerticalAlignment="Top" Width="256"  />
             <TextBox x:Name="SubjectBox" HorizontalAlignment="Left" Height="22" Margin="181,69,0,0" VerticalAlignment="Top" Width="256"  />
             <TextBox x:Name="ThemeBox" HorizontalAlignment="Left" Height="22" Margin="181,99,0,0" VerticalAlignment="Top" Width="256"   />
-            <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="31" Margin="156,126,0,0" VerticalAlignment="Top" Width="168" Click="CheckTestclick">
+            <Button HorizontalAlignment="Left" Foreground="MediumPurple" BorderBrush="AliceBlue" Background="AliceBlue" Height="31" Margin="156,126,0,0" VerticalAlignment="Top" Width="168" Click="CheckTestclick">
                 <Run Text="Проверка" FontSize="18"/>
             </Button>
             <Line X1="480" X2="0" Y1="170" Y2="170" Stroke="LightGray"/>

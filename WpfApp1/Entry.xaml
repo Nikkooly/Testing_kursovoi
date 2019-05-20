@@ -26,10 +26,10 @@
                     <Image Source="resources\back.png" Margin="0,0,0,0" Height="23" Width="24" />
                 </StackPanel>
             </Button>
-            <Button  x:Name="entry_btn_entry" HorizontalAlignment="Left" Background="AliceBlue" Height="36" Margin="285,201,0,0" VerticalAlignment="Top" Width="118" Click="Entry_btn_entry_Click">
+            <Button  x:Name="entry_btn_entry" Foreground="MediumPurple" BorderBrush="AliceBlue" HorizontalAlignment="Left" Background="AliceBlue" Height="36" Margin="285,201,0,0" VerticalAlignment="Top" Width="118" Click="Entry_btn_entry_Click">
                 <Run Text="Войти" />
             </Button>
-            <Button  x:Name="forgotpassword_btn_entry" HorizontalAlignment="Left" Background="White" BorderBrush="White"  Height="16" Margin="408,201,0,0" VerticalAlignment="Top" Width="97" Click="Forgot_click_entry">
+            <Button  x:Name="forgotpassword_btn_entry" Foreground="MediumPurple" BorderBrush="AliceBlue" HorizontalAlignment="Left" Background="White"   Height="19" Margin="408,201,0,0" VerticalAlignment="Top" Width="105" Click="Forgot_click_entry">
                 <Run Text="Забыли пароль? " FontSize="9" FontStyle="Oblique"/>
             </Button>
             <Button  x:Name="btn_user_entry" HorizontalAlignment="Left" Background="White" BorderBrush="White" Height="27" Margin="250,122,0,0" VerticalAlignment="Top" Width="30" >

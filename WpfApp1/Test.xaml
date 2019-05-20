@@ -72,13 +72,13 @@
                     <RadioButton x:Name="Answer3Test" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  FontSize="20" Margin="10,336,106,243.4"/>
                     <RadioButton x:Name="Answer4Test"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  FontSize="20" Margin="10,387,106,181.4"/>
                 </Grid>
-                <Button x:Name="UpClick"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="422,463,0,0" VerticalAlignment="Top" Width="387" Click="UpQuestionclick">
+                <Button x:Name="UpClick" Foreground="MediumPurple" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="422,463,0,0" VerticalAlignment="Top" Width="387" Click="UpQuestionclick">
                     <Run Text="Следующий вопрос" FontSize="35"/>
                 </Button>
-                <Button x:Name="EndClick" Visibility="Hidden" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="164,463,0,0" VerticalAlignment="Top" Width="387" Click="EndQuestionclick">
+                <Button x:Name="EndClick" Visibility="Hidden" Foreground="MediumPurple" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="164,463,0,0" VerticalAlignment="Top" Width="387" Click="EndQuestionclick">
                     <Run Text="Закончить тест" FontSize="35"/>
                 </Button>
-                <Button x:Name="EditClick" Visibility="Hidden"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="624,463,0,0" VerticalAlignment="Top" Width="387" Click="EditQuestionclick">
+                <Button x:Name="EditClick" Visibility="Hidden" Foreground="MediumPurple"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="624,463,0,0" VerticalAlignment="Top" Width="387" Click="EditQuestionclick">
                     <Run Text="Просмотреть ответы" FontSize="35"/>
                 </Button>
                 <Label x:Name="CountTest"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="1079,569,59,10.4"/>

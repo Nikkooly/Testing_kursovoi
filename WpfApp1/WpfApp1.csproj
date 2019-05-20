@@ -77,8 +77,8 @@
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=2.6.0.1364, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignThemes.2.6.0-ci1364\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.6.0.1366, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.6.0-ci1366\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -343,6 +343,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\vitalik.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\backbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\strelkavniz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\closebutton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

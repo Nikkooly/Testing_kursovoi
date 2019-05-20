@@ -93,9 +93,29 @@ namespace WpfApp1.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backbutton {
+            get {
+                object obj = ResourceManager.GetObject("backbutton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap close {
             get {
                 object obj = ResourceManager.GetObject("close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap closebutton {
+            get {
+                object obj = ResourceManager.GetObject("closebutton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,6 +176,16 @@ namespace WpfApp1.Properties {
         internal static System.Drawing.Bitmap strelka1 {
             get {
                 object obj = ResourceManager.GetObject("strelka1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap strelkavniz {
+            get {
+                object obj = ResourceManager.GetObject("strelkavniz", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

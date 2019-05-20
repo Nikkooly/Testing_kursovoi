@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         
-        Title="Registration" Height="500" Width="600" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
+        Title="Registration" Height="550" Width="600" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
         WindowStartupLocation="CenterScreen" WindowStyle="None">
 
     <Grid Background="AliceBlue">
@@ -17,24 +17,33 @@
             <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Height="22" Margin="285,110,0,0" VerticalAlignment="Top" Width="120" KeyDown="TextBox1_PreviewKeyDown" TextChanged="TextBox2_TextChanged" />
             <TextBox x:Name="TextBox3" HorizontalAlignment="Left" Height="22" Margin="285,150,0,0" VerticalAlignment="Top" Width="120" TextChanged="TextBox3_TextChanged" />
             <TextBox x:Name="TextBox4" HorizontalAlignment="Left" Height="22" Margin="285,190,0,0" VerticalAlignment="Top" Width="120" TextChanged="TextBox4_TextChanged" />
-            <ComboBox x:Name="FacultyCombobox" Margin="285,230,175,228.4" SelectionChanged="FacultyChanged"/>
-            <ComboBox x:Name="RoleCombobox" Margin="285,396,175,65.4" SelectionChanged="RoleChanged"/>
-            <PasswordBox x:Name="password" PasswordChar="*" HorizontalAlignment="Left" Height="22" Margin="285,270,0,0" VerticalAlignment="Top" Width="120"   />
-            <PasswordBox x:Name="PasswordChecked" PasswordChar="*" HorizontalAlignment="Left" Height="22" Margin="285,310,0,0" VerticalAlignment="Top" Width="120" />
+            <ComboBox x:Name="FacultyCombobox" Margin="285,297,175,198.8" VerticalContentAlignment="Bottom" SelectionChanged="FacultyChanged" Height="35"/>
+            <ComboBox x:Name="RoleCombobox" Margin="285,438,115,60.8" SelectionChanged="RoleChanged" Height="32"/>
+            <PasswordBox x:Name="password" PasswordChar="*" HorizontalAlignment="Left" Height="22" Margin="285,230,0,0" VerticalAlignment="Top" Width="120"   />
+            <PasswordBox x:Name="PasswordChecked" PasswordChar="*" HorizontalAlignment="Left" Height="22" Margin="285,270,0,0" VerticalAlignment="Top" Width="120" />
 
             <Label Content="Имя:" HorizontalAlignment="Left" Margin="145,65,0,-10" FontSize="14" FontFamily="Arial" />
             <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="145,105,0,-10" FontSize="14" FontFamily="Arial" />
-            <Label Content="Логин:" HorizontalAlignment="Left" Margin="145,145,0,-10" FontSize="14" FontFamily="Arial" />
+            <Label Content="Логин:" HorizontalAlignment="Left" Margin="145,145,0,308.4" FontSize="14" FontFamily="Arial" />
             <Label Content="Почта:" HorizontalAlignment="Left" Margin="145,185,0,-10" FontSize="14" FontFamily="Arial" />
-            <Label Content="Факультет:" HorizontalAlignment="Left" Margin="145,225,0,-10" FontSize="14" FontFamily="Arial" />
-            <Label Content="Пароль:" HorizontalAlignment="Left" Margin="145,265,0,-10" FontSize="14" FontFamily="Arial" />
-            <Label Content="Повторите пароль:" HorizontalAlignment="Left" Margin="145,310,0,-10" FontSize="14" FontFamily="Arial" />
-            <Label Content="Права доступа:" HorizontalAlignment="Left" Margin="145,391,0,-10" FontSize="14" FontFamily="Arial" />
+            <Label Content="Факультет:" HorizontalAlignment="Left" Margin="145,308,0,0" FontSize="14" FontFamily="Arial" Height="35" VerticalAlignment="Top" />
+            <Label Content="Пароль:" HorizontalAlignment="Left" Margin="145,225,0,228.4" FontSize="14" FontFamily="Arial" />
+            <Label Content="Повторите пароль:" HorizontalAlignment="Left" Margin="145,265,0,182.4" FontSize="14" FontFamily="Arial" />
+            <Label Content="Права доступа:" HorizontalAlignment="Left" Margin="145,440,0,60.8" FontSize="14" FontFamily="Arial" />
 
-            <Button  x:Name="close_btn_registration" Background="White" BorderBrush="White" HorizontalAlignment="Left" Height="27" Margin="550,0,0,454" VerticalAlignment="Bottom" Click="Close_click_registration" Width="30">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="resources\close.png" Margin="0,0,0,0" />
-                </StackPanel>
+            <Button  x:Name="close_btn_registration" Background="White" BorderBrush="White" Height="27" Margin="550,0,0,503.8" Click="Close_click_registration" Width="30">
+
+                <Image Source="resources\close.png" Margin="0,0,0,0" Height="18" Width="30" RenderTransformOrigin="0.5,0.5" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+
             </Button>
             <Button  x:Name="back_btn_registration" HorizontalAlignment="Left" Background="White" BorderBrush="White" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="30" Click="Back_click_registration">
                 <StackPanel Orientation="Horizontal">
@@ -42,8 +51,8 @@
                     <Image Source="resources\back.png" Margin="0,0,0,0" />
                 </StackPanel>
             </Button>
-            <Button Content="Зарегестрироваться" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="27" Margin="145,433,0,0" VerticalAlignment="Top" Width="260" Click="Registration_click_reg" />
-            <TextBlock Margin="115,338,106,90.4" HorizontalAlignment="Center" TextAlignment="Center" Width="359">
+            <Button Content="Зарегестрироваться" HorizontalAlignment="Left" Foreground="MediumPurple"  BorderBrush="AliceBlue" Background="AliceBlue" Height="27" Margin="173,494,0,0" VerticalAlignment="Top" Width="260" Click="Registration_click_reg" />
+            <TextBlock Margin="123,360,98,116.8" HorizontalAlignment="Center" TextAlignment="Center" Width="359">
              <Run Text="Внимание!" Foreground="Red" FontSize="14" />
              <LineBreak />
              <Run Text="Если вы студент выберите в поле права доступа Student"/>
