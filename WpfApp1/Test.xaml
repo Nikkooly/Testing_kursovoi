@@ -33,10 +33,10 @@
                 <Label x:Name="TimeOfTest" Content="Время теста:" FontSize="28" Margin="10,416,916,163.4"/>
                 <Label x:Name="InfoOfTest" Content="Информация о тесте" HorizontalContentAlignment="Center" FontSize="28" Margin="661,212,87,367.4"/>
                 <TextBlock x:Name="InfoOf" Background="AliceBlue" TextWrapping="Wrap" FontSize="14" Margin="615,268,10,105.4"/>
-                <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="40" Margin="448,152,0,0" VerticalAlignment="Top" Width="259" Click="PassTestclick">
+                <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="40" Margin="448,152,0,0" VerticalAlignment="Top" Width="259" Click="PassTestclick">
                     <Run Text="Выбрать" FontSize="28"/>
                 </Button>
-                <Button HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="387,567,0,0" VerticalAlignment="Top" Width="387" Click="StartTestclick">
+                <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="53" Margin="387,567,0,0" VerticalAlignment="Top" Width="387" Click="StartTestclick">
                     <Run Text="Начать тест" FontSize="35"/>
                 </Button>
                 <Line X1="1180" X2="0" Y1="210" Y2="210" Stroke="LightGray"/>
@@ -72,13 +72,13 @@
                     <RadioButton x:Name="Answer3Test" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  FontSize="20" Margin="10,336,106,243.4"/>
                     <RadioButton x:Name="Answer4Test"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  FontSize="20" Margin="10,387,106,181.4"/>
                 </Grid>
-                <Button x:Name="UpClick" Foreground="MediumPurple" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="422,463,0,0" VerticalAlignment="Top" Width="387" Click="UpQuestionclick">
+                <Button x:Name="UpClick"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue"  Height="53" Margin="422,463,0,0" VerticalAlignment="Top" Width="387" Click="UpQuestionclick">
                     <Run Text="Следующий вопрос" FontSize="35"/>
                 </Button>
-                <Button x:Name="EndClick" Visibility="Hidden" Foreground="MediumPurple" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="164,463,0,0" VerticalAlignment="Top" Width="387" Click="EndQuestionclick">
+                <Button x:Name="EndClick" Visibility="Hidden" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="53" Margin="164,463,0,0" VerticalAlignment="Top" Width="387" Click="EndQuestionclick">
                     <Run Text="Закончить тест" FontSize="35"/>
                 </Button>
-                <Button x:Name="EditClick" Visibility="Hidden" Foreground="MediumPurple"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="53" Margin="624,463,0,0" VerticalAlignment="Top" Width="387" Click="EditQuestionclick">
+                <Button x:Name="EditClick" Visibility="Hidden"   HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="53" Margin="624,463,0,0" VerticalAlignment="Top" Width="387" Click="EditQuestionclick">
                     <Run Text="Просмотреть ответы" FontSize="35"/>
                 </Button>
                 <Label x:Name="CountTest"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontSize="20" Margin="1079,569,59,10.4"/>

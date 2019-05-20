@@ -132,9 +132,6 @@
     <Compile Include="CheckClose.xaml.cs">
       <DependentUpon>CheckClose.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CheckTest.xaml.cs">
-      <DependentUpon>CheckTest.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EndTest.xaml.cs">
       <DependentUpon>EndTest.xaml</DependentUpon>
     </Compile>
@@ -182,10 +179,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CheckClose.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CheckTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

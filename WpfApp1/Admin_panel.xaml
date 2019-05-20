@@ -12,16 +12,16 @@
             <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="16" Margin="37,0,36,454.4" RenderTransformOrigin="0.5,0.5">
                <Run Text="Панель администратора"/>
             </TextBlock>
-            <Button x:Name="Students" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="37,31,0,0" VerticalAlignment="Top" Width="168" Click="Students_click">
+            <Button x:Name="Students" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="37,31,0,0" VerticalAlignment="Top" Width="168" Click="Students_click">
                 <Run Text="Студенты" FontSize="16"/>
             </Button>
-            <Button x:Name="Teacher" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="37,81,0,0" VerticalAlignment="Top" Width="168" Click="Teacher_click">
+            <Button x:Name="Teacher" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="37,81,0,0" VerticalAlignment="Top" Width="168" Click="Teacher_click">
                 <Run Text="Преподаватели" FontSize="16"/>
             </Button>
-            <Button  x:Name="Faculties" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="37,131,0,0" VerticalAlignment="Top" Width="168" Click="Fak_click">
+            <Button  x:Name="Faculties" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="37,131,0,0" VerticalAlignment="Top" Width="168" Click="Fak_click">
                 <Run Text="Факультеты" FontSize="16"/>
             </Button>
-            <Button  x:Name="Subjects" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="37,181,0,0" VerticalAlignment="Top" Width="168" Click="Subjects_click">
+            <Button  x:Name="Subjects" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="37,181,0,0" VerticalAlignment="Top" Width="168" Click="Subjects_click">
                 <Run Text="Предметы" FontSize="16"/>
             </Button>
             <DataGrid  ItemsSource="{Binding}"  x:Name="User_Grid" Background="AliceBlue" HorizontalAlignment="Left" Height="192" Margin="245,26,0,0" VerticalAlignment="Top" Width="419"/>
@@ -34,19 +34,19 @@
             </Button>
 
 
-            <Button  x:Name="Id_Subjects_Delete" Visibility="Hidden" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="338,267,0,0" VerticalAlignment="Top" Width="79" Click="Find_Id_click">
+            <Button  x:Name="Id_Subjects_Delete" Visibility="Hidden" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="338,267,0,0" VerticalAlignment="Top" Width="79" Click="Find_Id_click">
                 <Run Text="Поиск" FontSize="16"/>
             </Button>
-            <Button  x:Name="Subject_Delete" Visibility="Hidden"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="41,437,0,0" VerticalAlignment="Top" Width="174" Click="Subject_Delete_click">
+            <Button  x:Name="Subject_Delete" Visibility="Hidden"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="41,437,0,0" VerticalAlignment="Top" Width="174" Click="Subject_Delete_click">
                 <Run Text="Удалить" FontSize="16"/>
             </Button>
-            <Button Visibility="Hidden" x:Name="Insert_Subject" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="134,399,0,0" VerticalAlignment="Top" Width="174" Click="Subject_Insert_click">
+            <Button Visibility="Hidden" x:Name="Insert_Subject" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="134,399,0,0" VerticalAlignment="Top" Width="174" Click="Subject_Insert_click">
                 <Run Text="Добавить" FontSize="16"/>
             </Button>
-            <Button  x:Name="Change_Subject_Delete" Visibility="Hidden"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="234,437,0,0" VerticalAlignment="Top" Width="183" Click="Change_Subject_click">
+            <Button  x:Name="Change_Subject_Delete" Visibility="Hidden"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="234,437,0,0" VerticalAlignment="Top" Width="183" Click="Change_Subject_click">
                 <Run Text="Обновить" FontSize="16"/>
             </Button>
-            <Button  x:Name="Theme_Subjects_Delete" Visibility="Hidden" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="338,305,0,0" VerticalAlignment="Top" Width="79" Click="Find_Theme_click">
+            <Button  x:Name="Theme_Subjects_Delete" Visibility="Hidden" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="338,305,0,0" VerticalAlignment="Top" Width="79" Click="Find_Theme_click">
                 <Run Text="Поиск" FontSize="16"/>
             </Button>
             <Label  x:Name="Info" Visibility="Hidden" Content="Перед удалением проверьте введенные данные!" Foreground="Red" HorizontalAlignment="Left" Margin="20,235,0,218.4" FontSize="14" FontFamily="Arial" />
@@ -61,19 +61,19 @@
 
 
 
-            <Button x:Name="Id_Faculty_Delete" Visibility="Hidden"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="338,267,0,0" VerticalAlignment="Top" Width="79" Click="Find_Id_Faculty_click">
+            <Button x:Name="Id_Faculty_Delete" Visibility="Hidden"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="338,267,0,0" VerticalAlignment="Top" Width="79" Click="Find_Id_Faculty_click">
                 <Run Text="Поиск" FontSize="16"/>
             </Button>
-            <Button  x:Name="Faculty_Delete" Visibility="Hidden"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="41,437,0,0" VerticalAlignment="Top" Width="174" Click="Faculty_Delete_click">
+            <Button  x:Name="Faculty_Delete" Visibility="Hidden"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="41,437,0,0" VerticalAlignment="Top" Width="174" Click="Faculty_Delete_click">
                 <Run Text="Удалить" FontSize="16"/>
             </Button>
-            <Button  x:Name="Insert_Faculty" Visibility="Hidden" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="134,399,0,0" VerticalAlignment="Top" Width="174" Click="Faculty_Insert_click">
+            <Button  x:Name="Insert_Faculty" Visibility="Hidden" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="134,399,0,0" VerticalAlignment="Top" Width="174" Click="Faculty_Insert_click">
                 <Run Text="Добавить" FontSize="16"/>
             </Button>
-            <Button  x:Name="Change_Faculty_Delete" Visibility="Hidden"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="234,437,0,0" VerticalAlignment="Top" Width="183" Click="Change_Faculty_click">
+            <Button  x:Name="Change_Faculty_Delete" Visibility="Hidden"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="234,437,0,0" VerticalAlignment="Top" Width="183" Click="Change_Faculty_click">
                 <Run Text="Обновить" FontSize="16"/>
             </Button>
-            <Button  x:Name="Theme_Faculty_Delete" Visibility="Hidden" HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="338,305,0,0" VerticalAlignment="Top" Width="79" Click="Find_Faculty_click">
+            <Button  x:Name="Theme_Faculty_Delete" Visibility="Hidden" HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="338,305,0,0" VerticalAlignment="Top" Width="79" Click="Find_Faculty_click">
                 <Run Text="Поиск"  FontSize="16"/>
             </Button>
             <Label  x:Name="ThemeFindFaculty" Visibility="Hidden" Content="Поиск по имени:" HorizontalAlignment="Left" Margin="10,308,0,146.4" FontSize="14" FontFamily="Arial" />
@@ -84,10 +84,10 @@
             <Button Visibility="Hidden" x:Name="FindIdStudent"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="196,269,0,0" VerticalAlignment="Top" Width="142" Click="FindIdStudentClick">
                 <Run Text="Поиск по id" FontSize="16"/>
             </Button>
-            <Button Visibility="Hidden" x:Name="FindSurnameStudent"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="196,314,0,0" VerticalAlignment="Top" Width="142" Click="FindSurnameStudentClick">
+            <Button Visibility="Hidden" x:Name="FindSurnameStudent"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="196,314,0,0" VerticalAlignment="Top" Width="142" Click="FindSurnameStudentClick">
                 <Run Text="Поиск по фамилии" FontSize="16"/>
             </Button>
-            <Button Visibility="Hidden" x:Name="ChangeStudent"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="63,432,0,0" VerticalAlignment="Top" Width="221" Click="ChangeStudentClick">
+            <Button Visibility="Hidden" x:Name="ChangeStudent"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="63,432,0,0" VerticalAlignment="Top" Width="221" Click="ChangeStudentClick">
                 <Run Text="Перейти к редактированию" FontSize="16"/>
             </Button>
             <Line x:Name="LineVertical"  Visibility="Hidden" X1="342" Y1="225" X2="342" Y2="480" Stroke="LightGray" />
@@ -108,16 +108,16 @@
 
 
 
-            <Button  x:Name="FindIdTeacher" Visibility="Hidden"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="196,269,0,0" VerticalAlignment="Top" Width="142" Click="FindIdTeacherClick">
+            <Button  x:Name="FindIdTeacher" Visibility="Hidden"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="196,269,0,0" VerticalAlignment="Top" Width="142" Click="FindIdTeacherClick">
                 <Run Text="Поиск по id" FontSize="16"/>
             </Button>
-            <Button  x:Name="FindSurnameTeacher" Visibility="Hidden"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="196,314,0,0" VerticalAlignment="Top" Width="142" Click="FindSurnameTeacherClick">
+            <Button  x:Name="FindSurnameTeacher" Visibility="Hidden"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="196,314,0,0" VerticalAlignment="Top" Width="142" Click="FindSurnameTeacherClick">
                 <Run Text="Поиск по фамилии" FontSize="16"/>
             </Button>
-            <Button Visibility="Hidden" x:Name="UpdateTeacher"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="408,432,0,0" VerticalAlignment="Top" Width="221" Click="UpdateTeacherClick">
+            <Button Visibility="Hidden" x:Name="UpdateTeacher"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="408,432,0,0" VerticalAlignment="Top" Width="221" Click="UpdateTeacherClick">
                 <Run Text="Обновить информацию" FontSize="16"/>
             </Button>
-            <Button  x:Name="ChangeTeacher" Visibility="Hidden"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="33" Margin="63,432,0,0" VerticalAlignment="Top" Width="221" Click="ChangeTeacherClick">
+            <Button  x:Name="ChangeTeacher" Visibility="Hidden"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="33" Margin="63,432,0,0" VerticalAlignment="Top" Width="221" Click="ChangeTeacherClick">
                 <Run Text="Перейти к редактированию" FontSize="16"/>
             </Button>
         </Grid>

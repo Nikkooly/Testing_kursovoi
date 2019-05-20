@@ -33,8 +33,8 @@ namespace WpfApp1
            
         private void Create_test_click(object sender, RoutedEventArgs e)
         {
-            CheckTest check = new CheckTest();
-            check.Show();
+            NewTest nw = new NewTest();
+            nw.Show();
         }
 
         private void Close_click_teacher(object sender, RoutedEventArgs e)

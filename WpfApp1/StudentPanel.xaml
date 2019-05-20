@@ -18,10 +18,10 @@
                     <Image Source="resources\close.png" Margin="0,0,0,0" />
                 </StackPanel>
             </Button>
-            <Button HorizontalAlignment="Left" Foreground="MediumPurple" BorderBrush="AliceBlue" Background="AliceBlue" Height="40" Margin="133,45,0,0" VerticalAlignment="Top" Width="187" Click="PassTestclick">
+            <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="40" Margin="133,45,0,0" VerticalAlignment="Top" Width="187" Click="PassTestclick">
                 <Run Text="Пройти тест" FontSize="18"/>
             </Button>
-            <Button HorizontalAlignment="Left" Foreground="MediumPurple" BorderBrush="AliceBlue" Background="AliceBlue" Height="40" Margin="133,103,0,0" VerticalAlignment="Top" Width="187" Click="CheckResultTestclick">
+            <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="40" Margin="133,103,0,0" VerticalAlignment="Top" Width="187" Click="CheckResultTestclick">
                 <Run Text="Узнать результаты" FontSize="18"/>
             </Button>
             <Line X1="442.5" X2="0" Y1="170" Y2="170" Stroke="LightGray"/>
@@ -29,10 +29,10 @@
             <Grid Margin="0,0,0,0" x:Name="Results" Visibility="Hidden" >
                 <TextBlock Text="Результаты тестов" FontSize="18" FontWeight="Bold" Margin="152,173,126.4,338.8"/>
                 <Label x:Name="NameOfTestLabel" Content="Имя теста:" FontSize="18" Margin="10,219,329.4,286.8"/>
-                <ComboBox x:Name="NameOfTest" Height="20" Margin="152,229,18.4,291.8"  SelectionChanged="NameOfTest_SelectionChanged"/>
-                <ComboBox x:Name="DateOfTest" Height="20" Margin="152,264,18.4,256.8" SelectionChanged="DateOfTest_SelectionChanged"/>
+                <ComboBox x:Name="NameOfTest" Height="30" Margin="152,219,18.4,291.8"  SelectionChanged="NameOfTest_SelectionChanged"/>
+                <ComboBox x:Name="DateOfTest" Height="30" Margin="152,254,18.4,256.8" SelectionChanged="DateOfTest_SelectionChanged"/>
                 <Label x:Name="DateOfTestLabel" Content="Дата:" FontSize="18" Margin="10,254,329.4,254.8"/>
-                <Button x:Name="ShowClick" Foreground="MediumPurple"  HorizontalAlignment="Left" BorderBrush="AliceBlue" Background="AliceBlue" Height="30" Margin="152,297,0,0" VerticalAlignment="Top" Width="164" Click="Showclick">
+                <Button x:Name="ShowClick"  HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="30" Margin="152,297,0,0" VerticalAlignment="Top" Width="164" Click="Showclick">
                     <Run Text="Показать результат" FontSize="14"/>
                 </Button>
                 <Grid x:Name="ResultOfTest">

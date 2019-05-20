@@ -15,10 +15,10 @@
             <TextBlock  Margin="13,70,-13.6,89.4" TextAlignment="Center" FontFamily="Arial" FontSize="11" >
                <Run Text="Вы действительно хотите выйти из программы?"/>
             </TextBlock>
-            <Button HorizontalAlignment="Left"  Foreground="MediumPurple" Click="Accept_Click" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="17,119,0,0" VerticalAlignment="Top" Width="139">
+            <Button HorizontalAlignment="Left"   Click="Accept_Click" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="17,119,0,0" VerticalAlignment="Top" Width="139">
                 <Run Text="Да" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left" Click="No_click"  Foreground="MediumPurple" BorderBrush="AliceBlue" Background="AliceBlue" Height="37" Margin="176,119,0,0" VerticalAlignment="Top" Width="139" >
+            <Button HorizontalAlignment="Left" Click="No_click"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="176,119,0,0" VerticalAlignment="Top" Width="139" >
                 <Run Text="Нет" FontSize="16"/>
             </Button>
             <Image Source="resources\quest.png" Margin="17,65,282.4,86.4" RenderTransformOrigin="0.434,0.495"/>
