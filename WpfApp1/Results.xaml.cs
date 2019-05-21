@@ -489,6 +489,7 @@ namespace WpfApp1
                     cm1.CommandText = $"UPDATE results SET result='{Results}' WHERE unique_id='{unique_id}'";
                     cm1.ExecuteNonQuery();
                     MessageBox.Show("Успешно обновлено");
+                    CheckAnswers.Visibility = Visibility.Hidden;
                 }
                 catch (Exception ex)
                 {

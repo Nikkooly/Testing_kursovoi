@@ -57,7 +57,8 @@ namespace WpfApp1
 
         private void Show_tests_click(object sender, RoutedEventArgs e)
         {
-
+            ShowTests show = new ShowTests();
+            show.Show();
         }
 
         private void Show_questions_click(object sender, RoutedEventArgs e)
