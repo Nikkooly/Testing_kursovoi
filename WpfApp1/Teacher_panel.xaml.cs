@@ -72,5 +72,11 @@ namespace WpfApp1
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Results rez = new Results();
+            rez.Show();
+        }
     }
 }

@@ -27,7 +27,7 @@
             <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="98,273,0,0" VerticalAlignment="Top" Width="197" Click="Show_questions_click">
                 <Run Text="Посмотреть вопросы" FontSize="16"/>
             </Button>
-            <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="98,147,0,0" VerticalAlignment="Top" Width="197">
+            <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="37" Margin="98,147,0,0" VerticalAlignment="Top" Width="197" Click="Button_Click">
                 <Run Text="Результаты тестов" FontSize="16"/>
             </Button>
             <Button x:Name="label1"  Content="Преподаватель " Background="White" Foreground="LightGray" BorderBrush="White" FontSize="13" HorizontalAlignment="Center" Margin="125,438,128,10.4" Click="Teacher_name_Click" Width="127" />

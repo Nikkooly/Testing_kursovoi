@@ -1,0 +1,67 @@
+﻿<Window x:Class="WpfApp1.Results"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Results" Height="700" Width="600" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid Background="AliceBlue">
+        <Grid Background="White" Margin="10,10,10,9.6">
+            <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="16" Margin="37,0,0,645.4" RenderTransformOrigin="0.5,0.5">
+               <Run Text="Результаты"/>
+            </TextBlock>
+            <Button  x:Name="close_btn_show_questions"  BorderThickness="0" HorizontalAlignment="Left" Height="28" Margin="552,0,0,652.4" VerticalAlignment="Bottom" Click="Close_click_questionshow" Width="28">
+                <Button.Background>
+                    <ImageBrush ImageSource="resources\close.png"
+                            Stretch="Uniform" />
+                </Button.Background>
+            </Button>
+            <Button  x:Name="back_btn_entry" HorizontalAlignment="Left" BorderThickness="0"  BorderBrush="White" Height="27" Margin="0,0,0,0" VerticalAlignment="Top" Width="27" Click="Back_click_entry">
+                <Button.Background>
+                    <ImageBrush ImageSource="resources\back.png"/>
+                </Button.Background>
+            </Button>
+            <Grid x:Name="Info">
+                <DataGrid  ItemsSource="{Binding}"  x:Name="User_Grid" Background="AliceBlue" HorizontalAlignment="Left" Height="173" Margin="0,38,0,0" VerticalAlignment="Top" Width="580"/>
+                <Button HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="191,216,0,0" VerticalAlignment="Top" Width="218" Click="ShowResultClick">
+                    <Run Text="Показать все результаты" FontSize="16"/>
+                </Button>
+                <ComboBox x:Name="TestName" Margin="268,258,143,387" VerticalContentAlignment="Bottom"  Height="35"/>
+                <ComboBox x:Name="SurnameName" Margin="268,296,143,347" VerticalContentAlignment="Bottom"  Height="37"/>
+                <Label Content="Поиск по результатов по имени теста:" HorizontalAlignment="Left" Margin="0,269,0,372" FontSize="14" FontFamily="Arial" />
+                <Label Content="Поиск по результатов по фамилии:" HorizontalAlignment="Left" Margin="0,309,0,333" FontSize="14" FontFamily="Arial" />
+                <Button HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="477,262,0,0" VerticalAlignment="Top" Width="81" Click="FindNameResultClick">
+                    <Run Text="Поиск" FontSize="16"/>
+                </Button>
+                <Button HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="477,302,0,0" VerticalAlignment="Top" Width="81" Click="FindSurnameResultClick">
+                    <Run Text="Поиск" FontSize="16"/>
+                </Button>
+                <Button HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="155,355,0,0" VerticalAlignment="Top" Width="282" Click="CheckClick">
+                    <Run Text="Проверить ответы тестируемых" FontSize="16"/>
+                </Button>
+            </Grid>
+            <Line X1="580" X2="0" Y1="400" Y2="400" Stroke="LightGray"/>
+            <Grid x:Name="StudentsAnswers" Visibility="Hidden">
+                <Label Content="Поиск:" HorizontalAlignment="Left" Margin="0,460,0,182" FontSize="14" FontFamily="Arial" />
+                <Label Content="Имя теста:" HorizontalAlignment="Left" Margin="122,400,0,242" FontSize="14" FontFamily="Arial" />
+                <Label Content="Фамилия тестируемого:" HorizontalAlignment="Left" Margin="327,400,0,242" FontSize="14" FontFamily="Arial" />
+                <ComboBox x:Name="Name" Margin="82,438,329,207" VerticalContentAlignment="Bottom" SelectionChanged="Name_SelectionChanged" Height="35"/>
+                <ComboBox x:Name="Surname" Margin="327,438,84,207" VerticalContentAlignment="Bottom" SelectionChanged="Surname_SelectionChanged" Height="35"/>
+                <Button HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="250,560,0,0" VerticalAlignment="Top" Width="81" Click="FindAnswersClick">
+                    <Run Text="Поиск" FontSize="16"/>
+                </Button>
+                <Label x:Name="InfoStudent" HorizontalAlignment="Center" Margin="0,596,10,46" FontSize="14" FontFamily="Arial" Width="570" />
+                <Label Content="Имя тестируемого:" HorizontalAlignment="Left" Margin="96,478,0,164" FontSize="14" FontFamily="Arial" />
+                <Label Content="Дата:" HorizontalAlignment="Left" Margin="391,478,0,164" FontSize="14" FontFamily="Arial" />
+                <ComboBox x:Name="NameStudent" Margin="82,505,329,140" VerticalContentAlignment="Bottom" SelectionChanged="NameStudent_SelectionChanged" Height="35"/>
+                <ComboBox x:Name="Date" Margin="327,505,84,140" VerticalContentAlignment="Bottom" SelectionChanged="Name_SelectionChanged" Height="35"/>
+                <Button HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="182,639,0,0" VerticalAlignment="Top" Width="225" Click="ChangeAnswersClick" RenderTransformOrigin="0.481,1.852">
+                    <Run Text="Начать редактирование" FontSize="16"/>
+                </Button>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>
