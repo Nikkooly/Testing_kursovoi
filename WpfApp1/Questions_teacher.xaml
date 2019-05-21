@@ -73,7 +73,7 @@
             <Button HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="34" Margin="207,196,0,0" VerticalAlignment="Top" Width="167" Click="WithoutAnswers_click">
                 <Run Text="Без ответов" FontSize="16"/>
             </Button>
-            <ComboBox x:Name="Combobox1" Visibility="Hidden" HorizontalAlignment="Left"  Margin="116,443,0,0" VerticalAlignment="Top"  Width="167"  Height="22">
+            <ComboBox x:Name="Combobox1" Visibility="Hidden" HorizontalAlignment="Left"  Margin="116,437,0,0" VerticalAlignment="Top"  Width="167"  Height="28">
                 <ComboBoxItem x:Name="comboboxitem1" Content="Ответ 1"></ComboBoxItem>
                 <ComboBoxItem x:Name="comboboxitem2"  Content="Ответ 2"></ComboBoxItem>
                 <ComboBoxItem x:Name="comboboxitem3" Content="Ответ 3"></ComboBoxItem>
