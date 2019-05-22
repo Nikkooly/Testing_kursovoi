@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-       Title="Results" Height="500" Width="600" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
+       Title="Results" Height="400" Width="600" ResizeMode="NoResize" HorizontalAlignment="Center" x:Name="MyWin" 
         WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid Background="AliceBlue">
         <Grid Background="White" Margin="10,10,10,9.6">
             <TextBlock Padding="5" TextAlignment="Center" FontFamily="Arial" FontWeight="Bold" FontSize="16" Margin="37,0,0,0" RenderTransformOrigin="0.5,0.5">
-               <Run Text="Просмотр теста"/>
+               <Run Text="Просмотр тестов"/>
             </TextBlock>
             <Button  x:Name="close_btn_show_questions"  BorderThickness="0" Height="28" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Close_click_questionshow" Width="28">
                 <Button.Background>
@@ -26,19 +26,21 @@
             <Grid>
                 <DataGrid  ItemsSource="{Binding}"  x:Name="User_Grid" Background="AliceBlue" HorizontalAlignment="Left" Height="173" Margin="0,38,0,0" VerticalAlignment="Top" Width="580"/>
                 <Button HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="191,216,0,0" VerticalAlignment="Top" Width="218" Click="ShowResultClick">
-                    <Run Text="Показать все результаты" FontSize="16"/>
+                    <Run Text="Показать все тесты" FontSize="16"/>
                 </Button>
-                <ComboBox x:Name="TestName" Margin="268,265,143,180" VerticalContentAlignment="Bottom"  Height="35"/>
-                <ComboBox x:Name="SurnameName" Margin="268,305,143,138" VerticalContentAlignment="Bottom"  Height="37"/>
-                <Label Content="Поиск теста по имени:" HorizontalAlignment="Left" Margin="0,269,0,176" FontSize="14" FontFamily="Arial" />
-                <Label Content="Поиск теста по предмету:" HorizontalAlignment="Left" Margin="0,309,0,138" FontSize="14" FontFamily="Arial" />
+                <ComboBox x:Name="TestName" Margin="268,258,143,87.8" VerticalContentAlignment="Bottom"  Height="35"/>
+                <ComboBox x:Name="SurnameName" Margin="268,303,143,40.8" VerticalContentAlignment="Bottom"  Height="37"/>
+                <Label Content="Поиск теста по имени:" HorizontalAlignment="Left" Margin="0,269,0,87.8" FontSize="14" FontFamily="Arial" />
+                <Label Content="Поиск теста по предмету:" HorizontalAlignment="Left" Margin="0,309,0,40.8" FontSize="14" FontFamily="Arial" />
                 <Button HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="477,262,0,0" VerticalAlignment="Top" Width="81" Click="FindNameResultClick">
                     <Run Text="Поиск" FontSize="16"/>
                 </Button>
                 <Button HorizontalAlignment="Left"  Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="477,309,0,0" VerticalAlignment="Top" Width="81" Click="FindSubjectResultClick">
                     <Run Text="Поиск" FontSize="16"/>
                 </Button>
+                <Grid x:Name="ChangeGrid"/>
             </Grid>
+            
         </Grid>
     </Grid>
 </Window>

@@ -28,8 +28,8 @@
             <Label Content="Предмет:" x:Name="SubjectLabel" FontSize="16" Margin="16,62,365,483.4" />
             <Label Content="Тема теста:" x:Name="TestThemeLabel" FontSize="16" Margin="16,92,365,458.4" />
             <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="34" Margin="181,27,0,0" VerticalAlignment="Top" Width="256"  />
-            <TextBox x:Name="SubjectBox" HorizontalAlignment="Left" Height="29" Margin="181,62,0,0" VerticalAlignment="Top" Width="256"  />
-            <TextBox x:Name="ThemeBox" HorizontalAlignment="Left" Height="29" Margin="181,92,0,0" VerticalAlignment="Top" Width="256"   />
+            <ComboBox x:Name="SubjectBox" HorizontalAlignment="Left" Height="29" Margin="181,62,0,0" VerticalAlignment="Top" Width="256" SelectionChanged="SubjectBox_SelectionChanged" />
+            <ComboBox x:Name="ThemeBox" HorizontalAlignment="Left" Height="29" Margin="181,92,0,0" VerticalAlignment="Top" Width="256"   />
             <Button HorizontalAlignment="Left" Foreground="White" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" Height="31" Margin="156,126,0,0" VerticalAlignment="Top" Width="168" Click="CheckTestclick">
                 <Run Text="Проверка" FontSize="18"/>
             </Button>
@@ -59,26 +59,26 @@
                 <RadioButton  x:Name="MixButton" GroupName="TypeQuestions" Content="Смешанный"  IsChecked="True" Margin="197,254,116,306.4" FontSize="14" />
                 <RadioButton  x:Name="WithAnswersButton" GroupName="TypeQuestions"  Content="С вариантами ответов"  Margin="197,279,116,280.4" FontSize="14" />
                 <RadioButton  x:Name="WithoutAnswersButton" GroupName="TypeQuestions"  Content="Без вариантов ответов"  Margin="197,305,105,256.4" FontSize="14" />
-                <Button  x:Name="Up" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,376.4" VerticalAlignment="Bottom" Click="Upclick" Width="23">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="resources\strelka.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
-                    </StackPanel>
+                <Button  x:Name="Up" BorderThickness="0" HorizontalAlignment="Left" Height="20" Margin="271,0,0,376.8" VerticalAlignment="Bottom" Click="Upclick" Width="20">
+                    <Button.Background>
+                        <ImageBrush ImageSource="resources\strelka.png"/>
+                    </Button.Background>
                 </Button>
                 <TextBox x:Name="InfoBox" Background="AliceBlue" BorderBrush="White" HorizontalAlignment="Left" Height="109" Margin="24,415,0,0" VerticalAlignment="Top" Width="435"   />
-                <Button  x:Name="Down" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,356.4" VerticalAlignment="Bottom" Click="Downclick" Width="23">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="resources\strelka1.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
-                    </StackPanel>
+                <Button  x:Name="Down" BorderThickness="0" HorizontalAlignment="Left" Height="20" Margin="271,0,0,353.8" VerticalAlignment="Bottom" Click="Downclick" Width="20">
+                    <Button.Background>
+                        <ImageBrush ImageSource="resources\strelka1.png"/>
+                    </Button.Background>
                 </Button>
-                <Button  x:Name="UpNumber" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,225.4" VerticalAlignment="Bottom" Click="UpNumberclick" Width="23">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="resources\strelka.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
-                    </StackPanel>
+                <Button  x:Name="UpNumber" BorderThickness="0" HorizontalAlignment="Left" Height="20" Margin="271,0,0,225.4" VerticalAlignment="Bottom" Click="UpNumberclick" Width="20">
+                    <Button.Background>
+                        <ImageBrush ImageSource="resources\strelka.png"/>
+                    </Button.Background>
                 </Button>
-                <Button  x:Name="DownNumber" Background="White"   BorderBrush="White" HorizontalAlignment="Left" Height="20" Margin="271,0,0,205.4" VerticalAlignment="Bottom" Click="DownNumberclick" Width="23">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="resources\strelka1.png" Margin="0,0,0,0" Height="16" Width="19" RenderTransformOrigin="1.238,0.227" />
-                    </StackPanel>
+                <Button  x:Name="DownNumber" BorderThickness="0" HorizontalAlignment="Left" Height="20" Margin="271,0,0,202.8" VerticalAlignment="Bottom" Click="DownNumberclick" Width="20">
+                    <Button.Background>
+                        <ImageBrush ImageSource="resources\strelka1.png"/>
+                    </Button.Background>
                 </Button>
             </Grid>
         </Grid>

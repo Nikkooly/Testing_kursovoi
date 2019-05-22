@@ -26,6 +26,7 @@ namespace WpfApp1
             InitializeComponent();
             TimeBox.Text = "1";
             NumberBox.Text = "1";
+            SubjectsCheck();
         }
 
         private void Back_click_question(object sender, RoutedEventArgs e)
@@ -261,9 +262,6 @@ namespace WpfApp1
                                 }
                                 else
                                 {
-                                    InfoBox.Clear();
-                                    ThemeBox.Clear();
-                                    SubjectBox.Clear();
                                     MessageBox.Show("такого предмета не существует");
                                 }
                             }
@@ -356,9 +354,6 @@ namespace WpfApp1
                                 }
                                 else
                                 {
-                                    InfoBox.Clear();
-                                    ThemeBox.Clear();
-                                    SubjectBox.Clear();
                                     MessageBox.Show("такого предмета не существует");
                                 }
                             }
@@ -450,9 +445,7 @@ namespace WpfApp1
                                     }
                                     else
                                     {
-                                        InfoBox.Clear();
-                                        ThemeBox.Clear();
-                                        SubjectBox.Clear();
+                                        
                                         MessageBox.Show("такого предмета не существует");
                                     }
                                 }
@@ -529,22 +522,7 @@ namespace WpfApp1
                     }
                 }
                 
-            }
-            //if (count < k)
-            //{
-            //    if (countWith < k)
-            //    {
-            //        if (countWithout < k)
-            //        {
-            //            MessageBox.Show("Успешно добавлено");
-            //        }
-            //    }
-            //}
-            //else {
-            //    NumberBox.Clear();
-            //    NumberBox.Text = "1";
-            //    MessageBox.Show("Ошибка!");
-            //}
+            }           
         }
         //-----------------------------проверка на предмет тему и название теста----------------------------------------------//
         public static int results;
@@ -560,6 +538,7 @@ namespace WpfApp1
         public static string s = "";
         private void CheckTestclick(object sender, RoutedEventArgs e)
         {
+            CheckName();
             if (SubjectBox.Text == "" || ThemeBox.Text == "" || NameBox.Text=="")
             {
                 MessageBox.Show("заполните все поля");
@@ -648,9 +627,7 @@ namespace WpfApp1
                         object k = reader.GetValue(2);
                         count = Convert.ToInt32(k);
                     }
-                    reader.Close();
-
-                        
+                    reader.Close();                        
                     }
 
                 catch (Exception ex)
@@ -662,52 +639,100 @@ namespace WpfApp1
                     reader.Close();
                 }
             }
-            string sqlName = $"select name_of_test from tests where name_of_test='{NameBox.Text}'";
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-                    {
-                        connection.Open();
-                        SqlCommand command = new SqlCommand(sqlName, connection);
-                        SqlDataReader reader = command.ExecuteReader();
-                        try
-                        {
-
-                            while (reader.Read())
-                            {
-                            object s = reader.GetValue(0);
-                            check = (string)s;                               
-                            }
-                            reader.Close();                                                                       
-                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                        finally
-                        {
-                            reader.Close();
-                        }
-                    }
-                if (subject_id == 0 && theme == "")
-                {
-                    MessageBox.Show("Ошибка. Проверьте правильность значений" + "\n" + " введенных в поле предмет и тема!");
-
-                   
-                }
-                else
-                {
-                    if (check == NameBox.Text)
-                    {
-                        MessageBox.Show("Ошибка. Тест с таким именем уже существует уже существует!");
-
-                    }
-                   else
-                    {
-                        MessageBox.Show("Количество вопросов по данной теме : " + count.ToString());
-                        Test.Visibility = Visibility.Visible;
-                    }
-                }
+            
+                
 
             }
+        }
+        private void CheckName()
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlName = $"select name_of_test from tests where name_of_test='{NameBox.Text}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlName, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+
+                    while (reader.Read())
+                    {
+                        if (reader.GetValue(0).Equals(NameBox.Text))
+                        {
+                            MessageBox.Show("Тест с таким именем уже существует");
+                            Test.Visibility = Visibility.Hidden;
+                        }
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+        }
+        private void SubjectsCheck()
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlSubject = $"select distinct s.name from subjects as s inner join questions as q on s.id=q.subject_id where q.teacher_id='{id_teacher}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlSubject, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        SubjectBox.Items.Add((string)reader.GetValue(0));
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+        }
+        private void ThemeCheck()
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlSubject = $"select distinct q.theme from subjects as s inner join questions as q on s.id=q.subject_id where q.teacher_id='{id_teacher}' and s.name='{SubjectBox.SelectedValue.ToString()}'";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlSubject, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        ThemeBox.Items.Add((string)reader.GetValue(0));
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+        }
+        private void SubjectBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ThemeCheck();
         }
     }
 }
