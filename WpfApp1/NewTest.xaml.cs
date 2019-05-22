@@ -190,31 +190,24 @@ namespace WpfApp1
         public static string result;
         public static int id_questions;
         public static int tests_id;
-
+        public static int k = 0;
+        private void CheckTime()
+        {            
+            if (Convert.ToInt32(TimeBox.Text) > 500)
+            {
+                k = 1; 
+            }
+        }
         private void CreateTestclick(object sender, RoutedEventArgs e)
         {
-            int k = Convert.ToInt32(NumberBox.Text);
-            if (Convert.ToInt32(TimeBox.Text) > 500)
+            CheckTime();
+            if (k == 1)
             {
                 MessageBox.Show("Не более 500 минут");
                 TimeBox.Text = "1";
-
-                if (Convert.ToInt32(NumberBox.Text) > count)
-                {
-                    MessageBox.Show("В базе данных всего " + count + " вопросов");
-                    NumberBox.Text = "1";
-                }
-                else
-                {
-                    if (SubjectBox.Text == "" || ThemeBox.Text == "" || NameBox.Text == "")
-                    {
-                        MessageBox.Show("Заполните все поля");
-                    }
-                }
             }
             else
             {
-
                 string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
                 string sqlExpression = $"select q.id,count(a.id)" +
                     $" from questions as q inner join answers as a " +
@@ -521,8 +514,11 @@ namespace WpfApp1
                         MessageBox.Show("Ни одного вопроса по теме " + theme + " без вариантов ответов не найдено");
                     }
                 }
-
+                MessageBox.Show("Успешно создан");
+                this.Close();
             }
+            k = 0;          
+
         }
         //-----------------------------проверка на предмет тему и название теста----------------------------------------------//
         public static int results;

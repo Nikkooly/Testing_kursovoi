@@ -35,7 +35,7 @@
             </Button>
             <Line X1="480" X2="0" Y1="170" Y2="170" Stroke="LightGray"/>
 
-            <Grid x:Name="Test" Visibility="Hidden">
+            <Grid x:Name="Test"  Visibility="Hidden">
                 <Label Content="Время теста:" x:Name="TestTimeLabel" FontSize="16" Margin="16,184,361,364.4" />
                 <Label Content="минут" x:Name="TimeLabel" FontSize="16" Margin="299,188,125,361.4" />
                 <Label Content="Количество вопросов:" x:Name="NumberOfQuestionsLabel" FontSize="16" Margin="18,335,288,210.4" RenderTransformOrigin="0.5,0.5" >
