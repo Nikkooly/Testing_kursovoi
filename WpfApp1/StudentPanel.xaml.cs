@@ -116,6 +116,7 @@ namespace WpfApp1
         public static string name = "";
         private void NameOfTest_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DateOfTest.Items.Clear();
             name = NameOfTest.SelectedValue.ToString();
             string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
             string sqlDate = $"select r.date,t.name_of_test from users_tests as u inner join results as r on u.id = r.unique_id inner join tests as t on u.test_id=t.id where student_id = '{id_student}'";

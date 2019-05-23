@@ -26,27 +26,23 @@ namespace WpfApp1
     
     public partial class Registration : Window
     {
-     // SqlConnection reg = new SqlConnection(@"Data Source=DESKTOP-15P21ID; Initial Catalog=kursovoi; Integrated Sequrity=True;");
         public Registration()
         {
             InitializeComponent();
             RoleCombo();
             FacultyCombo();
         }
-
         private void Close_click_registration(object sender, RoutedEventArgs e)
         {
             this.Close();
            
         }
-
         private void Back_click_registration(object sender, RoutedEventArgs e)
         {
             MainWindow mw = new MainWindow();
             mw.Show();
             this.Close();
         }
-
         private void Registration_click_reg(object sender, RoutedEventArgs e)
         {
             string pass=password.Password;
@@ -281,10 +277,8 @@ namespace WpfApp1
             email = TextBox4.Text;
         }
         public static string faculty;
-
         public static string loginCheck = "";
         public static string role;
-
         private void FacultyChanged(object sender, SelectionChangedEventArgs e)
         {
             faculty = FacultyCombobox.SelectedItem.ToString();

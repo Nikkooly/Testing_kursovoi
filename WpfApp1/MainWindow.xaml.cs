@@ -32,7 +32,6 @@ namespace WpfApp1
         {
             InitializeComponent();
             BlurTrigger trigger = new BlurTrigger(Login_button);
-            TextBox1.Text = "romaKsis";
         }
         #region Events
         private void Entry_Click(object sender, MouseButtonEventArgs e)

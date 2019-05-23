@@ -21,7 +21,7 @@
                 <Label Content="Регистрацию" Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Semibold" Foreground="White"/>
             </Grid>
             <Label Content="Впервые тут? Пройдите" HorizontalAlignment="Left" Margin="23,208,0,0" VerticalAlignment="Top" Height="29" Foreground="White" Width="133" FontFamily="Segoe UI Light"/>
-            <TextBox x:Name="TextBox1" Height="28" Margin="25,43,24.6,0" VerticalAlignment="Top"  />
+            <TextBox x:Name="TextBox1"  Height="28" Margin="25,43,24.6,0" VerticalAlignment="Top"  />
             <PasswordBox x:Name="passwords" HorizontalAlignment="Left" Height="28" Margin="25,101,0,0" VerticalAlignment="Top" Width="208"  />
             <Button  x:Name="forgotpassword_btn_entry" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}"  Height="21" Margin="141,130,0,0" VerticalAlignment="Top" Width="102" Click="Forgot_click_entry" Foreground="White" Cursor="Hand" FontFamily="Segoe UI Light">
                 <Run Text="Забыли пароль? " FontSize="9" FontStyle="Oblique"/>

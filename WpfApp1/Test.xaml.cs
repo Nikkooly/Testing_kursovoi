@@ -493,10 +493,7 @@ namespace WpfApp1
                             {
                                 id_subj = Convert.ToInt32(reader.GetValue(0));
                             }
-                            else
-                            {
-                                MessageBox.Show("ошибка ");
-                            }
+                           
                         }
 
                     }
@@ -522,10 +519,7 @@ namespace WpfApp1
                             {
                                 NameList.Items.Add(reader.GetValue(0));
                             }
-                            else
-                            {
-                                MessageBox.Show("Ошибка! По данному предмету нету тестов");
-                            }
+                           
                         }
                     }
                     catch (Exception ex)
