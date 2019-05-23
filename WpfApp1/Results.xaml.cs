@@ -22,7 +22,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Results : Window
     {
-        public static int id_teacher = entry.identry;
+        public static int id_teacher = MainWindow.identry;
         public Results()
         {
             InitializeComponent();

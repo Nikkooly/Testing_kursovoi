@@ -23,8 +23,8 @@ namespace WpfApp1
     public partial class Teacher_panel : Window
     {
         //entry ent = new entry();
-        public static string teachername = entry.people;
-        public static int id_teacher = entry.identry;
+        public static string teachername = MainWindow.people;
+        public static int id_teacher = MainWindow.identry;
         public Teacher_panel()
         {            
             

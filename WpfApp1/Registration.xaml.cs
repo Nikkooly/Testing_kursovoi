@@ -170,7 +170,7 @@ namespace WpfApp1
                                                 cm1.CommandText = $"INSERT INTO users(first_name, middle_name, login, email, password, faculty_id,role_id) VALUES ('{surname}', '{name}','{login}','{email}','{pass}', '{fak}', '{rol}');";
                                                 cm1.ExecuteNonQuery();
                                                 MessageBox.Show("Вы успешно зарегестрированы!");
-                                                entry mn = new entry();
+                                                MainWindow mn = new MainWindow();
                                                 mn.Show();
                                                 this.Close();
                                             }

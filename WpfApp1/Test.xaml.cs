@@ -24,7 +24,7 @@ namespace WpfApp1
     public partial class Test : Window
     {
         
-        public static int id_student = entry.identry;
+        public static int id_student = MainWindow.identry;
         private DispatcherTimer _timer;
 
         public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(

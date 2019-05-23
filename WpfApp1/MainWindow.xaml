@@ -5,52 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="TestingStudent" Height="350" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" HorizontalAlignment="Center">
+        Title="TestingStudent" Height="274" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" HorizontalAlignment="Center">
 
-    <Grid>
-        <Image Source="resources\students.jpg"  Margin="0,-90,0,0" Visibility="Visible" Height="200" Grid.Row="1" Grid.Column="0" />
-        <TextBlock Margin="240,220,194.6,69.8" FontFamily="Arial Italic" FontSize="18" FontWeight="Bold">
-            <Run Text="В знаниях сила!"/>
-        </TextBlock>
-        <Button  Content="Вход" Click="Entry_Click" Height="32" Width="150" Margin="-350,240,0,0" Background="WhiteSmoke" FontWeight="Bold" >
-            <Button.Style>
-                <Style TargetType="Button" >
-                    <Style.Triggers>
-                        <Trigger Property="Control.IsFocused" Value="True">
-                            <Setter Property="Control.Foreground" Value="DarkRed" />
-                            <Setter Property="BorderBrush" Value="Black" />
-                        </Trigger>
-                        <Trigger Property="Control.IsMouseOver" Value="True">
-                            <Setter Property="Control.Foreground" Value="LightYellow" />
-                            <Setter Property="Control.FontWeight" Value="Bold" />
-                            <Setter Property="BorderBrush" Value="Black" />
-                        </Trigger>
-                        <Trigger Property="Button.IsPressed" Value="True">
-                            <Setter Property="Control.Foreground" Value="Red" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button  Content="Регистрация" Click="Registration_Click" Height="32" Width="150" Margin="350,240,0,0" Background="WhiteSmoke" FontWeight="Bold">
-            <Button.Style>
-                <Style TargetType="Button" >
-                    <Style.Triggers>
-                        <Trigger Property="Control.IsFocused" Value="True">
-                            <Setter Property="Control.Foreground" Value="DarkRed" />
-                            <Setter Property="BorderBrush" Value="Black" />
-                        </Trigger>
-                        <Trigger Property="Control.IsMouseOver" Value="True">
-                            <Setter Property="Control.Foreground" Value="LightYellow" />
-                            <Setter Property="Control.FontWeight" Value="Bold" />
-                            <Setter Property="BorderBrush" Value="Black" />
-                        </Trigger>
-                        <Trigger Property="Button.IsPressed" Value="True">
-                            <Setter Property="Control.Foreground" Value="Red" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+    <Grid Background="#FFAE4BD3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="56*"/>
+            <ColumnDefinition Width="43*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Background="DeepSkyBlue" Panel.ZIndex="1">
+            <Grid x:Name="Login_button" Margin="80,166,80,0" MouseUp="Entry_Click" Height="32" VerticalAlignment="Top" Cursor="Hand">
+                <Rectangle Fill="#FFF4F4F5" RadiusY="10.422" RadiusX="10.422"/>
+                <Label Content="Войти" Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Light" FontSize="16" Foreground="#FFAE4BD3"/>
+            </Grid>
+            <Grid x:Name="Login_button_Copy" HorizontalAlignment="Left" Margin="150,208,0,0" MouseUp="Registration_Click" VerticalAlignment="Top" Cursor="Hand">
+                <Label Content="Регистрацию" Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Semibold" Foreground="White"/>
+            </Grid>
+            <Label Content="Впервые тут? Пройдите" HorizontalAlignment="Left" Margin="23,208,0,0" VerticalAlignment="Top" Height="29" Foreground="White" Width="133" FontFamily="Segoe UI Light"/>
+            <TextBox x:Name="TextBox1" Height="28" Margin="25,43,24.6,0" VerticalAlignment="Top"  />
+            <PasswordBox x:Name="passwords" HorizontalAlignment="Left" Height="28" Margin="25,101,0,0" VerticalAlignment="Top" Width="208"  />
+            <Button  x:Name="forgotpassword_btn_entry" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}"  Height="21" Margin="141,130,0,0" VerticalAlignment="Top" Width="102" Click="Forgot_click_entry" Foreground="White" Cursor="Hand" FontFamily="Segoe UI Light">
+                <Run Text="Забыли пароль? " FontSize="9" FontStyle="Oblique"/>
+            </Button>
+            <Label Content="Введите пароль" HorizontalAlignment="Left" Margin="25,79,0,0" VerticalAlignment="Top" Height="28" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Light" Foreground="White"/>
+            <Label Content="Введите логин" HorizontalAlignment="Left" Margin="25,22,0,0" VerticalAlignment="Top" Height="27" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Segoe UI Light" Foreground="White"/>
+        </Grid>
+        <Image Source="resources\students.jpg"  Margin="-20,0,241,0" Visibility="Visible" Grid.Column="0" VerticalAlignment="Top" Height="249" Grid.ColumnSpan="2" />
     </Grid>
 </Window>

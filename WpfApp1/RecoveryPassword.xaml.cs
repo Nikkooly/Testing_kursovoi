@@ -13,10 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net;
 using System.IO;
-using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Web;
-using System.Net;
 using System.Net.Mime;
 using System.Data.SqlClient;
 
@@ -53,63 +51,55 @@ namespace WpfApp1
 
         private void Entry_click_forgotpassword(object sender, RoutedEventArgs e)
         {
-            entry entr = new entry();
-            entr.Show();
+            MainWindow main = new MainWindow();
+            main.Show();
             this.Close();
         }       
         private void recover_click(object sender, TextChangedEventArgs e)
         {
 
         }
-        public static string log;
-        public static string pass;
+        public static string log="";
+        public static string pass="";
+        private void Check()
+        {
+            string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
+            string sqlexp = $"SELECT u.login,u.password,u.email from users as u where u.email='{TextBox1.Text}'";
+            using (SqlConnection reg = new SqlConnection(ConnectionString))
+            {
+                reg.Open();
+                SqlCommand command = new SqlCommand(sqlexp, reg);
+                SqlDataReader reader = command.ExecuteReader();
+                SqlCommand cm1 = reg.CreateCommand();
+
+
+                while (reader.Read())
+                {
+                    object x = reader.GetValue(0);
+                    object z = reader.GetValue(1);
+                    log = (string)x;
+                    pass = (string)z;
+                }
+                reader.Close();
+            }
+        }
         private void btn_recovery(object sender, RoutedEventArgs e)
         {
-            try
+            Check();
+            if (log == "" && pass=="")
             {
-                string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                string sqlexp = "SELECT u.login,u.password,u.email from users as u";
-                using (SqlConnection reg = new SqlConnection(ConnectionString))
-                {
-                    reg.Open();
-                    SqlCommand command = new SqlCommand(sqlexp, reg);
-                    SqlDataReader reader = command.ExecuteReader();
-                    SqlCommand cm1 = reg.CreateCommand();
-                    bool b = false;
-
-
-                    while (reader.Read())
-                    {
-                        if (reader.GetValue(2).Equals(TextBox1.Text))
-                        {
-                            b = true;
-                            object x = reader.GetValue(0);
-                            object z = reader.GetValue(1);
-                            log = (string)x;
-                            pass = (string)z;
-                        }
-                        break;
-                    }
-                    if (!b)
-                    {
-                        MessageBox.Show("Данной почты нету в базе. Пожалуйста проверьте данные.");
-                        reader.Close();
-                        reg.Close();
-                        return;
-                    }
-                    reader.Close();
-                }
-                    SendEmailAsync(TextBox1.Text, log, pass).GetAwaiter();
-                    MessageBox.Show("Письмо успешно отправлено");                  
-                    entry ee = new entry();
-                    ee.Show();                    
-                    this.Close();
-                
+                MessageBox.Show("Данной почты нету в базе. Пожалуйста проверьте данные.");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }                                          
+                    SendEmailAsync(TextBox1.Text, log, pass).GetAwaiter();
+                    MessageBox.Show("Письмо успешно отправлено");
+                    MainWindow ee = new MainWindow();
+                    ee.Show();
+                    this.Close();
+                    pass = "";
+                    log = "";
+            }
         }
         private static async Task SendEmailAsync(string text,string login,string password)
         {

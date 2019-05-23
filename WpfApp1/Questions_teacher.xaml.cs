@@ -21,7 +21,7 @@ namespace WpfApp1
     public partial class Questions_teacher : Window
     {
        
-        public static int id_teacher = entry.identry;
+        public static int id_teacher = MainWindow.identry;
         public Questions_teacher()
         {
             InitializeComponent();

@@ -25,7 +25,7 @@ namespace WpfApp1
        
         private readonly SqlConnection _newcon = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
         private readonly DataTable tables = new DataTable();
-        public static int id_teacher = entry.identry;
+        public static int id_teacher = MainWindow.identry;
         public Info_about_questions()
         {
             InitializeComponent();
@@ -55,47 +55,18 @@ namespace WpfApp1
             }
         }
 
-        private void Delete_question_click(object sender, RoutedEventArgs e)
-        {
-            Delete.Visibility = Visibility.Visible;
-            DeleteLabel.Visibility = Visibility.Visible;
-            DeleteBox.Visibility = Visibility.Visible;
-            Line.Visibility = Visibility.Visible;
-        }
+        
 
         private void Change_questions_click(object sender, RoutedEventArgs e)
         {
-            Delete.Visibility = Visibility.Hidden;
+           
             DeleteLabel.Visibility = Visibility.Hidden;
-            DeleteBox.Visibility = Visibility.Hidden;
             Line.Visibility = Visibility.Hidden;
             ChangeQuestions chn = new ChangeQuestions();
             chn.Show();
         }
 
-        private void Delete_click(object sender, RoutedEventArgs e)
-        {
-            try
-            {                
-                id_question = Convert.ToInt32(DeleteBox.Text);
-                string ConnectionString = @"Data Source=DESKTOP-15P21ID;Initial Catalog=kursovoi;Integrated Security=True";
-                string sqlExpression = "delete from questions where id='" + id_question + "'";
-
-                using (SqlConnection cn = new SqlConnection(ConnectionString))
-                {
-                    cn.Open();
-                    SqlCommand command = new SqlCommand(sqlExpression, cn);
-                    command.BeginExecuteNonQuery();
-                    MessageBox.Show("Вопрос успешно удален!");
-                    cn.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
+        
         public static int id_question;
 
         private void Back_click_entry(object sender, RoutedEventArgs e)

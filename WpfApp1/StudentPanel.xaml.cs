@@ -20,7 +20,7 @@ namespace WpfApp1
     /// </summary>
     public partial class StudentPanel : Window
     {
-        public static int id_student = entry.identry;
+        public static int id_student = MainWindow.identry;
         public StudentPanel()
         {
             InitializeComponent();

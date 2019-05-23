@@ -126,6 +126,7 @@
     <Compile Include="Admin_panel.xaml.cs">
       <DependentUpon>Admin_panel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BlurTrigger.cs" />
     <Compile Include="ChangeQuestions.xaml.cs">
       <DependentUpon>ChangeQuestions.xaml</DependentUpon>
     </Compile>
@@ -135,14 +136,8 @@
     <Compile Include="EndTest.xaml.cs">
       <DependentUpon>EndTest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entry.xaml.cs">
-      <DependentUpon>Entry.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Info_about_questions.xaml.cs">
       <DependentUpon>Info_about_questions.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Info_question.xaml.cs">
-      <DependentUpon>Info_question.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewTest.xaml.cs">
       <DependentUpon>NewTest.xaml</DependentUpon>
@@ -192,15 +187,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Entry.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Info_about_questions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Info_question.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,6 +254,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

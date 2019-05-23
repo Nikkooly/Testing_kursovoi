@@ -49,7 +49,7 @@ namespace WpfApp1
         }
         private readonly SqlConnection _newcon = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
         private readonly DataTable tables = new DataTable();
-        public static int id_teacher = entry.identry;
+        public static int id_teacher = MainWindow.identry;
         private async void Show_question_clickAsync(object sender, RoutedEventArgs e)
         {
             User_Grid_id.Visibility = Visibility.Hidden;
